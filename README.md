@@ -1,2 +1,2 @@
-# CookIt
+# MakeIt
 CS446 Project
