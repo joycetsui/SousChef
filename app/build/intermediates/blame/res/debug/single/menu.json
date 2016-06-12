@@ -1,6 +1,10 @@
 [
     {
-        "merged": "/home/brandon/MakeIt/app/build/intermediates/res/merged/debug/menu/menu_main.xml",
-        "source": "/home/brandon/MakeIt/app/src/main/res/menu/menu_main.xml"
+        "merged": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_main.xml",
+        "source": "D:\\home\\brandon\\MakeIt\\app\\src\\main\\res\\menu\\menu_main.xml"
+    },
+    {
+        "merged": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_main.xml",
+        "source": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\src\\main\\res\\menu\\menu_main.xml"
     }
 ]

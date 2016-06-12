@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">MakeIt</string>
     <string name="action_settings">Settings</string>
+
+    <!-- Add Ingredients Screen -->
+    <string name="add_ingredients">Add Ingredients</string>
+    <string name="hintEnterIngredient">Enter Ingredient</string>
+    <string name="lblBtnAdd">Add</string>
+    <string name="txtEmpty">None</string>
+    <string name="lblBtnOptions">Options</string>
+    <string name="lblBtnFeedMe">Feed Me</string>
 </resources>
