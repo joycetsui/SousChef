@@ -36,12 +36,12 @@
         "source": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_action_bar_view_list_nav_layout.xml"
     },
     {
-        "merged": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_item_material.xml",
-        "source": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\select_dialog_item_material.xml"
-    },
-    {
         "merged": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\support_simple_spinner_dropdown_item.xml",
         "source": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\support_simple_spinner_dropdown_item.xml"
+    },
+    {
+        "merged": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_item_material.xml",
+        "source": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\select_dialog_item_material.xml"
     },
     {
         "merged": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_media_action.xml",
@@ -156,12 +156,12 @@
         "source": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
     },
     {
-        "merged": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_popup_menu_item_layout.xml",
-        "source": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_popup_menu_item_layout.xml"
-    },
-    {
         "merged": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_separator.xml",
         "source": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\layout\\design_navigation_item_separator.xml"
+    },
+    {
+        "merged": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_popup_menu_item_layout.xml",
+        "source": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_popup_menu_item_layout.xml"
     },
     {
         "merged": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_radio.xml",
@@ -176,12 +176,12 @@
         "source": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_list_menu_item_radio.xml"
     },
     {
-        "merged": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_title_item.xml",
-        "source": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_action_bar_title_item.xml"
-    },
-    {
         "merged": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_item_layout.xml",
         "source": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_action_menu_item_layout.xml"
+    },
+    {
+        "merged": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_title_item.xml",
+        "source": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_action_bar_title_item.xml"
     },
     {
         "merged": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_singlechoice_material.xml",
@@ -200,12 +200,12 @@
         "source": "D:\\home\\brandon\\MakeIt\\app\\src\\main\\res\\layout\\content_main.xml"
     },
     {
-        "merged": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_header.xml",
-        "source": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\layout\\design_navigation_item_header.xml"
-    },
-    {
         "merged": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_snackbar_include.xml",
         "source": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\layout\\design_layout_snackbar_include.xml"
+    },
+    {
+        "merged": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_header.xml",
+        "source": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\layout\\design_navigation_item_header.xml"
     },
     {
         "merged": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_dropdown_item_icons_2line.xml",
@@ -260,12 +260,12 @@
         "source": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\layout\\design_layout_snackbar.xml"
     },
     {
-        "merged": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_view.xml",
-        "source": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_search_view.xml"
-    },
-    {
         "merged": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_snackbar_include.xml",
         "source": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\layout\\design_layout_snackbar_include.xml"
+    },
+    {
+        "merged": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_view.xml",
+        "source": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_search_view.xml"
     },
     {
         "merged": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_bar.xml",
@@ -288,12 +288,12 @@
         "source": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_list_menu_item_checkbox.xml"
     },
     {
-        "merged": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_close_item_material.xml",
-        "source": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_action_mode_close_item_material.xml"
-    },
-    {
         "merged": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item.xml",
         "source": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\layout\\design_navigation_item.xml"
+    },
+    {
+        "merged": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_close_item_material.xml",
+        "source": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_action_mode_close_item_material.xml"
     },
     {
         "merged": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_chronometer.xml",
@@ -308,12 +308,12 @@
         "source": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_screen_simple.xml"
     },
     {
-        "merged": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_lines.xml",
-        "source": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\notification_template_lines.xml"
-    },
-    {
         "merged": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_menu_item.xml",
         "source": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\layout\\design_navigation_menu_item.xml"
+    },
+    {
+        "merged": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_lines.xml",
+        "source": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\notification_template_lines.xml"
     },
     {
         "merged": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_layout.xml",
@@ -368,12 +368,12 @@
         "source": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_action_mode_close_item_material.xml"
     },
     {
-        "merged": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_view.xml",
-        "source": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_search_view.xml"
-    },
-    {
         "merged": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_icon.xml",
         "source": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_list_menu_item_icon.xml"
+    },
+    {
+        "merged": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_view.xml",
+        "source": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_search_view.xml"
     },
     {
         "merged": "D:\\home\\brandon\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media.xml",
@@ -400,11 +400,11 @@
         "source": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_action_menu_layout.xml"
     },
     {
-        "merged": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_menu_item.xml",
-        "source": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\layout\\design_navigation_menu_item.xml"
-    },
-    {
         "merged": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_content_include.xml",
         "source": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.2.1\\res\\layout\\abc_screen_content_include.xml"
+    },
+    {
+        "merged": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_menu_item.xml",
+        "source": "D:\\Documents\\GitHub\\CS 446\\MakeIt\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.2.1\\res\\layout\\design_navigation_menu_item.xml"
     }
 ]

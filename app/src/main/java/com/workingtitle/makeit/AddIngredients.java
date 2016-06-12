@@ -4,11 +4,16 @@ import java.util.ArrayList;
 
 import android.app.ListActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ActionMenuView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 
 import com.workingtitle.makeit.R;
 
@@ -40,7 +45,7 @@ public class AddIngredients extends ListActivity {
             @Override
             public void onClick(View v) {
                 EditText edit = (EditText) findViewById(R.id.txtItem);
-                list.add(edit.getText().toString());
+                list.add(0, edit.getText().toString());
                 edit.setText("");
                 adapter.notifyDataSetChanged();
             }

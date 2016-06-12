@@ -1,39 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/txtItem"
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:hint="@string/hintEnterIngredient"
-        />
+    <!-- Toolbar -->
 
-    <Button
-        android:id="@+id/btnAdd"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/lblBtnAdd"
-        android:layout_toRightOf="@id/txtItem"
-        />
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:text="@string/add_ingredients"/>
+
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <!-- List of ingredients -->
     <ListView
         android:id="@android:id/list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtItem"
-        />
+        android:layout_above="@+id/btnAdd" />
 
     <TextView
         android:id="@android:id/empty"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtItem"
         android:text="@string/txtEmpty"
         android:gravity="center_horizontal"
         />
 
+    <!-- Enter ingredient box -->
+    <EditText
+        android:id="@+id/txtItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="@string/hintEnterIngredient"
+        android:layout_alignBottom="@+id/btnAdd"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/btnAdd"
+        android:layout_toStartOf="@+id/btnAdd" />
+
+    <!-- Add button -->
+    <Button
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lblBtnAdd"
+        android:layout_above="@+id/btnOptions"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <!-- Options button -->
+    <Button
+        android:id="@+id/btnOptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lblBtnOptions"
+        android:layout_above="@+id/btnFeedMe"
+        android:layout_centerHorizontal="true" />
+
+    <!-- FEED ME button -->
+    <Button
+        android:id="@+id/btnFeedMe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lblBtnFeedMe"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>
