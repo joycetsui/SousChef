@@ -1,9 +1,13 @@
 package com.workingtitle.makeit;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -16,8 +20,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-      //  Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -28,6 +33,42 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });*/
+
+        // Get the ViewPager and set it's PagerAdapter so that it can display items
+        final ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
+        final MyFragmentPagerAdapter adapter = new MyFragmentPagerAdapter(getSupportFragmentManager(),MainActivity.this);
+        viewPager.setAdapter(adapter);
+
+        // Give the TabLayout the ViewPager
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
+        tabLayout.addTab(tabLayout.newTab().setText("Home"));
+        tabLayout.addTab(tabLayout.newTab().setText("Add Ingredients"));
+        tabLayout.addTab(tabLayout.newTab().setText("I Dont Know"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+        //Iterate over all tabs and set custom view
+//        for (int i = 0; i < tabLayout.getTabCount(); i++){
+//            TabLayout.Tab tab = tabLayout.getTabAt(i);
+//            tab.setCustomView(adapter.getTabView(i));
+//        }
     }
 
     @Override
@@ -52,9 +93,8 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void addIngredients(View view) {
-        Intent intent = new Intent(this, AddIngredients.class);
-        startActivity(intent);
-    }
-
+//    public void addIngredients(View view) {
+//        Intent intent = new Intent(this, AddIngredients.class);
+//        startActivity(intent);
+//    }
 }
