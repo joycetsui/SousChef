@@ -15,10 +15,12 @@ import org.w3c.dom.Text;
 /**
  * Created by Maricarla on 2016-06-13.
  */
-public class HomePageFragment extends Fragment {
+public class SearchRecipeNameFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.home_page_tab, container, false);
+        View view = inflater.inflate(R.layout.search_by_name, container, false);
+
+        return view;
     }
 }

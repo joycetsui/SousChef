@@ -6,20 +6,15 @@ import android.content.Context;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Toolbar;
 
 /**
  * Created by Maricarla on 2016-06-13.
  */
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
-    final int PAGE_COUNT = 3;
-    private String tabTitles[] = new String[] { "Home", "Add Ingredients", "Page 3" };
+    final int PAGE_COUNT = 4;
+    private String tabTitles[] = new String[] { "Search by Ingredients", "Search by Recipes", "Saved Recipes", "Search History" };
     private Context context;
-
-    private int[] imageResId = {
-//            R.drawable.ic_one,
-//            R.drawable.ic_two,
-//            R.drawable.ic_three
-    };
 
     public MyFragmentPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
@@ -35,14 +30,17 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                HomePageFragment homeTab = new HomePageFragment();
-                return homeTab;
+                AddIngredientsFragment searchIngredientsTab = new AddIngredientsFragment();
+                return searchIngredientsTab;
             case 1:
-                AddIngredientsFragment addIngredientsTab = new AddIngredientsFragment();
-                return addIngredientsTab;
+                SearchRecipeNameFragment searchRecipeTab = new SearchRecipeNameFragment();
+                return searchRecipeTab;
             case 2:
                 TabFragment3 tab3 = new TabFragment3();
                 return tab3;
+            case 3:
+                TabFragment4 tab4 = new TabFragment4();
+                return tab4;
             default:
                 return null;
         }
@@ -51,8 +49,6 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         // Generate title based on item position
-
-        System.out.println(tabTitles[position]);
         return tabTitles[position];
 
         // getDrawable(int i) is deprecated, use getDrawable(int i, Theme theme) for min SDK >=21
@@ -68,13 +64,13 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 //        return sb;
     }
 
-    public View getTabView(int position){
-        View view = LayoutInflater.from(context).inflate(R.layout.home_page_tab, null);
-//        TextView textView = (TextView) view.findViewById(R.id.textView);
-//        textView.setText(tabTitles[position]);
-//        ImageView img = (ImageView) view.findViewById(R.id.imgView);
-//        img.setImageResource(imageResId[position]);
-
-        return view;
-    }
+//    public View getTabView(int position){
+////        View view = LayoutInflater.from(context).inflate(R.layout.home_page_tab, null);
+////        TextView textView = (TextView) view.findViewById(R.id.textView);
+////        textView.setText(tabTitles[position]);
+////        ImageView img = (ImageView) view.findViewById(R.id.imgView);
+////        img.setImageResource(imageResId[position]);
+//
+//        return view;
+//    }
 }

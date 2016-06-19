@@ -1,6 +1,12 @@
 <resources>
-    <string name="app_name">MakeIt</string>
+    <string name="app_name">SousChef</string>
     <string name="action_settings">Settings</string>
+
+    <!-- Toolbar Tabs Titles -->
+    <string name="search_ingredients_tab">Search by Ingredients</string>
+    <string name="search_recipe_tab">Search by Recipes</string>
+    <string name="saved_recipes">Saved Recipes</string>
+    <string name="search_history">Search History</string>
 
     <!-- Add Ingredients Screen -->
     <string name="add_ingredients">Add Ingredients</string>
@@ -10,7 +16,9 @@
     <string name="lblBtnOptions">Options</string>
     <string name="lblBtnFeedMe">Feed Me</string>
 
-    //Extra
+    <!-- Search By Recipe Name Screen -->
+    <string name="hintEnterRecipeName">Enter Recipe Name</string>
+
     <string name="dummy_section_text">Section %1d is just a dummy section.</string>
     <string name="demo_external_activity">Demo External Activity</string>
     <string name="demo_collection">Demo Collection</string>
