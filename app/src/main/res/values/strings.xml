@@ -9,4 +9,9 @@
     <string name="txtEmpty">None</string>
     <string name="lblBtnOptions">Options</string>
     <string name="lblBtnFeedMe">Feed Me</string>
+
+    //Extra
+    <string name="dummy_section_text">Section %1d is just a dummy section.</string>
+    <string name="demo_external_activity">Demo External Activity</string>
+    <string name="demo_collection">Demo Collection</string>
 </resources>
