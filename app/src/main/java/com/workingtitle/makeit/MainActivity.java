@@ -2,6 +2,8 @@ package com.workingtitle.makeit;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,6 +17,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
+
+    private int[] imageResId = {
+            R.drawable.ic_apple,
+            R.drawable.ic_chef2,
+            R.drawable.ic_saved,
+            R.drawable.ic_list
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,36 +48,53 @@ public class MainActivity extends AppCompatActivity {
         final MyFragmentPagerAdapter adapter = new MyFragmentPagerAdapter(getSupportFragmentManager(),MainActivity.this);
         viewPager.setAdapter(adapter);
 
-        // Give the TabLayout the ViewPager
+        //Set default tab
+        viewPager.setCurrentItem(0);
+        setToolbarTitle(0);
+
+        //Give the TabLayout the ViewPager
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
-        tabLayout.addTab(tabLayout.newTab().setText("Home"));
-        tabLayout.addTab(tabLayout.newTab().setText("Add Ingredients"));
-        tabLayout.addTab(tabLayout.newTab().setText("I Dont Know"));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-        
+        tabLayout.addTab(tabLayout.newTab().setIcon(imageResId[0]));
+        tabLayout.addTab(tabLayout.newTab().setIcon(imageResId[1]));
+        tabLayout.addTab(tabLayout.newTab().setIcon(imageResId[2]));
+        tabLayout.addTab(tabLayout.newTab().setIcon(imageResId[3]));
+
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
+                setToolbarTitle(tab.getPosition());
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
             }
         });
+    }
 
-        //Iterate over all tabs and set custom view
-//        for (int i = 0; i < tabLayout.getTabCount(); i++){
-//            TabLayout.Tab tab = tabLayout.getTabAt(i);
-//            tab.setCustomView(adapter.getTabView(i));
-//        }
+    private void setToolbarTitle(int position){
+        switch (position){
+            case 0:
+                setTitle(R.string.search_ingredients_tab);
+                break;
+            case 1:
+                setTitle(R.string.search_recipe_tab);
+                break;
+            case 2:
+                setTitle(R.string.saved_recipes);
+                break;
+            case 3:
+                setTitle(R.string.search_history);
+                break;
+            default:
+                setTitle("");
+                break;
+        }
     }
 
     @Override
