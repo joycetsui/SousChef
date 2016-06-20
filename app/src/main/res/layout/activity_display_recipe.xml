@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.workingtitle.makeit.DisplayRecipe">
+
+    <Toolbar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/view"></Toolbar>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Recipe Name"
+        android:id="@+id/recipeName"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Cooking Time"
+        android:id="@+id/cookTimeLabel"
+        android:layout_below="@+id/view"
+        android:layout_alignLeft="@+id/cookingTime"
+        android:layout_alignStart="@+id/cookingTime" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="1hr 15 min"
+        android:id="@+id/cookingTime"
+        android:layout_below="@+id/cookTimeLabel"
+        android:layout_toRightOf="@+id/view"
+        android:layout_toEndOf="@+id/view" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Ingredients"
+        android:id="@+id/ingredientsLabel"
+        android:layout_below="@+id/cookingTime"
+        android:layout_alignLeft="@+id/cookingTime"
+        android:layout_alignStart="@+id/cookingTime"
+        android:layout_marginTop="28dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="stuff "
+        android:id="@+id/textView"
+        android:layout_below="@+id/ingredientsLabel"
+        android:layout_alignLeft="@+id/ingredientsLabel"
+        android:layout_alignStart="@+id/ingredientsLabel"
+        android:layout_toLeftOf="@+id/recipeName"
+        android:layout_toStartOf="@+id/recipeName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Directions"
+        android:id="@+id/directionsLabel"
+        android:layout_marginTop="31dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/directions"
+        android:layout_below="@+id/directionsLabel"
+        android:layout_alignLeft="@+id/directionsLabel"
+        android:layout_alignStart="@+id/directionsLabel" />
+
+</RelativeLayout>
