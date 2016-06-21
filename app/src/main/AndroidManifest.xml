@@ -30,6 +30,8 @@
             android:parentActivityName=".MainActivity" >
         </activity>
 
+        <activity android:name=".SearchOptions"></activity>
+
     </application>
 
 </manifest>
