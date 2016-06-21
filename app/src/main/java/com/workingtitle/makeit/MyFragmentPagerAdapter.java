@@ -4,9 +4,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.content.Context;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.Toolbar;
 
 /**
  * Created by Maricarla on 2016-06-13.
@@ -36,7 +33,7 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
                 SearchRecipeNameFragment searchRecipeTab = new SearchRecipeNameFragment();
                 return searchRecipeTab;
             case 2:
-                TabFragment3 tab3 = new TabFragment3();
+                SavedRecipesFragment tab3 = new SavedRecipesFragment();
                 return tab3;
             case 3:
                 TabFragment4 tab4 = new TabFragment4();
