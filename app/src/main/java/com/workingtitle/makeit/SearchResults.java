@@ -50,14 +50,14 @@ public class SearchResults extends AppCompatActivity {
 
         final ListView listView = (ListView) findViewById(R.id.list);
 
-        TempRecipe recipe = new TempRecipe(1, "title", "author", 1.0, 5.0, 200, 30, 2, "Directions", "Ingredients");
+        TempRecipe recipe = new TempRecipe(1, "title", "author", 1.0f, 5, 200, 30, 2, "Directions", "Ingredients");
 
         TempRecipe[] recipeList = new TempRecipe[]{
                 recipe, recipe, recipe, recipe, recipe, recipe, recipe, recipe, recipe
         };
 
         for (int i = 0; i < recipeList.length; i++){
-            TempRecipe recipe2 = new TempRecipe(1, "Recipe " + i, "Author", 1.0, 5.0, 200, 30, 2, "Directions", "Ingredients");
+            TempRecipe recipe2 = new TempRecipe(1, "Recipe " + i, "Author", i + 0.0f, 5, 200, 30, 2, "Directions", "Ingredients");
             recipeList[i] = recipe2;
         }
 

@@ -37,6 +37,16 @@ public class SearchRecipeNameFragment extends Fragment {
         /** Setting the event listener for the add button */
         searchBtn.setOnClickListener(goSearchListener);
 
+        // Go to Search Options Page
+        optionsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SearchOptions.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 

@@ -93,7 +93,7 @@ public class OptionsCookTimeDialogFragment extends DialogFragment{
         LL.addView(hr,hrParam);
         LL.addView(min,minParam);
 
-        builder.setTitle(R.string.portions)
+        builder.setTitle(R.string.cookTime)
                 .setView(LL)
                 .setPositiveButton(R.string.okButton, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {

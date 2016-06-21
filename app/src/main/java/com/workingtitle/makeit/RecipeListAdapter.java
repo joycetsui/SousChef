@@ -49,13 +49,12 @@ public class RecipeListAdapter extends ArrayAdapter<String> {
 //        });
 
         titleTextView.setText(recipes[position].title);
+        ratingbar.setRating(recipes[position].rating);
 
         if (position%2 == 0){
             imageView.setImageResource(R.drawable.ic_apple);
-            ratingbar.setRating(1);
         } else {
             imageView.setImageResource(R.drawable.ic_list);
-            ratingbar.setRating(4);
         }
 
         return rowView;

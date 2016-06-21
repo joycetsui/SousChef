@@ -7,15 +7,15 @@ public class TempRecipe {
     int id;
     String title;
     String author;
-    Double rating;
-    Double ratingScale;
+    Float rating;
+    int ratingScale;
     int reviewCount;
     int cookTime;
     int servingSize;
     String directions;
     String ingredients;
 
-    TempRecipe(int id, String title, String author, Double rating, Double ratingScale, int reviewCount, int cookTime, int servingSize, String directions, String ingredients){
+    TempRecipe(int id, String title, String author, Float rating, int ratingScale, int reviewCount, int cookTime, int servingSize, String directions, String ingredients){
         this.id = id;
         this.title = title;
         this.author = author;
