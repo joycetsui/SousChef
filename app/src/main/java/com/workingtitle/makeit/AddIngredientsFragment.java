@@ -72,6 +72,15 @@ public class AddIngredientsFragment extends Fragment {
         /** Setting the adapter to the ListView */
         listView.setAdapter(adapter);
 
+        // Listener for Options button, opens on click
+        Button b = (Button) view.findViewById(R.id.btnOptions);
+        b.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SearchOptions.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 
