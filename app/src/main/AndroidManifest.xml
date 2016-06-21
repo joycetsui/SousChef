@@ -32,6 +32,8 @@
             android:name=".SearchOptions">
         </activity>
 
+        <activity android:name=".SearchOptions"></activity>
+
     </application>
 
 </manifest>
