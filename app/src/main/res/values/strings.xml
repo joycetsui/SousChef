@@ -19,6 +19,8 @@
     <!-- Search Options Screen -->
     <string name="cookTime">Cook Time</string>
     <string name="portions">Number of Portions</string>
+    <string name="okButton">OK</string>
+    <string name="cancelButton">CANCEL</string>
 
     <!-- Search By Recipe Name Screen -->
     <string name="hintEnterRecipeName">Enter Recipe Name</string>
