@@ -13,7 +13,18 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    //TabLayout Style
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+
+    <!-- Souschef themes -->
+    <style name="ToolbarTheme">
+
+
+    </style>
+
+    <!-- TabLayout Style -->
     <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
         <!--<item name="tabMaxWidth">@dimen/tab_max_width</item>-->
         <item name="tabIndicatorColor">?attr/colorAccent</item>
@@ -37,11 +48,14 @@
         <item name="textAllCaps">false</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
-
-
+    <!-- Recipe Rating Bar Theme -->
+    <style name="foodRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/food_rating_bar</item>
+        <item name="android:minHeight">24dip</item>
+        <item name="android:maxHeight">64dip</item>
+        <item name="android:minWidth">24dip</item>
+        <item name="android:maxWidth">64dip</item>
+    </style>
 
     <!-- Search Options List style -->
     <style name="searchOptionsTV" >
@@ -50,10 +64,6 @@
         <item name="android:paddingTop">8dp</item>
         <item name="android:paddingBottom">8dp</item>
         <item name="android:textSize">16sp</item>
-    </style>
-
-    <!-- Souschef themes -->
-    <style name="ToolbarTheme">
     </style>
     
 </resources>

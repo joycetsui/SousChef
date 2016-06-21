@@ -32,7 +32,15 @@
             android:name=".SearchOptions">
         </activity>
 
-        <activity android:name=".SearchOptions"></activity>
+        <activity
+            android:name=".SearchResults"
+            android:parentActivityName=".MainActivity" >
+        </activity>
+
+        <activity
+            android:name=".DisplayRecipe"
+            android:parentActivityName=".MainActivity" >
+        </activity>
 
     </application>
 

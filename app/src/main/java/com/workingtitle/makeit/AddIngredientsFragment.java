@@ -92,7 +92,10 @@ public class AddIngredientsFragment extends Fragment {
     }
 
     private void openResultsPage(){
-        Intent intent = new Intent(getActivity(), PlaceHolderActivity.class);
+        Intent intent = new Intent(getActivity(), SearchResults.class);
+        Bundle b = new Bundle();
+        b.putInt("toolbarBackMessage", R.string.search_ingredients_tab);
+        intent.putExtras(b);
         startActivity(intent);
     }
 
