@@ -16,6 +16,7 @@
     <string name="txtEmpty">None</string>
     <string name="lblBtnOptions">Options</string>
     <string name="lblBtnFeedMe">Feed Me</string>
+    <string name="invalidIngredientMsg">Invalid ingredient: Please choose one of the suggested ingredients.</string>
 
     <!-- Search Options Screen -->
     <string name="cookTime">Cook Time</string>
