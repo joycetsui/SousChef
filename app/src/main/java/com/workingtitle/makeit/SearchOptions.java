@@ -30,10 +30,10 @@ public class SearchOptions extends AppCompatActivity {
             }
         });
 
-        // get options data
-        Intent i= getIntent();
-        Bundle b = i.getExtras();
-        if(b!=null) {
+        // Get options data
+        Intent intent = getIntent();
+        Bundle b = intent.getExtras();
+        if (b != null) {
 
             // Cook Time values
             day = b.getInt("ctDay");
@@ -67,7 +67,6 @@ public class SearchOptions extends AppCompatActivity {
             else {
                 tvPortion.setText(Integer.toString(portions));
             }
-
         }
     }
 
@@ -81,7 +80,7 @@ public class SearchOptions extends AppCompatActivity {
         args.putExtra("portions", portions);
         setResult(RESULT_OK, args);
 
-        finish();
+        super.onBackPressed();
     }
 
     // I think ideally this should be a listener but it works ¯\_(ツ)_/¯
@@ -112,7 +111,6 @@ public class SearchOptions extends AppCompatActivity {
     int hour;
     int minute;
     int day;
-
 
     public void onCookTimeOK(String cookTime) {
         String delims = "[:]";

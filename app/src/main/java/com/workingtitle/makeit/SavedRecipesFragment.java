@@ -1,5 +1,6 @@
 package com.workingtitle.makeit;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 public class SavedRecipesFragment extends Fragment {
 
     /** Declaring an ArrayAdapter to set items to ListView */
-    RecipeListAdapter adapter;
+    RecipeListAdapter recipeListAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -34,47 +35,40 @@ public class SavedRecipesFragment extends Fragment {
         TextView header = (TextView) view.findViewById(R.id.results);
         header.setVisibility(View.GONE);
 
-        /*Recipe recipe = new Recipe();
-
-        TempRecipe[] recipeList = new TempRecipe[]{
-                recipe, recipe, recipe, recipe, recipe, recipe, recipe, recipe, recipe
-        };*/
-
         /******************************** Hard Coded Recipe ************************************/
         ArrayList<Recipe> recipeList= new ArrayList<Recipe>();
 
-        for (int i = 0; i < 10; i++){
+        for (int i = 0; i < 5; i++){
             Recipe recipe = new Recipe();
             recipe.setAuthor("Author");
             recipe.setTitle("Recipe " + i);
-            recipe.setRating(1);
+            recipe.setRating(i+1);
             recipeList.add(recipe);
         }
         /**************************************************************************************/
 
-        //Get values
-        ArrayList<String> values = new ArrayList<String>();
-        for (int i = 0; i < recipeList.size(); i++){
-            values.add(recipeList.get(i).title);
-        }
-
-
         /** Defining the ArrayAdapter to set items to ListView */
-        adapter = new RecipeListAdapter(getContext(), recipeList, values);
+        recipeListAdapter = new RecipeListAdapter(getContext(), recipeList);
 
         /** Setting the adapter to the ListView */
-        listView.setAdapter(adapter);
+        listView.setAdapter(recipeListAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Toast.makeText(getContext(),
-                        "Click ListItem Number " + position, Toast.LENGTH_LONG)
-                        .show();
+                openRecipeDetailsPage();
             }
         });
 
         return view;
+    }
+
+    private void openRecipeDetailsPage(){
+        Intent intent = new Intent(getActivity(), DisplayRecipe.class);
+        Bundle b = new Bundle();
+        b.putInt("toolbarBackMessage", R.string.saved_recipes);
+        intent.putExtras(b);
+        startActivity(intent);
     }
 }

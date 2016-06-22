@@ -18,22 +18,20 @@ import java.util.ArrayList;
 /**
  * Created by Maricarla on 2016-06-20.
  */
-public class RecipeListAdapter extends ArrayAdapter<String> {
+public class RecipeListAdapter extends ArrayAdapter<Recipe> {
     private final Context context;
-    private final ArrayList<Recipe> recipes;
-    private final ArrayList<String> values;
+    ArrayList<Recipe> recipes;
 
-    public RecipeListAdapter(Context context, ArrayList <Recipe> recipes, ArrayList<String> values) {
-        super(context, -1, values);
+    public RecipeListAdapter(Context context, ArrayList <Recipe> recipes) {
+        super(context, -1, recipes);
+
         this.context = context;
         this.recipes = recipes;
-        this.values = values;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View rowView = inflater.inflate(R.layout.results_row_layout, parent, false);
 
@@ -41,17 +39,6 @@ public class RecipeListAdapter extends ArrayAdapter<String> {
         ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
 
         RatingBar ratingbar =(RatingBar) rowView.findViewById(R.id.recipe_rating);
-
-//        ratingbar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener(){
-//
-//            @Override
-//            public void onRatingChanged(RatingBar ratingBar, float rating,
-//                                        boolean fromUser) {
-//                // TODO Auto-generated method stub
-//                Toast.makeText(getContext(),Float.toString(rating),Toast.LENGTH_LONG).show();
-//            }
-//
-//        });
 
         titleTextView.setText(recipes.get(position).title);
         ratingbar.setRating(recipes.get(position).rating);

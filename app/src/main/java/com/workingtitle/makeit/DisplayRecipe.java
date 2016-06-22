@@ -65,7 +65,6 @@ public class DisplayRecipe extends AppCompatActivity{
         setRecipeElements(recipe.author, R.id.authorName);
     }
 
-
     public void setRecipeElements(String text, int id){
         TextView tv = new TextView (this);
         tv = (TextView)findViewById(id);

@@ -64,5 +64,4 @@ public class OptionsPortionsDialogFragment extends DialogFragment {
         return builder.create();
     }
 
-
 }

@@ -25,10 +25,6 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".PlaceHolderActivity"
-            android:parentActivityName=".MainActivity"></activity>
-
-        <activity
             android:name=".SearchOptions">
         </activity>
 

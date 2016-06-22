@@ -126,7 +126,6 @@ public class OptionsCookTimeDialogFragment extends DialogFragment{
 
         /** View complete **/
 
-
         // Building the dialog
         builder.setTitle(R.string.cookTime)
                 .setView(LLParent)

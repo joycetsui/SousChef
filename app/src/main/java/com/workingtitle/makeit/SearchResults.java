@@ -16,11 +16,8 @@ import java.util.ArrayList;
  */
 public class SearchResults extends AppCompatActivity {
 
-    /** Items entered by the user is stored in this ArrayList variable */
-//    ArrayList<TempRecipe> list = new ArrayList<TempRecipe>();
-
     /** Declaring an ArrayAdapter to set items to ListView */
-    RecipeListAdapter adapter;
+    RecipeListAdapter recipeListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,21 +48,6 @@ public class SearchResults extends AppCompatActivity {
 
         final ListView listView = (ListView) findViewById(R.id.list);
 
-        /*TempRecipe recipe = new TempRecipe(1, "title", "author", 1.0f, 5, 200, 30, 2, "Directions", "Ingredients");
-
-        TempRecipe[] recipeList = new TempRecipe[]{
-                recipe, recipe, recipe, recipe, recipe, recipe, recipe, recipe, recipe
-        };
-
-        for (int i = 0; i < recipeList.length; i++){
-            TempRecipe recipe2 = new TempRecipe(1, "Recipe " + i, "Author", i + 0.0f, 5, 200, 30, 2, "Directions", "Ingredients");
-            recipeList[i] = recipe2;
-        }
-
-        String[] values = new String[]{
-                recipe.title, recipe.title, recipe.title, recipe.title, recipe.title, recipe.title, recipe.title, recipe.title, recipe.title
-        };*/
-
         /******************************** Hard Coded Recipe ************************************/
         ArrayList<Recipe> recipeList= new ArrayList<Recipe>();
 
@@ -73,30 +55,21 @@ public class SearchResults extends AppCompatActivity {
             Recipe recipe = new Recipe();
             recipe.setAuthor("Author");
             recipe.setTitle("Recipe " + i);
-            recipe.setRating(1);
+            recipe.setRating(i);
             recipeList.add(recipe);
         }
         /**************************************************************************************/
 
-        //Get values
-        ArrayList<String> values = new ArrayList<String>();
-        for (int i = 0; i < recipeList.size(); i++){
-            values.add(recipeList.get(i).title);
-        }
-
         /** Defining the ArrayAdapter to set items to ListView */
-        adapter = new RecipeListAdapter(this, recipeList, values);
+        recipeListAdapter = new RecipeListAdapter(this, recipeList);
 
         /** Setting the adapter to the ListView */
-        listView.setAdapter(adapter);
+        listView.setAdapter(recipeListAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-//                Toast.makeText(getApplicationContext(),
-//                        "Click ListItem Number " + position, Toast.LENGTH_LONG)
-//                        .show();
                 openRecipeDetailsPage();
             }
         });
