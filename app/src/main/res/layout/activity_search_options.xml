@@ -20,7 +20,7 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:textAlignment="center"
-        android:titleTextAppearance="@style/MyCustomTabTextAppearance"/>
+        android:titleTextAppearance="@style/RegularTextStyle"/>
 
     <TextView
         style="@style/searchOptionsTV"

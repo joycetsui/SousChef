@@ -1,5 +1,6 @@
 package com.workingtitle.makeit;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -75,10 +76,19 @@ public class SearchResults extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                Toast.makeText(getApplicationContext(),
-                        "Click ListItem Number " + position, Toast.LENGTH_LONG)
-                        .show();
+//                Toast.makeText(getApplicationContext(),
+//                        "Click ListItem Number " + position, Toast.LENGTH_LONG)
+//                        .show();
+                openRecipeDetailsPage();
             }
         });
+    }
+
+    private void openRecipeDetailsPage(){
+        Intent intent = new Intent(this, DisplayRecipe.class);
+        Bundle b = new Bundle();
+        b.putInt("toolbarBackMessage", R.string.search_results);
+        intent.putExtras(b);
+        startActivity(intent);
     }
 }

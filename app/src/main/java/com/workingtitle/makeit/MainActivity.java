@@ -1,5 +1,6 @@
 package com.workingtitle.makeit;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Color;
@@ -118,9 +119,4 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-//    public void addIngredients(View view) {
-//        Intent intent = new Intent(this, AddIngredients.class);
-//        startActivity(intent);
-//    }
 }

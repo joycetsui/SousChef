@@ -8,10 +8,18 @@
     android:fitsSystemWindows="true"
     tools:context="com.workingtitle.makeit.DisplayRecipe">
 
-    <Toolbar
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/view"></Toolbar>
+        android:layout_alignParentTop="true"
+        android:elevation="6dp"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@color/lime"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:textAlignment="center"
+        android:titleTextAppearance="@style/RegularTextStyle"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -19,7 +27,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Recipe Name"
         android:id="@+id/recipeName"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/toolbar"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -28,9 +38,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Cooking Time"
         android:id="@+id/cookTimeLabel"
-        android:layout_below="@+id/view"
+        android:layout_below="@+id/recipeName"
         android:layout_alignLeft="@+id/cookingTime"
-        android:layout_alignStart="@+id/cookingTime" />
+        android:layout_alignStart="@+id/cookingTime"
+        style="@style/RegularTextStyle"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -39,8 +50,7 @@
         android:text="1hr 15 min"
         android:id="@+id/cookingTime"
         android:layout_below="@+id/cookTimeLabel"
-        android:layout_toRightOf="@+id/view"
-        android:layout_toEndOf="@+id/view" />
+        style="@style/SubtitleTextStyle"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -51,7 +61,8 @@
         android:layout_below="@+id/cookingTime"
         android:layout_alignLeft="@+id/cookingTime"
         android:layout_alignStart="@+id/cookingTime"
-        android:layout_marginTop="28dp" />
+        android:layout_marginTop="28dp"
+        style="@style/RegularTextStyle"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -62,7 +73,8 @@
         android:layout_alignLeft="@+id/ingredientsLabel"
         android:layout_alignStart="@+id/ingredientsLabel"
         android:layout_toLeftOf="@+id/recipeName"
-        android:layout_toStartOf="@+id/recipeName" />
+        android:layout_toStartOf="@+id/recipeName"
+        style="@style/SubtitleTextStyle"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -73,7 +85,8 @@
         android:layout_marginTop="31dp"
         android:layout_below="@+id/textView"
         android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView" />
+        android:layout_alignStart="@+id/textView"
+        style="@style/RegularTextStyle"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -83,6 +96,7 @@
         android:id="@+id/directions"
         android:layout_below="@+id/directionsLabel"
         android:layout_alignLeft="@+id/directionsLabel"
-        android:layout_alignStart="@+id/directionsLabel" />
+        android:layout_alignStart="@+id/directionsLabel"
+        style="@style/SubtitleTextStyle"/>
 
 </RelativeLayout>

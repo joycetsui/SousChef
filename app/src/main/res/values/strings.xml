@@ -7,6 +7,7 @@
     <string name="search_recipe_tab">Search by Recipes</string>
     <string name="saved_recipes">Saved Recipes</string>
     <string name="search_history">Search History</string>
+    <string name="search_results">Search Results</string>
 
     <!-- Add Ingredients Screen -->
     <string name="add_ingredients">Add Ingredients</string>

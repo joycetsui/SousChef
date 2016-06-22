@@ -15,23 +15,27 @@
         android:background="@color/lime"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        android:textAlignment="center"
-        android:titleTextAppearance="@style/MyCustomTabTextAppearance"/>
+        android:textAlignment="center"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Results"
         android:id="@+id/results"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp"
+        android:textAppearance="@style/HeaderTextStyle"
         android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"/>
+    <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/list"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/results"
         android:choiceMode="singleChoice" />

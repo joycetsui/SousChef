@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -29,6 +30,9 @@ public class SavedRecipesFragment extends Fragment {
         //Hide the toolbar defined in the layout since this fragment is already part of the toolbar/tablayout
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         toolbar.setVisibility(View.GONE);
+
+        TextView header = (TextView) view.findViewById(R.id.results);
+        header.setVisibility(View.GONE);
 
         TempRecipe recipe = new TempRecipe(1, "title", "author", 1.0f, 5, 200, 30, 2, "Directions", "Ingredients");
 

@@ -1,6 +1,8 @@
 package com.workingtitle.makeit;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +37,7 @@ public class RecipeListAdapter extends ArrayAdapter<String> {
         TextView titleTextView = (TextView) rowView.findViewById(R.id.title);
         ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
 
-        RatingBar ratingbar =(RatingBar) rowView.findViewById(R.id.ratingBar);
+        RatingBar ratingbar =(RatingBar) rowView.findViewById(R.id.recipe_rating);
 
 //        ratingbar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener(){
 //
@@ -51,11 +53,19 @@ public class RecipeListAdapter extends ArrayAdapter<String> {
         titleTextView.setText(recipes[position].title);
         ratingbar.setRating(recipes[position].rating);
 
-        if (position%2 == 0){
-            imageView.setImageResource(R.drawable.ic_apple);
-        } else {
-            imageView.setImageResource(R.drawable.ic_list);
+        Bitmap image;
+
+        if (position%3 == 0){
+            image = BitmapFactory.decodeResource(parent.getResources(), R.drawable.crepes);
         }
+        else if (position%3 == 1){
+            image = BitmapFactory.decodeResource(parent.getResources(), R.drawable.salad_small);
+        }
+        else{
+            image = BitmapFactory.decodeResource(parent.getResources(), R.drawable.grilled_fish_small);
+        }
+
+        imageView.setImageBitmap(image);
 
         return rowView;
     }
