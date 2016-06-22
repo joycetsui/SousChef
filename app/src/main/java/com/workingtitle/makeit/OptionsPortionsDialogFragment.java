@@ -20,17 +20,20 @@ public class OptionsPortionsDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        // Get the layout inflater
-        LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        final NumberPicker np = new NumberPicker(getActivity());
-        np.setMaxValue(100); // max value 100
-        np.setMinValue(1);   // min value 1
-        np.setValue(SearchOptions.getPortions());
-        np.setWrapSelectorWheel(true);
+        int np = getArguments().getInt("portions");
+        if (np ==  -1) {
+            np = 0;
+        }
+
+        final NumberPicker portionPicker = new NumberPicker(getActivity());
+        portionPicker.setMaxValue(100); // max value 100
+        portionPicker.setMinValue(1);   // min value 1
+        portionPicker.setValue(np);
+        portionPicker.setWrapSelectorWheel(true);
 
         final FrameLayout parentNP = new FrameLayout(getActivity());
-        parentNP.addView(np, new FrameLayout.LayoutParams(
+        parentNP.addView(portionPicker, new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.WRAP_CONTENT,
                 FrameLayout.LayoutParams.WRAP_CONTENT,
                 Gravity.CENTER));
@@ -39,8 +42,10 @@ public class OptionsPortionsDialogFragment extends DialogFragment {
                 .setView(parentNP)
                 .setPositiveButton(R.string.okButton, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        int value = portionPicker.getValue();
+                        SearchOptions callingActivity = (SearchOptions) getActivity();
+                        callingActivity.onPortionsOK(value);
                         dialog.dismiss();
-                        SearchOptions.setPortions(np.getValue());
 
                     }
                 })

@@ -1,104 +1,145 @@
 package com.workingtitle.makeit;
 
 import android.app.AlertDialog;
-import android.app.TimePickerDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.app.DialogFragment;
 import android.app.Dialog;
-import java.util.Calendar;
-import android.widget.TimePicker;
 
 
 public class OptionsCookTimeDialogFragment extends DialogFragment{
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        // Get the layout inflater
-        LayoutInflater inflater = getActivity().getLayoutInflater();
 
+        int nd = getArguments().getInt("day");
+        if (nd == -1) {
+            nd = 0;
+        }
+        int nh = getArguments().getInt("hour");
+        if (nh == -1) {
+            nh = 0;
+        }
+        int nm = getArguments().getInt("min");
+        if (nm == -1) {
+            nm = 0;
+        }
+        /** The following bit programmatically creates a view. **/
+
+        /* Number Pickers */
         // Minutes
-        final NumberPicker min = new NumberPicker(getActivity());
-        min.setMaxValue(59); // max value 59
-        min.setMinValue(0);   // min value 0
-        min.setFormatter(new NumberPicker.Formatter() {
+        final NumberPicker minPicker = new NumberPicker(getActivity());
+        minPicker.setMaxValue(59); // max value 59
+        minPicker.setMinValue(0);   // min value 0
+        minPicker.setFormatter(new NumberPicker.Formatter() {
             @Override
             public String format(int i) {
                 return String.format("%02d", i);
             }
         });
-        min.setValue(SearchOptions.getMinute());
-        min.setWrapSelectorWheel(true);
+        minPicker.setValue(nm);
+        minPicker.setWrapSelectorWheel(true);
 
         // Hours
-        final NumberPicker hr = new NumberPicker(getActivity());
-        hr.setMaxValue(23); // max value 23
-        hr.setMinValue(0);   // min value 0
-        hr.setValue(SearchOptions.getHour());
-        hr.setWrapSelectorWheel(true);
+        final NumberPicker hrPicker = new NumberPicker(getActivity());
+        hrPicker.setMaxValue(23); // max value 23
+        hrPicker.setMinValue(0);   // min value 0
+        hrPicker.setValue(nh);
+        hrPicker.setWrapSelectorWheel(true);
 
         // Days
-        final NumberPicker day = new NumberPicker(getActivity());
-        day.setMaxValue(10); // max value 10
-        day.setMinValue(0);   // min value 0
-        day.setValue(SearchOptions.getDay());
-        day.setWrapSelectorWheel(true);
+        final NumberPicker dayPicker = new NumberPicker(getActivity());
+        dayPicker.setMaxValue(10); // max value 10
+        dayPicker.setMinValue(0);   // min value 0
+        dayPicker.setValue(nd);
+        dayPicker.setWrapSelectorWheel(true);
 
-        LinearLayout LL = new LinearLayout(getActivity());
-        LL.setOrientation(LinearLayout.HORIZONTAL);
-
-        LinearLayout.LayoutParams parentNP = new LinearLayout.LayoutParams(50, 50);
-        parentNP.gravity = Gravity.CENTER;
-
+        /* Building the layout of the dialog */
         int margin = 110;
         int width = 200;
 
-        LinearLayout.LayoutParams minParam = new LinearLayout.LayoutParams(
+        // Layout of number pickers
+        LinearLayout pickerLL = new LinearLayout(getActivity());
+        pickerLL.setOrientation(LinearLayout.HORIZONTAL);
+
+        LinearLayout.LayoutParams LayoutParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-     //   minParam.weight = 1;
-        minParam.width= width;
-        minParam.leftMargin = margin;
-        minParam.rightMargin = margin;
+        LayoutParams.gravity = Gravity.CENTER;
 
-        LinearLayout.LayoutParams hrParam = new LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams LLParam = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-     //   hrParam.weight = 1;
-        hrParam.width= width;
-        hrParam.leftMargin = margin;
-        hrParam.rightMargin = margin;
+        LLParam.width= width;
+        LLParam.leftMargin = margin;
+        LLParam.rightMargin = margin;
+        LLParam.gravity = Gravity.CENTER;
 
-        LinearLayout.LayoutParams dayParam = new LinearLayout.LayoutParams(
+        pickerLL.setLayoutParams(LayoutParams);
+        pickerLL.addView(dayPicker,LLParam);
+        pickerLL.addView(hrPicker,LLParam);
+        pickerLL.addView(minPicker,LLParam);
+
+        Log.d("np", "np made");
+
+        // Layout of number picker titles
+        final TextView minText = new TextView(getActivity());
+        minText.setText("MINS");
+        minText.setGravity(Gravity.CENTER);
+
+        final TextView hrText = new TextView(getActivity());
+        hrText.setText("HOURS");
+        hrText.setGravity(Gravity.CENTER);
+
+        final TextView dayText = new TextView(getActivity());
+        dayText.setText("DAYS");
+        dayText.setGravity(Gravity.CENTER);
+
+        LinearLayout textLL = new LinearLayout(getActivity());
+        textLL.setOrientation(LinearLayout.HORIZONTAL);
+
+        textLL.setLayoutParams(LayoutParams);
+        textLL.addView(dayText,LLParam);
+        textLL.addView(hrText,LLParam);
+        textLL.addView(minText,LLParam);
+
+        /* Putting the title and number picker linear layouts into the same parent linear layout */
+        LinearLayout LLParent = new LinearLayout(getActivity());
+        LLParent.setOrientation(LinearLayout.VERTICAL);
+
+        LinearLayout.LayoutParams parent = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-       // dayParam.weight = 1;
-        dayParam.width= width;
-        dayParam.leftMargin = margin;
-        dayParam.rightMargin = margin;
+        parent.gravity = Gravity.CENTER;
 
-        LL.setLayoutParams(parentNP);
-        LL.addView(day,dayParam);
-        LL.addView(hr,hrParam);
-        LL.addView(min,minParam);
+        LLParent.setLayoutParams(parent);
+        LLParent.addView(textLL);
+        LLParent.addView(pickerLL);
 
+        /** View complete **/
+
+
+        // Building the dialog
         builder.setTitle(R.string.cookTime)
-                .setView(LL)
+                .setView(LLParent)
+
                 .setPositiveButton(R.string.okButton, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        String value =
+                                Integer.toString(dayPicker.getValue()) + ":" +
+                                Integer.toString(hrPicker.getValue()) + ":" +
+                                Integer.toString(minPicker.getValue());
+                        SearchOptions callingActivity = (SearchOptions) getActivity();
+                        callingActivity.onCookTimeOK(value);
                         dialog.dismiss();
-                        SearchOptions.setTime(day.getValue(),hr.getValue(),min.getValue());
                     }
                 })
                 .setNegativeButton(R.string.cancelButton, new DialogInterface.OnClickListener() {
@@ -107,12 +148,8 @@ public class OptionsCookTimeDialogFragment extends DialogFragment{
                     }
                 });
 
-        final NumberPicker picker = new NumberPicker(getActivity());
-        picker.setMinValue(0);
-        picker.setMaxValue(5);
-
-
         // Create the AlertDialog object and return it
         return builder.create();
     }
+
 }
