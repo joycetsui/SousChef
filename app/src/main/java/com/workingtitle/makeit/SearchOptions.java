@@ -71,7 +71,7 @@ public class SearchOptions extends AppCompatActivity {
         }
     }
 
-    // Doesn't work, fix later
+    // Doesn't work, need to figure out how to pass values to fragment on back button
     @Override
     public void onBackPressed() {
         Intent args = new Intent();
@@ -80,6 +80,7 @@ public class SearchOptions extends AppCompatActivity {
         args.putExtra("ctMin", minute);
         args.putExtra("portions", portions);
         setResult(RESULT_OK, args);
+
         finish();
     }
 
