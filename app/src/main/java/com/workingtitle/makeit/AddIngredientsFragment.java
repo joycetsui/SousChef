@@ -32,6 +32,11 @@ public class AddIngredientsFragment extends Fragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        cookTimeDay = -1;
+        cookTimeHour = -1;
+        cookTimeMinute = -1;
+        numPortions = -1;
+
         final View view = inflater.inflate(R.layout.activity_add_ingredients, container, false);
 
         /** Reference to the button of the layout main.xml */
@@ -79,12 +84,17 @@ public class AddIngredientsFragment extends Fragment {
 
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), SearchOptions.class);
+                intent.putExtra("ctDay", cookTimeDay);
+                intent.putExtra("ctHour", cookTimeHour);
+                intent.putExtra("ctMin", cookTimeMinute);
+                intent.putExtra("portions", numPortions);
                 startActivity(intent);
             }
         });
 
         return view;
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -97,6 +107,26 @@ public class AddIngredientsFragment extends Fragment {
         b.putInt("toolbarBackMessage", R.string.search_ingredients_tab);
         intent.putExtras(b);
         startActivity(intent);
+    }
+
+    // Search Options info
+    int cookTimeDay;
+    int cookTimeHour;
+    int cookTimeMinute;
+    int numPortions;
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        cookTimeDay = data.getIntExtra("ctDay", -1);
+        cookTimeHour = data.getIntExtra("ctHour", -1);
+        cookTimeMinute = data.getIntExtra("ctMin", -1);
+        numPortions = data.getIntExtra("portions", -1);
+
+        System.out.print(cookTimeDay);
+        System.out.print(cookTimeHour);
+        System.out.print(cookTimeMinute);
+        System.out.print(numPortions);
     }
 
 //    private void openSearchFragment(){

@@ -16,10 +16,23 @@ public class OptionsCookTimeDialogFragment extends DialogFragment{
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        // Get the layout inflater
-      //  LayoutInflater inflater = getActivity().getLayoutInflater();
+
+        int nd = getArguments().getInt("day");
+        if (nd == -1) {
+            nd = 0;
+        }
+        int nh = getArguments().getInt("hour");
+        if (nh == -1) {
+            nh = 0;
+        }
+        int nm = getArguments().getInt("min");
+        if (nm == -1) {
+            nm = 0;
+        }
+        /** The following bit programmatically creates a view. **/
 
         /* Number Pickers */
         // Minutes
@@ -32,26 +45,24 @@ public class OptionsCookTimeDialogFragment extends DialogFragment{
                 return String.format("%02d", i);
             }
         });
-        minPicker.setValue(SearchOptions.getMinute());
+        minPicker.setValue(nm);
         minPicker.setWrapSelectorWheel(true);
 
         // Hours
         final NumberPicker hrPicker = new NumberPicker(getActivity());
         hrPicker.setMaxValue(23); // max value 23
         hrPicker.setMinValue(0);   // min value 0
-        hrPicker.setValue(SearchOptions.getHour());
+        hrPicker.setValue(nh);
         hrPicker.setWrapSelectorWheel(true);
 
         // Days
         final NumberPicker dayPicker = new NumberPicker(getActivity());
         dayPicker.setMaxValue(10); // max value 10
         dayPicker.setMinValue(0);   // min value 0
-        dayPicker.setValue(SearchOptions.getDay());
+        dayPicker.setValue(nd);
         dayPicker.setWrapSelectorWheel(true);
 
-
         /* Building the layout of the dialog */
-
         int margin = 110;
         int width = 200;
 
@@ -67,7 +78,6 @@ public class OptionsCookTimeDialogFragment extends DialogFragment{
         LinearLayout.LayoutParams LLParam = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-     //   LLParam.weight = 1;
         LLParam.width= width;
         LLParam.leftMargin = margin;
         LLParam.rightMargin = margin;
@@ -79,22 +89,19 @@ public class OptionsCookTimeDialogFragment extends DialogFragment{
         pickerLL.addView(minPicker,LLParam);
 
         Log.d("np", "np made");
-        // Titles
 
+        // Layout of number picker titles
         final TextView minText = new TextView(getActivity());
         minText.setText("MINS");
         minText.setGravity(Gravity.CENTER);
-       // minText.setLayoutParams(LLParam);
 
         final TextView hrText = new TextView(getActivity());
         hrText.setText("HOURS");
         hrText.setGravity(Gravity.CENTER);
-     //   hrText.setLayoutParams(LLParam);
 
         final TextView dayText = new TextView(getActivity());
         dayText.setText("DAYS");
         dayText.setGravity(Gravity.CENTER);
-      //  dayText.setLayoutParams(LLParam);
 
         LinearLayout textLL = new LinearLayout(getActivity());
         textLL.setOrientation(LinearLayout.HORIZONTAL);
@@ -104,7 +111,7 @@ public class OptionsCookTimeDialogFragment extends DialogFragment{
         textLL.addView(hrText,LLParam);
         textLL.addView(minText,LLParam);
 
-
+        /* Putting the title and number picker linear layouts into the same parent linear layout */
         LinearLayout LLParent = new LinearLayout(getActivity());
         LLParent.setOrientation(LinearLayout.VERTICAL);
 
@@ -117,13 +124,22 @@ public class OptionsCookTimeDialogFragment extends DialogFragment{
         LLParent.addView(textLL);
         LLParent.addView(pickerLL);
 
+        /** View complete **/
+
+
+        // Building the dialog
         builder.setTitle(R.string.cookTime)
                 .setView(LLParent)
 
                 .setPositiveButton(R.string.okButton, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        String value =
+                                Integer.toString(dayPicker.getValue()) + ":" +
+                                Integer.toString(hrPicker.getValue()) + ":" +
+                                Integer.toString(minPicker.getValue());
+                        SearchOptions callingActivity = (SearchOptions) getActivity();
+                        callingActivity.onCookTimeOK(value);
                         dialog.dismiss();
-                        SearchOptions.setTime(dayPicker.getValue(),hrPicker.getValue(),minPicker.getValue());
                     }
                 })
                 .setNegativeButton(R.string.cancelButton, new DialogInterface.OnClickListener() {
@@ -135,4 +151,5 @@ public class OptionsCookTimeDialogFragment extends DialogFragment{
         // Create the AlertDialog object and return it
         return builder.create();
     }
+
 }

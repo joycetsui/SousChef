@@ -51,7 +51,8 @@
         android:layout_height="wrap_content"
         android:text="@string/lblBtnOptions"
         android:layout_above="@+id/btnFeedMe"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:onClick="onClickOptions"/>
 
     <!-- FEED ME button -->
     <Button
