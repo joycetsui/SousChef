@@ -51,7 +51,7 @@ public class SearchResults extends AppCompatActivity {
 
         final ListView listView = (ListView) findViewById(R.id.list);
 
-        TempRecipe recipe = new TempRecipe(1, "title", "author", 1.0f, 5, 200, 30, 2, "Directions", "Ingredients");
+        /*TempRecipe recipe = new TempRecipe(1, "title", "author", 1.0f, 5, 200, 30, 2, "Directions", "Ingredients");
 
         TempRecipe[] recipeList = new TempRecipe[]{
                 recipe, recipe, recipe, recipe, recipe, recipe, recipe, recipe, recipe
@@ -64,7 +64,25 @@ public class SearchResults extends AppCompatActivity {
 
         String[] values = new String[]{
                 recipe.title, recipe.title, recipe.title, recipe.title, recipe.title, recipe.title, recipe.title, recipe.title, recipe.title
-        };
+        };*/
+
+        /******************************** Hard Coded Recipe ************************************/
+        ArrayList<Recipe> recipeList= new ArrayList<Recipe>();
+
+        for (int i = 0; i < 10; i++){
+            Recipe recipe = new Recipe();
+            recipe.setAuthor("Author");
+            recipe.setTitle("Recipe " + i);
+            recipe.setRating(1);
+            recipeList.add(recipe);
+        }
+        /**************************************************************************************/
+
+        //Get values
+        ArrayList<String> values = new ArrayList<String>();
+        for (int i = 0; i < recipeList.size(); i++){
+            values.add(recipeList.get(i).title);
+        }
 
         /** Defining the ArrayAdapter to set items to ListView */
         adapter = new RecipeListAdapter(this, recipeList, values);

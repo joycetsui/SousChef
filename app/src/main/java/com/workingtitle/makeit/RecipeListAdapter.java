@@ -12,15 +12,18 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 /**
  * Created by Maricarla on 2016-06-20.
  */
 public class RecipeListAdapter extends ArrayAdapter<String> {
     private final Context context;
-    private final TempRecipe[] recipes;
-    private final String[] values;
+    private final ArrayList<Recipe> recipes;
+    private final ArrayList<String> values;
 
-    public RecipeListAdapter(Context context, TempRecipe[] recipes, String[] values) {
+    public RecipeListAdapter(Context context, ArrayList <Recipe> recipes, ArrayList<String> values) {
         super(context, -1, values);
         this.context = context;
         this.recipes = recipes;
@@ -50,8 +53,8 @@ public class RecipeListAdapter extends ArrayAdapter<String> {
 //
 //        });
 
-        titleTextView.setText(recipes[position].title);
-        ratingbar.setRating(recipes[position].rating);
+        titleTextView.setText(recipes.get(position).title);
+        ratingbar.setRating(recipes.get(position).rating);
 
         Bitmap image;
 

@@ -1,8 +1,7 @@
-package com.workingtitle.makeit;
+/*package com.workingtitle.makeit;
 
 /**
  * Created by Maricarla on 2016-06-20.
- */
 public class TempRecipe {
     int id;
     String title;
@@ -28,3 +27,4 @@ public class TempRecipe {
         this.ingredients = ingredients;
     }
 }
+*/

@@ -34,20 +34,30 @@ public class SavedRecipesFragment extends Fragment {
         TextView header = (TextView) view.findViewById(R.id.results);
         header.setVisibility(View.GONE);
 
-        TempRecipe recipe = new TempRecipe(1, "title", "author", 1.0f, 5, 200, 30, 2, "Directions", "Ingredients");
+        /*Recipe recipe = new Recipe();
 
         TempRecipe[] recipeList = new TempRecipe[]{
                 recipe, recipe, recipe, recipe, recipe, recipe, recipe, recipe, recipe
-        };
+        };*/
 
-        for (int i = 0; i < recipeList.length; i++){
-            TempRecipe recipe2 = new TempRecipe(1, "Recipe " + i, "Author", i + 1.0f, 5, 200, 30, 2, "Directions", "Ingredients");
-            recipeList[i] = recipe2;
+        /******************************** Hard Coded Recipe ************************************/
+        ArrayList<Recipe> recipeList= new ArrayList<Recipe>();
+
+        for (int i = 0; i < 10; i++){
+            Recipe recipe = new Recipe();
+            recipe.setAuthor("Author");
+            recipe.setTitle("Recipe " + i);
+            recipe.setRating(1);
+            recipeList.add(recipe);
+        }
+        /**************************************************************************************/
+
+        //Get values
+        ArrayList<String> values = new ArrayList<String>();
+        for (int i = 0; i < recipeList.size(); i++){
+            values.add(recipeList.get(i).title);
         }
 
-        String[] values = new String[]{
-                recipe.title, recipe.title, recipe.title, recipe.title, recipe.title, recipe.title, recipe.title, recipe.title, recipe.title
-        };
 
         /** Defining the ArrayAdapter to set items to ListView */
         adapter = new RecipeListAdapter(getContext(), recipeList, values);
