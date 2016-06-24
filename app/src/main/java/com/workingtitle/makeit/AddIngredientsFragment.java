@@ -53,7 +53,13 @@ public class AddIngredientsFragment extends Fragment {
             "asparagus",
             "avocado",
             "bacon",
-            "bagels"
+            "bagels",
+            "lettuce",
+            "green onions",
+            "pita",
+            "tomatoes",
+            "lemon",
+            "olives"
     };
     /************************************************************************************************/
 

@@ -45,7 +45,7 @@ public class RecipeListAdapter extends ArrayAdapter<Recipe> {
 
         Bitmap image;
 
-        if (position%3 == 0){
+        /*if (position%3 == 0){
             image = BitmapFactory.decodeResource(parent.getResources(), R.drawable.crepes);
         }
         else if (position%3 == 1){
@@ -53,6 +53,21 @@ public class RecipeListAdapter extends ArrayAdapter<Recipe> {
         }
         else{
             image = BitmapFactory.decodeResource(parent.getResources(), R.drawable.grilled_fish_small);
+        }*/
+        if (position == 0) {
+            image = BitmapFactory.decodeResource(parent.getResources(), R.drawable.fatoosh);
+        }
+        else if (position ==1){
+            image = BitmapFactory.decodeResource(parent.getResources(), R.drawable.caesar_salad);
+        }
+        else if (position == 2){
+            image = BitmapFactory.decodeResource(parent.getResources(), R.drawable.strawberry_romaine_salad);
+        }
+        else if (position == 3){
+            image = BitmapFactory.decodeResource(parent.getResources(), R.drawable.garden_salad);
+        }
+        else {
+            image = BitmapFactory.decodeResource(parent.getResources(), R.drawable.salad_small);
         }
 
         imageView.setImageBitmap(image);
