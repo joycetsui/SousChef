@@ -9,7 +9,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by Joyce on 6/18/2016.
@@ -50,12 +52,15 @@ public class SearchResults extends AppCompatActivity {
 
         /******************************** Hard Coded Recipe ************************************/
         ArrayList<Recipe> recipeList= new ArrayList<Recipe>();
+        String[]recipeNames = {"Fatoosh", "Caesar Salad", "Green Salad", "Garden Salad", "Greek Salad", "Quinoa and Lettuce"};
 
-        for (int i = 0; i < 10; i++){
+        Random random = new Random();
+
+        for (int i = 0; i < recipeNames.length; i++){
             Recipe recipe = new Recipe();
             recipe.setAuthor("Author");
-            recipe.setTitle("Recipe " + i);
-            recipe.setRating(i);
+            recipe.setTitle(recipeNames[i]);
+            recipe.setRating(random.nextInt(5 - 0 + 1) + 0);
             recipeList.add(recipe);
         }
         /**************************************************************************************/
