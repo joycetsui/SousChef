@@ -136,7 +136,10 @@ public class Recipe implements Serializable {
         this.setServingSize(Integer.parseInt(object.getAsJsonObject().getAsJsonPrimitive("serving_size").toString()));
         this.setDirections(object.getAsJsonObject().getAsJsonPrimitive("directions").toString());
         this.setIngredients(object.getAsJsonObject().getAsJsonPrimitive("ingredients").toString());
-        System.out.println(getIngredients());
+        String temp =  this.getDirections();
+        temp.replaceAll(System.getProperty("line_separator"),"DAMMIT");
+
+        //System.out.println(temp);
         return this;
 
     }

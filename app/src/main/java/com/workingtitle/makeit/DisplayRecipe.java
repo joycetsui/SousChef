@@ -95,6 +95,7 @@ public class DisplayRecipe extends AppCompatActivity {
     public void setRecipeElements(String text, int id) {
         System.out.println(text);
         TextView tv = new TextView(this);
+
         tv.setTransformationMethod(null);
         tv.setAllCaps(false);
         tv = (TextView) findViewById(id);
