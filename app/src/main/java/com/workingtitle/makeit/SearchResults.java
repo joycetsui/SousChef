@@ -52,7 +52,7 @@ public class SearchResults extends AppCompatActivity {
 
         /******************************** Hard Coded Recipe ************************************/
         ArrayList<Recipe> recipeList= new ArrayList<Recipe>();
-        String[]recipeNames = {"Fatoosh", "Caesar Salad", "Green Salad", "Garden Salad", "Greek Salad", "Quinoa and Lettuce"};
+        String[]recipeNames = {"Fatoosh", "Caesar Salad Supreme", "Strawberry Romaine Salad", "Garden Salad", "Greek Salad", "Quinoa and Lettuce"};
 
         Random random = new Random();
 

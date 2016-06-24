@@ -60,7 +60,6 @@ public class AddIngredientsFragment extends Fragment {
             "tomatoes",
             "lemon",
             "olives"
-
     };
     /************************************************************************************************/
 
