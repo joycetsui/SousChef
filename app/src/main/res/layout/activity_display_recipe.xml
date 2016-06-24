@@ -40,11 +40,49 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="author"
+        android:id="@+id/authorName"
+        android:layout_below="@id/recipeName"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/recipeImage"
+        android:layout_width="600px"
+        android:minWidth="600px"
+        android:layout_height="600px"
+        android:minHeight="600px"
+        android:adjustViewBounds="true"
+        android:layout_marginTop="10dip"
+        android:layout_below="@id/authorName"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/crepes" />
+
+    <RatingBar
+        android:id="@+id/recipe_rating"
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+        android:stepSize="0.1"
+        android:numStars="5"
+        android:layout_gravity="center"
+        android:layout_below="@id/recipeImage"
+        android:isIndicator="true"
+        android:progressTint="#fff700"
+        android:secondaryProgressTint="#fff700"
+        android:nestedScrollingEnabled="false"
+        android:progressBackgroundTint="#D3D3D3"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Cooking Time"
         android:id="@+id/cookTimeLabel"
         style="@style/RegularTextStyle"
-        android:layout_below="@+id/recipeName"
+        android:layout_below="@+id/recipe_rating"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -104,15 +142,6 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="author"
-        android:id="@+id/authorName"
-        android:layout_alignBottom="@+id/recipeName"
-        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
 </ScrollView>

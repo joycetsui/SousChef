@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.lang.reflect.Array;
@@ -46,6 +47,7 @@ public class DisplayRecipe extends AppCompatActivity{
         Recipe recipe = new Recipe();
         recipe.setTitle("Fatoosh");
         recipe.setCookTime("30 m");
+        recipe.setRating(4.3f);
         recipe.setAuthor("WINNIFRED");
         recipe.setIngredients("2 pita breads\n8 leaves romaine lettuce, torn into bite-size pieces\n" +
                 "2 green onions, chopped\n1 cucumber, chopped\n3 tomatoes, cut into wedges\n1/4 cup chopped fresh " +
@@ -63,6 +65,10 @@ public class DisplayRecipe extends AppCompatActivity{
         setRecipeElements(recipe.ingredients, R.id.ingredientsList);
         setRecipeElements(recipe.directions, R.id.directions);
         setRecipeElements(recipe.author, R.id.authorName);
+
+        // Set rating
+        RatingBar ratingBar = (RatingBar) findViewById(R.id.recipe_rating);
+        ratingBar.setRating(recipe.rating);
     }
 
     public void setRecipeElements(String text, int id){
@@ -70,5 +76,4 @@ public class DisplayRecipe extends AppCompatActivity{
         tv = (TextView)findViewById(id);
         tv.setText(text);
     }
-
 }
