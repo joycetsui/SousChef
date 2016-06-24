@@ -10,9 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.lang.reflect.Array;
+import com.workingtitle.makeit.Recipe.Recipe;
+
 import java.util.ArrayList;
 
 /**
@@ -40,8 +40,8 @@ public class RecipeListAdapter extends ArrayAdapter<Recipe> {
 
         RatingBar ratingbar =(RatingBar) rowView.findViewById(R.id.recipe_rating);
 
-        titleTextView.setText(recipes.get(position).title);
-        ratingbar.setRating(recipes.get(position).rating);
+        titleTextView.setText(recipes.get(position).getTitle());
+        ratingbar.setRating(recipes.get(position).getRating());
 
         Bitmap image;
 
