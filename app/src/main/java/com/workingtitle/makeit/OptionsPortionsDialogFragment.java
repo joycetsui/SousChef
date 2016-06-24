@@ -23,8 +23,10 @@ public class OptionsPortionsDialogFragment extends DialogFragment {
 
         int np = getArguments().getInt("portions");
         if (np ==  -1) {
-            np = 0;
+            np = 1;
         }
+
+        System.out.print(np);
 
         final NumberPicker portionPicker = new NumberPicker(getActivity());
         portionPicker.setMaxValue(100); // max value 100

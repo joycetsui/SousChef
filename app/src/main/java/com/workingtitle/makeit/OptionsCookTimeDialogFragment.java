@@ -63,8 +63,8 @@ public class OptionsCookTimeDialogFragment extends DialogFragment{
         dayPicker.setWrapSelectorWheel(true);
 
         /* Building the layout of the dialog */
-        int margin = 110;
-        int width = 200;
+        int margin = 30;
+        int width = 150;
 
         // Layout of number pickers
         LinearLayout pickerLL = new LinearLayout(getActivity());
