@@ -37,7 +37,7 @@ public class IngredientsAddedAdapter extends ArrayAdapter<String> {
         // Populate the data into the template view using the data object
         ingredientTextView.setText(ingredient);
 
-        Button removeBtn = (Button) view.findViewById(R.id.remvoveIngredientBtn);
+        Button removeBtn = (Button) view.findViewById(R.id.removeIngredientBtn);
         View.OnClickListener removeBtnListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {

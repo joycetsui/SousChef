@@ -13,9 +13,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.ic_saved,
             R.drawable.ic_list
     };
+
+    // Viewpager to manage the tabs in the main page
+    ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         });*/
 
         // Get the ViewPager and set it's PagerAdapter so that it can display items
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
+        viewPager = (ViewPager) findViewById(R.id.view_pager);
         final MyFragmentPagerAdapter adapter = new MyFragmentPagerAdapter(getSupportFragmentManager(),MainActivity.this);
         viewPager.setAdapter(adapter);
 
@@ -55,10 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Give the TabLayout the ViewPager
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
-        tabLayout.addTab(tabLayout.newTab().setIcon(imageResId[0]));
-        tabLayout.addTab(tabLayout.newTab().setIcon(imageResId[1]));
-        tabLayout.addTab(tabLayout.newTab().setIcon(imageResId[2]));
-        tabLayout.addTab(tabLayout.newTab().setIcon(imageResId[3]));
+        setupTabLayout(tabLayout);
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -95,6 +97,23 @@ public class MainActivity extends AppCompatActivity {
             default:
                 setTitle("");
                 break;
+        }
+    }
+
+    private void setupTabLayout(TabLayout tabLayout) {
+
+//        tabLayout.addTab(tabLayout.newTab().setIcon(imageResId[0]));
+//        tabLayout.addTab(tabLayout.newTab().setIcon(imageResId[1]));
+//        tabLayout.addTab(tabLayout.newTab().setIcon(imageResId[2]));
+//        tabLayout.addTab(tabLayout.newTab().setIcon(imageResId[3]));
+
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
+        tabLayout.setupWithViewPager(viewPager);
+
+        for (int i = 0; i < imageResId.length; i++){
+            TextView tab = (TextView) LayoutInflater.from(this).inflate(R.layout.tab_layout, null);
+            tab.setCompoundDrawablesWithIntrinsicBounds(0, imageResId[i], 0, 0);
+            tabLayout.getTabAt(i).setCustomView(tab);
         }
     }
 
