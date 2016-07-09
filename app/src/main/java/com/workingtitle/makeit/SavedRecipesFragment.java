@@ -11,7 +11,7 @@ import android.widget.ListView;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
-import com.workingtitle.makeit.Recipe.Recipe;
+import com.workingtitle.makeit.models.Recipe;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.workingtitle.makeit.Recipe;
+package com.workingtitle.makeit.models;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -139,7 +139,6 @@ public class Recipe implements Serializable {
         String temp =  this.getDirections();
         temp.replaceAll(System.getProperty("line_separator"),"DAMMIT");
 
-        //System.out.println(temp);
         return this;
 
     }

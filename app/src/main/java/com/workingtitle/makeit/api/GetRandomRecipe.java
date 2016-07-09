@@ -1,6 +1,8 @@
-package com.workingtitle.makeit.Recipe;
+package com.workingtitle.makeit.api;
 
 import android.os.AsyncTask;
+
+import com.workingtitle.makeit.models.Recipe;
 
 import java.io.BufferedReader;
 import java.io.IOException;

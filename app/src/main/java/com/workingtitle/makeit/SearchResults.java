@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.workingtitle.makeit.Recipe.Recipe;
+import com.workingtitle.makeit.models.Recipe;
 
 import java.util.ArrayList;
 import java.util.Random;

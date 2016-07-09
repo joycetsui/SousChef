@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.workingtitle.makeit.Recipe.Recipe;
+import com.workingtitle.makeit.models.Recipe;
 
 import java.util.ArrayList;
 

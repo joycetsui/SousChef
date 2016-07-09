@@ -1,7 +1,5 @@
 package com.workingtitle.makeit;
 
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -9,13 +7,9 @@ import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.workingtitle.makeit.Recipe.GetRandomRecipe;
-import com.workingtitle.makeit.Recipe.Recipe;
-
-import java.io.IOException;
+import com.workingtitle.makeit.api.GetRandomRecipe;
+import com.workingtitle.makeit.models.Recipe;
 
 /**
  * Created by Joyce on 6/17/2016.
