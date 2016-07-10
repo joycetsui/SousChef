@@ -7,18 +7,25 @@ import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.workingtitle.makeit.api.GetRandomRecipe;
+import com.workingtitle.makeit.models.Recipe;
 
 /**
  * Created by Joyce on 6/17/2016.
  */
-public class DisplayRecipe extends AppCompatActivity{
+public class DisplayRecipe extends AppCompatActivity {
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
         setContentView(R.layout.activity_display_recipe);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -29,7 +36,7 @@ public class DisplayRecipe extends AppCompatActivity{
 
         // Get parameters passed when activity was created
         Bundle b = getIntent().getExtras();
-        if (b != null){
+        if (b != null) {
             int backMessage = b.getInt("toolbarBackMessage");
             getSupportActionBar().setTitle(backMessage);
         }
@@ -45,35 +52,59 @@ public class DisplayRecipe extends AppCompatActivity{
         //Create Recipe
         /************************************************Hard Coded******************************************************/
         Recipe recipe = new Recipe();
-        recipe.setTitle("Fatoosh");
-        recipe.setCookTime("30 m");
-        recipe.setRating(4.3f);
-        recipe.setAuthor("WINNIFRED");
-        recipe.setIngredients("2 pita breads\n8 leaves romaine lettuce, torn into bite-size pieces\n" +
-                "2 green onions, chopped\n1 cucumber, chopped\n3 tomatoes, cut into wedges\n1/4 cup chopped fresh " +
-                "parsley\n1 clove garlic, peeled and chopped\n2 tablespoons sumac powder\n1/4 cup lemon juice\n1/4 cup " +
-                "olive oil\n1 teaspoon salt\n1/4 teaspoon ground black pepper\n1/4 cup chopped fresh mint leaves");
-        recipe.setDirections("1) Preheat oven to 350 degrees F (175 degrees C).\n2) Toast pitas 5 to 10 minutes in " +
-                "the preheated oven, until crisp. Remove from heat, and break into bite size pieces.\n3) In a large bowl, " +
-                "toss together toasted pita pieces, romaine lettuce, green onions, cucumber, and tomatoes.\n4) In a small bowl, " +
-                "mix the parsley, garlic, sumac powder, lemon juice, olive oil, salt, pepper, and mint. Pour over the pita mixture, " +
-                "and toss just before serving.\n");
+        try {
+            String s = new GetRandomRecipe().execute(recipe).get();
+            recipe.populate(s);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(recipe.getRecipeId());
+//        recipe.setTitle("Fatoosh");
+//        recipe.setCookTime("30 m");
+//        recipe.setRating(4.3f);
+//        recipe.setAuthor("WINNIFRED");
+//        recipe.setIngredients("2 pita breads\n8 leaves romaine lettuce, torn into bite-size pieces\n" +
+//                "2 green onions, chopped\n1 cucumber, chopped\n3 tomatoes, cut into wedges\n1/4 cup chopped fresh " +
+//                "parsley\n1 clove garlic, peeled and chopped\n2 tablespoons sumac powder\n1/4 cup lemon juice\n1/4 cup " +
+//                "olive oil\n1 teaspoon salt\n1/4 teaspoon ground black pepper\n1/4 cup chopped fresh mint leaves");
+//        recipe.setDirections("1) Preheat oven to 350 degrees F (175 degrees C).\n2) Toast pitas 5 to 10 minutes in " +
+//                "the preheated oven, until crisp. Remove from heat, and break into bite size pieces.\n3) In a large bowl, " +
+//                "toss together toasted pita pieces, romaine lettuce, green onions, cucumber, and tomatoes.\n4) In a small bowl, " +
+//                "mix the parsley, garlic, sumac powder, lemon juice, olive oil, salt, pepper, and mint. Pour over the pita mixture, " +
+//                "and toss just before serving.\n");
         /****************************************************************************************************************************/
 
-        setRecipeElements(recipe.title, R.id.recipeName);
-        setRecipeElements(recipe.cookTime, R.id.cookingTime);
-        setRecipeElements(recipe.ingredients, R.id.ingredientsList);
-        setRecipeElements(recipe.directions, R.id.directions);
-        setRecipeElements(recipe.author, R.id.authorName);
+        setRecipeElements(recipe.getTitle(), R.id.recipeName);
+        setRecipeElements(recipe.getCookTime(), R.id.cookingTime);
+        setRecipeElements(recipe.getIngredients(), R.id.ingredientsList);
+        setRecipeElements(recipe.getDirections(), R.id.directions);
+        setRecipeElements(recipe.getAuthor(), R.id.authorName);
 
         // Set rating
         RatingBar ratingBar = (RatingBar) findViewById(R.id.recipe_rating);
-        ratingBar.setRating(recipe.rating);
+        ratingBar.setRating(recipe.getRating());
     }
 
-    public void setRecipeElements(String text, int id){
-        TextView tv = new TextView (this);
-        tv = (TextView)findViewById(id);
+    public void setRecipeElements(String text, int id) {
+        System.out.println(text);
+        TextView tv = new TextView(this);
+
+        tv.setTransformationMethod(null);
+        tv.setAllCaps(false);
+        tv = (TextView) findViewById(id);
+
         tv.setText(text);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
     }
 }

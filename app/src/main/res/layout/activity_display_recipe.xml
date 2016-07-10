@@ -92,6 +92,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="1hr 15 min"
         android:id="@+id/cookingTime"
+        android:textAllCaps="false"
         style="@style/SubtitleTextStyle"
         android:layout_below="@+id/cookTimeLabel"
         android:layout_alignParentLeft="true"
@@ -115,6 +116,7 @@
         android:layout_below="@+id/ingredientsLabel"
         android:layout_alignLeft="@+id/ingredientsLabel"
         android:layout_alignStart="@+id/ingredientsLabel"
+        android:textAllCaps="false"
         style="@style/SubtitleTextStyle"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
@@ -135,6 +137,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Small Text"
+        android:textAllCaps="false"
         android:id="@+id/directions"
         style="@style/SubtitleTextStyle"
         android:layout_below="@+id/directionsLabel"

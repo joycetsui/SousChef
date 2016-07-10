@@ -7,9 +7,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import java.lang.reflect.Array;
+import com.workingtitle.makeit.models.Recipe;
+
 import java.util.ArrayList;
 import java.util.Random;
 
