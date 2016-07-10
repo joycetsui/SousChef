@@ -13,6 +13,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.workingtitle.makeit.api.GetLookupTable;
+import com.workingtitle.makeit.models.IngredientsLookupTable;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -30,41 +33,20 @@ public class AddIngredientsFragment extends Fragment {
     // textview used to add ingredients to the list
     AutoCompleteTextView ingredientTextView;
 
-    /******************************** Hard Coded Lookup Table ************************************/
-    final String[] suggestions = new String[]{
-            "all purpose flour",
-            "allspice",
-            "almond butter",
-            "almond extract",
-            "almond meal",
-            "almond milk",
-            "almond paste",
-            "almonds",
-            "anise seed",
-            "apple juice",
-            "apples",
-            "applesauce",
-            "apricot",
-            "apricot nectar",
-            "archer farms",
-            "artichokes",
-            "arugula",
-            "asafoetida powder",
-            "asparagus",
-            "avocado",
-            "bacon",
-            "bagels",
-            "lettuce",
-            "green onions",
-            "pita",
-            "tomatoes",
-            "lemon",
-            "olives"
-    };
-    /************************************************************************************************/
+    // ingredients List
+    IngredientsLookupTable lookupTable;
+
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        lookupTable  = new IngredientsLookupTable();
+        try{
+            String s  = new GetLookupTable().execute().get();
+            lookupTable.populate(s);
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
 
         cookTimeDay = -1;
         cookTimeHour = -1;
@@ -78,7 +60,7 @@ public class AddIngredientsFragment extends Fragment {
         ingredientTextView = (AutoCompleteTextView) view.findViewById(R.id.txtItem);
 
         // Create the adapter and set it to the AutoCompleteTextView
-        final ArrayAdapter<String> suggestionsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, suggestions);
+        final ArrayAdapter<String> suggestionsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, lookupTable.getLookupTable());
         ingredientTextView.setAdapter(suggestionsAdapter);
 
         //List View to display the entered ingredients
@@ -154,7 +136,11 @@ public class AddIngredientsFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
+
+
     }
 
     private void openOptionsPage() {
@@ -178,7 +164,7 @@ public class AddIngredientsFragment extends Fragment {
     private void addIngredientToList(){
         String ingredientAdded = ingredientTextView.getText().toString();
 
-        if (!ingredientAdded.isEmpty() && Arrays.asList(suggestions).indexOf(ingredientAdded) != -1) {
+        if (!ingredientAdded.isEmpty() && Arrays.asList(lookupTable.getLookupTable()).indexOf(ingredientAdded) != -1) {
             ingredientList.add(0, ingredientAdded);
             recipeListAdapter.notifyDataSetChanged();
             ingredientTextView.setText("");
