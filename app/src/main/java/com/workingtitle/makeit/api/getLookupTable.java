@@ -14,14 +14,13 @@ import java.util.ArrayList;
 /**
  * Created by byeh on 16-07-09.
  */
-public class getLookupTable extends AsyncTask<Recipe,Void,ArrayList<String>> {
+public class GetLookupTable extends AsyncTask<Void,Void,String>{
 
-    private ArrayList<String> ingredientsList;
+    private String ingredientsList;
 
-    public ArrayList<String> doInBackground(Recipe... args) {
+    public String doInBackground(Void... args) {
 
-        ingredientsList = new ArrayList<String>();
-
+        StringBuilder sb = new StringBuilder();
         String line;
         try {
             URL url = new URL("http://159.203.61.63/v1/api/ingredients/lookup?key=cs446");
@@ -30,13 +29,13 @@ public class getLookupTable extends AsyncTask<Recipe,Void,ArrayList<String>> {
             InputStreamReader reader = new InputStreamReader(connection.getInputStream());
             BufferedReader br = new BufferedReader(reader);
             while((line = br.readLine()) != null) {
-                ingredientsList.add(line);
+                sb.append(line);
             }
         }
         catch(IOException e) {
             e.printStackTrace();
         }
-        return ingredientsList;
+        return sb.toString();
     }
 
     public void onPostExecute(String s) {
