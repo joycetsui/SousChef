@@ -14,7 +14,9 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.workingtitle.makeit.api.GetLookupTable;
+import com.workingtitle.makeit.api.SearchByIngredients;
 import com.workingtitle.makeit.models.IngredientsLookupTable;
+import com.workingtitle.makeit.models.RecipeCollection;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -154,7 +156,20 @@ public class AddIngredientsFragment extends Fragment {
     }
 
     private void openResultsPage(){
+
+        String results = "";
+        System.out.println(ingredientList.size());
+        try{
+            results  = new SearchByIngredients().execute(ingredientList).get();
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        RecipeCollection recipes = new RecipeCollection();
+        recipes.populateRecipeCollection(results);
+
         Intent intent = new Intent(getActivity(), SearchResults.class);
+        intent.putExtra("RECIPE_COLLECTION",recipes);
+
         Bundle b = new Bundle();
         b.putInt("toolbarBackMessage", R.string.search_ingredients_tab);
         intent.putExtras(b);

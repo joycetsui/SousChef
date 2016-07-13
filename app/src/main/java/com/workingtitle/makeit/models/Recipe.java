@@ -116,15 +116,19 @@ public class Recipe implements Serializable {
         this.ingredients = ingredients;
     }
 
-    public Recipe populate(String JSONObject) {
+    public Recipe loadData(String JSONObject) {
         JsonElement element = new JsonParser().parse(JSONObject);
 
         // full API Response body
         JsonObject object = element.getAsJsonObject();
-        Integer numRecipes = Integer.parseInt(object.getAsJsonObject().getAsJsonPrimitive("length").toString());
 
         // lets get the nested JSON object inside data key which contains a recipe and populate the fields
         object = object.getAsJsonObject("data");
+        return populate(object);
+    }
+
+    public Recipe populate(JsonObject object) {
+
         this.setId(Integer.parseInt(object.getAsJsonObject().getAsJsonPrimitive("id").toString()));
         this.setRecipeId(Integer.parseInt(object.getAsJsonObject().getAsJsonPrimitive("recipe_id").toString()));
         this.setTitle(object.getAsJsonObject().getAsJsonPrimitive("title").toString());
@@ -137,8 +141,7 @@ public class Recipe implements Serializable {
         this.setDirections(object.getAsJsonObject().getAsJsonPrimitive("directions").toString());
         this.setIngredients(object.getAsJsonObject().getAsJsonPrimitive("ingredients").toString());
         String temp =  this.getDirections();
-        temp.replaceAll(System.getProperty("line_separator"),"DAMMIT");
-
+        
         return this;
 
     }

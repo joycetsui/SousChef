@@ -2,6 +2,11 @@
     <string name="app_name">SousChef</string>
     <string name="action_settings">Settings</string>
 
+    <!-- API Constants -->
+    <string name="api_base">http://159.203.61.63/v1/api/</string>
+    <string name="ingredient_search">ingredients/search?term=</string>
+    <string name="api_key">key=cs446</string>
+
     <!-- Toolbar Tabs Titles -->
     <string name="search_ingredients_tab">Search by Ingredients</string>
     <string name="search_recipe_tab">Search by Recipes</string>

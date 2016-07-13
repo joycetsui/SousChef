@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.workingtitle.makeit.models.Recipe;
+import com.workingtitle.makeit.models.RecipeCollection;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -50,19 +51,11 @@ public class SearchResults extends AppCompatActivity {
 
         final ListView listView = (ListView) findViewById(R.id.list);
 
+
         /******************************** Hard Coded Recipe ************************************/
-        ArrayList<Recipe> recipeList= new ArrayList<Recipe>();
-        String[]recipeNames = {"Fatoosh", "Caesar Salad Supreme", "Strawberry Romaine Salad", "Garden Salad", "Greek Salad", "Quinoa and Lettuce"};
+        RecipeCollection collection = (RecipeCollection) getIntent().getSerializableExtra("RECIPE_COLLECTION");
+        ArrayList<Recipe> recipeList = collection.getRecipeCollection();
 
-        Random random = new Random();
-
-        for (int i = 0; i < recipeNames.length; i++){
-            Recipe recipe = new Recipe();
-            recipe.setAuthor("Author");
-            recipe.setTitle(recipeNames[i]);
-            recipe.setRating(random.nextInt(5 - 0 + 1) + 0);
-            recipeList.add(recipe);
-        }
         /**************************************************************************************/
 
         /** Defining the ArrayAdapter to set items to ListView */

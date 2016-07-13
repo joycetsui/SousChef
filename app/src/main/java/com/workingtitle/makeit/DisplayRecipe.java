@@ -16,11 +16,6 @@ import com.workingtitle.makeit.models.Recipe;
  */
 public class DisplayRecipe extends AppCompatActivity {
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +49,7 @@ public class DisplayRecipe extends AppCompatActivity {
         Recipe recipe = new Recipe();
         try {
             String s = new GetRandomRecipe().execute(recipe).get();
-            recipe.populate(s);
+            recipe.loadData(s);
         }
         catch (Exception e) {
             e.printStackTrace();
