@@ -116,6 +116,29 @@ public class Recipe implements Serializable {
         this.ingredients = ingredients;
     }
 
+    private void process() {
+
+        title = title.replace("\"","");
+        author = author.replace("\"","");
+        cookTime = cookTime.replace("\"","");
+        directions = directions.replace("\"","");
+        ingredients = ingredients.replace("\"","");
+
+        // split directions and ingredients into lines
+        StringBuilder sb = new StringBuilder();
+        String[] directionsList = this.directions.split(" ; ");
+        for(String s : directionsList) {
+            sb.append(s + System.getProperty("line.separator"));
+        }
+        directions = sb.toString();
+
+        sb = new StringBuilder();
+        String[] ingredientList = this.ingredients.split(" ; ");
+        for(String s : ingredientList) {
+            sb.append(s + System.getProperty("line.separator"));
+        }
+        ingredients = sb.toString();
+    }
     public Recipe loadData(String JSONObject) {
         JsonElement element = new JsonParser().parse(JSONObject);
 
@@ -140,8 +163,9 @@ public class Recipe implements Serializable {
         this.setServingSize(Integer.parseInt(object.getAsJsonObject().getAsJsonPrimitive("serving_size").toString()));
         this.setDirections(object.getAsJsonObject().getAsJsonPrimitive("directions").toString());
         this.setIngredients(object.getAsJsonObject().getAsJsonPrimitive("ingredients").toString());
-        String temp =  this.getDirections();
-        
+
+        this.process();
+
         return this;
 
     }

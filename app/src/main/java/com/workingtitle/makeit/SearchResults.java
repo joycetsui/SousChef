@@ -22,6 +22,8 @@ public class SearchResults extends AppCompatActivity {
     /** Declaring an ArrayAdapter to set items to ListView */
     RecipeListAdapter recipeListAdapter;
 
+    ArrayList<Recipe> recipeList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,11 +54,8 @@ public class SearchResults extends AppCompatActivity {
         final ListView listView = (ListView) findViewById(R.id.list);
 
 
-        /******************************** Hard Coded Recipe ************************************/
         RecipeCollection collection = (RecipeCollection) getIntent().getSerializableExtra("RECIPE_COLLECTION");
-        ArrayList<Recipe> recipeList = collection.getRecipeCollection();
-
-        /**************************************************************************************/
+        recipeList = collection.getRecipeCollection();
 
         /** Defining the ArrayAdapter to set items to ListView */
         recipeListAdapter = new RecipeListAdapter(this, recipeList);
@@ -68,16 +67,17 @@ public class SearchResults extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                openRecipeDetailsPage();
+                openRecipeDetailsPage(position);
             }
         });
     }
 
-    private void openRecipeDetailsPage(){
+    private void openRecipeDetailsPage(int position){
         Intent intent = new Intent(this, DisplayRecipe.class);
         Bundle b = new Bundle();
         b.putInt("toolbarBackMessage", R.string.search_results);
         intent.putExtras(b);
+        intent.putExtra("RECIPE",recipeList.get(position));
         startActivity(intent);
     }
 }
