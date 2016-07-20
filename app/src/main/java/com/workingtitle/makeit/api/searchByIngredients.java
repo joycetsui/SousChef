@@ -2,6 +2,8 @@ package com.workingtitle.makeit.api;
 
 import android.os.AsyncTask;
 
+import com.workingtitle.makeit.models.Query;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -20,7 +22,7 @@ public class SearchByIngredients extends AsyncTask<ArrayList<String>, Void, Stri
         StringBuilder sb = new StringBuilder();
         String line;
         try {
-            String query = new QueryBuilder().buildSearchTerms(args[0]);
+            String query = new Query().buildSearchTerms(args[0]);
             String url_builder = "http://159.203.61.63/v1/api/ingredients/search?term=" + query + "&limit=10&key=cs446";
             URL url = new URL(url_builder);
             System.out.println(url_builder);
