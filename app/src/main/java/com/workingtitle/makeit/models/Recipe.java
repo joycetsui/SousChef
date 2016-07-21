@@ -116,6 +116,7 @@ public class Recipe implements Serializable {
         this.ingredients = ingredients;
     }
 
+    //
     private void process() {
 
         title = title.replace("\"","");
@@ -128,7 +129,7 @@ public class Recipe implements Serializable {
         StringBuilder sb = new StringBuilder();
         String[] directionsList = this.directions.split(" ; ");
         for(String s : directionsList) {
-            sb.append(s + System.getProperty("line.separator"));
+            sb.append(s + System.getProperty("line.separator") + System.getProperty("line.separator"));
         }
         directions = sb.toString();
 
@@ -139,6 +140,8 @@ public class Recipe implements Serializable {
         }
         ingredients = sb.toString();
     }
+
+    // Load the JSON Object and get the Recipe Data
     public Recipe loadData(String JSONObject) {
         JsonElement element = new JsonParser().parse(JSONObject);
 
@@ -150,6 +153,7 @@ public class Recipe implements Serializable {
         return populate(object);
     }
 
+    // Populates the class with the data retrieved from the API
     public Recipe populate(JsonObject object) {
 
         this.setId(Integer.parseInt(object.getAsJsonObject().getAsJsonPrimitive("id").toString()));
@@ -164,6 +168,7 @@ public class Recipe implements Serializable {
         this.setDirections(object.getAsJsonObject().getAsJsonPrimitive("directions").toString());
         this.setIngredients(object.getAsJsonObject().getAsJsonPrimitive("ingredients").toString());
 
+        // clean up the API data, remove quotations, parse lines etc.
         this.process();
 
         return this;
