@@ -27,6 +27,10 @@ public class Query implements Serializable{
         this.type = type;
     }
 
+    public boolean queryExists(Query q) {
+        return this.equals(q);
+    }
+
     public String buildSearchTerms() {
         String query = terms.toString();
         query = query.replace("[","").replace("]","");

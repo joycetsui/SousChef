@@ -93,4 +93,13 @@ public class RecipeCollection implements Serializable{
         }
     }
 
+    public boolean recipeExists(Recipe r) {
+        for(Recipe recipe : recipeCollection) {
+            if(r.getId() == recipe.getId()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

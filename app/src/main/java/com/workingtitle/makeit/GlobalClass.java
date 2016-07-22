@@ -19,7 +19,10 @@ public class GlobalClass extends Application {
     }
 
     public void addQuery(Query q) {
-        queryCollection.addQuery(q);
+        if(!queryCollection.queryExists(q)) {
+            queryCollection.addQuery(q);
+            queryCollection.saveQueryCollection(getApplicationContext());
+        }
     }
 
     private RecipeCollection recipeCollection = new RecipeCollection();
@@ -29,7 +32,9 @@ public class GlobalClass extends Application {
     }
 
     public void addRecipe(Recipe r) {
-        recipeCollection.addRecipe(r);
-        recipeCollection.saveRecipeCollection(getApplicationContext());
+        if(!recipeCollection.recipeExists(r)) {
+            recipeCollection.addRecipe(r);
+            recipeCollection.saveRecipeCollection(getApplicationContext());
+        }
     }
 }

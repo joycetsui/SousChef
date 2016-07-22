@@ -69,4 +69,13 @@ public class QueryCollection implements Serializable{
 
         this.queryCollection = collection;
     }
+
+    public boolean queryExists(Query q) {
+        for(Query query : queryCollection) {
+            if(query.queryExists(q)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
