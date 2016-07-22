@@ -1,10 +1,16 @@
 package com.workingtitle.makeit.models;
 
+import android.content.Context;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -42,5 +48,4 @@ public class RecipeCollection implements Serializable{
     public ArrayList<Recipe> getRecipeCollection() {
         return recipeCollection;
     }
-
 }

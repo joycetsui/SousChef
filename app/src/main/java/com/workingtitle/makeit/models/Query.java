@@ -1,5 +1,12 @@
 package com.workingtitle.makeit.models;
 
+import android.content.Context;
+import android.content.res.Resources;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -11,11 +18,13 @@ public class Query implements Serializable{
     private ArrayList<String> terms;
     private Integer limit;
     private String sortOptions;
+    private String type;
 
-    public Query() {
+    public Query(String type) {
         terms = new ArrayList<String>();
         limit = 10;
         sortOptions = "";
+        this.type = type;
     }
 
     public String buildSearchTerms() {
@@ -23,6 +32,8 @@ public class Query implements Serializable{
         query = query.replace("[","").replace("]","");
         return query;
     }
+
+    public void setTerms(ArrayList<String> terms){ this.terms = terms; }
 
     public void updateLimit(int l) {
         limit = l;
@@ -58,11 +69,7 @@ public class Query implements Serializable{
         return terms;
     }
 
+    public void setQueryType(String type){ this.type = type; }
 
-
-
-
-
-
-
+    public String getQueryType(){ return this.type; }
 }

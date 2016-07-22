@@ -39,10 +39,10 @@ public class SearchRecipeNameFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         // Initialize data for activity
-        query = new Query();
+        query = new Query(getResources().getString(R.string.search_by_recipe));
         terms = query.getTerms();
-
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.search_by_name, container, false);
@@ -81,9 +81,10 @@ public class SearchRecipeNameFragment extends Fragment {
         Bundle b = new Bundle();
 
         String results = "";
+
         try{
-            String term = keyword.getText().toString();
-            results  = new SearchByTitle().execute(term).get();
+            query.addTerm(keyword.getText().toString());
+            results  = new SearchByTitle().execute(query).get();
         }catch(Exception e) {
             e.printStackTrace();
         }

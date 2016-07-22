@@ -16,6 +16,7 @@ import android.widget.ListView;
 import com.workingtitle.makeit.api.GetLookupTable;
 import com.workingtitle.makeit.api.SearchByIngredients;
 import com.workingtitle.makeit.models.IngredientsLookupTable;
+import com.workingtitle.makeit.models.Query;
 import com.workingtitle.makeit.models.RecipeCollection;
 
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class AddIngredientsFragment extends Fragment {
 
     /** Items entered by the user is stored in this ArrayList variable */
     ArrayList<String> ingredientList = new ArrayList<String>();
+    private Query query;
 
     /** Declaring an ArrayAdapter to set items to ListView */
     IngredientsAddedAdapter recipeListAdapter;
@@ -43,7 +45,6 @@ public class AddIngredientsFragment extends Fragment {
     private int cookTimeHour;
     private int cookTimeMinute;
     private int numPortions;
-
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -135,6 +136,9 @@ public class AddIngredientsFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         // Initialize data for activity
+        query = new Query(getResources().getString(R.string.search_by_ingredients));
+
+        // Initialize data for activity
         lookupTable  = new IngredientsLookupTable();
         try{
             String s  = new GetLookupTable().execute().get();
@@ -164,8 +168,12 @@ public class AddIngredientsFragment extends Fragment {
 
         String results = "";
         System.out.println(ingredientList.size());
+
+        query.setTerms((ingredientList));
+
         try{
-            results  = new SearchByIngredients().execute(ingredientList).get();
+            SearchHistoryFragment.saveQuery(query);
+            results  = new SearchByIngredients().execute(query).get();
         }catch(Exception e) {
             e.printStackTrace();
         }

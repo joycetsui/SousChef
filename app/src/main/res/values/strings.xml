@@ -6,6 +6,10 @@
     <string name="api_base">http://159.203.61.63/v1/api/</string>
     <string name="ingredient_search">ingredients/search?term=</string>
     <string name="api_key">key=cs446</string>
+    <string name="search_by_recipe">SearchByRecipe</string>
+    <string name="search_by_ingredients">SearchByIngredients</string>
+    <string name="search_history_file_name">SearchHistory.txt</string>
+    <string name="saved_recipes_file_name">SavedRecipes.txt</string>
 
     <!-- Toolbar Tabs Titles -->
     <string name="search_ingredients_tab">Search by Ingredients</string>

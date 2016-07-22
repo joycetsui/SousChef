@@ -36,8 +36,8 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
                 SavedRecipesFragment savedRecipesFragment = new SavedRecipesFragment();
                 return savedRecipesFragment;
             case 3:
-                TabFragment4 tab4 = new TabFragment4();
-                return tab4;
+                SearchHistoryFragment searchHistoryFragment = new SearchHistoryFragment();
+                return searchHistoryFragment;
             default:
                 return null;
         }

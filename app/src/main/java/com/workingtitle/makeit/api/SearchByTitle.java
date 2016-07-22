@@ -14,17 +14,15 @@ import java.util.ArrayList;
 /**
  * Created by byeh on 16-07-22.
  */
-public class SearchByTitle extends AsyncTask<String, Void, String> {
+public class SearchByTitle extends AsyncTask<Query, Void, String> {
 
     private String RecipeList;
 
-    public String doInBackground(String... args) {
+    public String doInBackground(Query... query) {
         StringBuilder sb = new StringBuilder();
         String line;
         try {
-            Query query = new Query();
-            query.addTerm(args[0]);
-            String terms = query.buildSearchTerms();
+            String terms = query[0].buildSearchTerms();
             String url_builder = "http://159.203.61.63/v1/api/ingredients/search?term=" + terms + "&limit=10&key=cs446";
             URL url = new URL(url_builder);
             System.out.println(url_builder);
