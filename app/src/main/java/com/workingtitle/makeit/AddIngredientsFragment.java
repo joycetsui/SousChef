@@ -179,6 +179,8 @@ public class AddIngredientsFragment extends Fragment {
         }
         RecipeCollection recipes = new RecipeCollection();
         recipes.populateRecipeCollection(results);
+        final GlobalClass globalVariable = (GlobalClass) getActivity().getApplicationContext();
+        globalVariable.addQuery(query);
 
         Intent intent = new Intent(getActivity(), SearchResults.class);
         intent.putExtra("RECIPE_COLLECTION",recipes);
