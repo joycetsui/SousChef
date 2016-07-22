@@ -40,10 +40,6 @@ public class MainActivity extends AppCompatActivity {
     // Viewpager to manage the tabs in the main page
     ViewPager viewPager;
 
-    public static RecipeCollection savedRecipeCollection;
-
-    //public static File savedRecipesFile;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,10 +87,6 @@ public class MainActivity extends AppCompatActivity {
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
-
-        savedRecipeCollection = new RecipeCollection();
-        savedRecipeCollection.loadRecipeCollection();
-
     }
 
     private void setToolbarTitle(int position){

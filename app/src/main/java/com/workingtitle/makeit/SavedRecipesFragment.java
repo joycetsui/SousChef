@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
 import com.workingtitle.makeit.models.Recipe;
+import com.workingtitle.makeit.models.RecipeCollection;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -41,7 +42,9 @@ public class SavedRecipesFragment extends Fragment {
         header.setVisibility(View.GONE);
 
         /******************************** Hard Coded Recipe ************************************/
-        ArrayList<Recipe> recipeList= MainActivity.savedRecipeCollection.getRecipeCollection();
+        final GlobalClass globalVariable = (GlobalClass) getActivity().getApplicationContext();
+        RecipeCollection temp = globalVariable.getRecipeCollection();
+        ArrayList<Recipe> recipeList= temp.getRecipeCollection();
         /**************************************************************************************/
 
         /** Defining the ArrayAdapter to set items to ListView */

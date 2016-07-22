@@ -6,12 +6,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.workingtitle.makeit.MainActivity;
-
-<<<<<<< 3769a604328d9a80ff2e0e6c03839c46783ea1a8
-=======
 import java.io.File;
->>>>>>> save and load recipe collection
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;

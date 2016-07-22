@@ -1,5 +1,6 @@
 package com.workingtitle.makeit;
 
+import android.app.Application;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -78,7 +79,9 @@ public class DisplayRecipe extends AppCompatActivity {
         super.onStop();
     }
 
-    public void saveRecipe() {
-        MainActivity.savedRecipeCollection.addRecipe(this.recipe);
+    public void saveRecipe(View view) {
+        final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
+        globalVariable.addRecipe(this.recipe);
+        //MainActivity.savedRecipeCollection.addRecipe(this.recipe);
     }
 }
