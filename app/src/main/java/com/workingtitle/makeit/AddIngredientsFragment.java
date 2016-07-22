@@ -38,22 +38,15 @@ public class AddIngredientsFragment extends Fragment {
     // ingredients List
     IngredientsLookupTable lookupTable;
 
+    // Search Options info
+    private int cookTimeDay;
+    private int cookTimeHour;
+    private int cookTimeMinute;
+    private int numPortions;
+
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        lookupTable  = new IngredientsLookupTable();
-        try{
-            String s  = new GetLookupTable().execute().get();
-            lookupTable.populate(s);
-        }catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        cookTimeDay = -1;
-        cookTimeHour = -1;
-        cookTimeMinute = -1;
-        numPortions = -1;
 
         final View view = inflater.inflate(R.layout.activity_add_ingredients, container, false);
 
@@ -141,7 +134,19 @@ public class AddIngredientsFragment extends Fragment {
 
         super.onCreate(savedInstanceState);
 
+        // Initialize data for activity
+        lookupTable  = new IngredientsLookupTable();
+        try{
+            String s  = new GetLookupTable().execute().get();
+            lookupTable.populate(s);
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
 
+        cookTimeDay = -1;
+        cookTimeHour = -1;
+        cookTimeMinute = -1;
+        numPortions = -1;
 
     }
 
@@ -189,12 +194,6 @@ public class AddIngredientsFragment extends Fragment {
         }
     }
 
-    // Search Options info
-    int cookTimeDay;
-    int cookTimeHour;
-    int cookTimeMinute;
-    int numPortions;
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode){
@@ -206,14 +205,4 @@ public class AddIngredientsFragment extends Fragment {
             default:
         }
     }
-
-//    private void openSearchFragment(){
-//        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//        PlaceHolderFragment fragment = new PlaceHolderFragment();
-////        PageFragment fragment = PageFragment.newInstance(4);
-//        fragmentTransaction.replace(R.id.frame_container, fragment);
-//        fragmentTransaction.addToBackStack(null);
-//        fragmentTransaction.commit();
-//    }
 }
