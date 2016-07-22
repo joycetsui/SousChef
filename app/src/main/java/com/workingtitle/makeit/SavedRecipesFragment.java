@@ -28,6 +28,8 @@ public class SavedRecipesFragment extends Fragment {
     /** Declaring an ArrayAdapter to set items to ListView */
     RecipeListAdapter recipeListAdapter;
 
+    ArrayList<Recipe> recipeList;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_search_results, container, false);
@@ -41,11 +43,10 @@ public class SavedRecipesFragment extends Fragment {
         TextView header = (TextView) view.findViewById(R.id.results);
         header.setVisibility(View.GONE);
 
-        /******************************** Hard Coded Recipe ************************************/
+        // Get recipes
         final GlobalClass globalVariable = (GlobalClass) getActivity().getApplicationContext();
         RecipeCollection temp = globalVariable.getRecipeCollection();
-        ArrayList<Recipe> recipeList= temp.getRecipeCollection();
-        /**************************************************************************************/
+        recipeList= temp.getRecipeCollection();
 
         /** Defining the ArrayAdapter to set items to ListView */
         recipeListAdapter = new RecipeListAdapter(getContext(), recipeList);
@@ -57,18 +58,20 @@ public class SavedRecipesFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                openRecipeDetailsPage();
+                openRecipeDetailsPage(position);
             }
         });
 
         return view;
     }
 
-    private void openRecipeDetailsPage(){
+    private void openRecipeDetailsPage(int position){
         Intent intent = new Intent(getActivity(), DisplayRecipe.class);
         Bundle b = new Bundle();
         b.putInt("toolbarBackMessage", R.string.saved_recipes);
+
         intent.putExtras(b);
+        intent.putExtra("RECIPE",recipeList.get(position));
         startActivity(intent);
     }
 }

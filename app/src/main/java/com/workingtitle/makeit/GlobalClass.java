@@ -30,6 +30,6 @@ public class GlobalClass extends Application {
 
     public void addRecipe(Recipe r) {
         recipeCollection.addRecipe(r);
-        recipeCollection.saveRecipeCollection();
+        recipeCollection.saveRecipeCollection(getApplicationContext());
     }
 }
