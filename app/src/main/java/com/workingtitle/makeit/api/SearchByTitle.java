@@ -12,13 +12,13 @@ import java.net.URL;
 import java.util.ArrayList;
 
 /**
- * Created by byeh on 16-07-09.
+ * Created by byeh on 16-07-22.
  */
-public class SearchByIngredients extends AsyncTask<ArrayList<String>, Void, String>{
+public class SearchByTitle extends AsyncTask<String, Void, String> {
 
     private String RecipeList;
 
-    public String doInBackground(ArrayList<String>... args) {
+    public String doInBackground(String... args) {
         StringBuilder sb = new StringBuilder();
         String line;
         try {

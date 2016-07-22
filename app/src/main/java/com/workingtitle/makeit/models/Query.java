@@ -18,8 +18,8 @@ public class Query implements Serializable{
         sortOptions = "";
     }
 
-    public String buildSearchTerms(ArrayList<String> input) {
-        String query = input.toString();
+    public String buildSearchTerms() {
+        String query = terms.toString();
         query = query.replace("[","").replace("]","");
         return query;
     }
@@ -43,6 +43,8 @@ public class Query implements Serializable{
     public void addTerm(String s) {
         terms.add(s);
     }
+
+    public void addTerm(ArrayList<String> s) {terms = s;}
 
     public void removeTerm(int i) {
         terms.remove(i);
