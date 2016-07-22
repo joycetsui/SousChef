@@ -13,7 +13,12 @@ import com.workingtitle.makeit.models.RecipeCollection;
 public class GlobalClass extends Application {
 
     private QueryCollection queryCollection = new QueryCollection();
+    private RecipeCollection recipeCollection = new RecipeCollection();
 
+    public void initialize() {
+        queryCollection.loadQueryCollection(getApplicationContext());
+        recipeCollection.loadRecipeCollection(getApplicationContext());
+    }
     public QueryCollection getQueryCollection() {
         return queryCollection;
     }
@@ -24,8 +29,6 @@ public class GlobalClass extends Application {
             queryCollection.saveQueryCollection(getApplicationContext());
         }
     }
-
-    private RecipeCollection recipeCollection = new RecipeCollection();
 
     public RecipeCollection getRecipeCollection() {
         return recipeCollection;

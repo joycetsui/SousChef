@@ -49,8 +49,8 @@ public class RecipeCollection implements Serializable{
         return recipeCollection;
     }
 
-    public void loadRecipeCollection(){
-        String filename = "savedRecipes";
+    public void loadRecipeCollection(Context context){
+        String filename = context.getFilesDir().getPath().toString() + "savedRecipes";
         ArrayList<Recipe> r = new ArrayList<Recipe>();
         try {
             File savedRecipeFile = new File(filename);
@@ -59,7 +59,7 @@ public class RecipeCollection implements Serializable{
                 savedRecipeFile.createNewFile();
             }
 
-            FileInputStream fileIn = new FileInputStream(filename);
+            FileInputStream fileIn = new FileInputStream(new File(filename));
             ObjectInputStream in = new ObjectInputStream(fileIn);
             r = (ArrayList<Recipe>) in.readObject();
             in.close();
@@ -74,7 +74,7 @@ public class RecipeCollection implements Serializable{
     }
 
     public void saveRecipeCollection(Context context) {
-        String filename = "savedRecipes";
+        String filename = context.getFilesDir().getPath().toString() + "savedRecipes";
 
         try {
 //            File savedRecipeFile = new File(filename);
@@ -82,7 +82,7 @@ public class RecipeCollection implements Serializable{
 //            if (!savedRecipeFile.exists()) {
 //                savedRecipeFile.createNewFile();
 //            }
-            FileOutputStream fileOut = context.openFileOutput(filename, Context.MODE_PRIVATE);
+            FileOutputStream fileOut = new FileOutputStream(new File(filename));
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(this.getRecipeCollection());
             out.close();

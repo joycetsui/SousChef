@@ -2,6 +2,7 @@ package com.workingtitle.makeit.models;
 
 import android.content.Context;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -39,12 +40,12 @@ public class QueryCollection implements Serializable{
 
     public void saveQueryCollection(Context context){
         //String fileName = context.getResources().getString(R.string.search_history_file_name);
-        String fileName = "SearchHistory";
+        String fileName = context.getFilesDir().getPath().toString() + "SearchHistory";
 
         try {
-            FileOutputStream fos = context.openFileOutput(fileName, Context.MODE_PRIVATE);
+            FileOutputStream fos = new FileOutputStream(new File(fileName));
             ObjectOutputStream os = new ObjectOutputStream(fos);
-            os.writeObject(this);
+            os.writeObject(queryCollection);
             os.close();
             fos.close();
         } catch (Exception e) {
@@ -53,21 +54,18 @@ public class QueryCollection implements Serializable{
     }
 
     public void loadQueryCollection(Context context){
-        String fileName = "SearchHistory";
-
-        ArrayList<Query> collection = new ArrayList<Query>();
+        String fileName = context.getFilesDir().getPath().toString() + "SearchHistory";
 
         try {
-            FileInputStream fis = context.openFileInput(fileName);
+            FileInputStream fis = new FileInputStream(new File(fileName));
             ObjectInputStream is = new ObjectInputStream(fis);
-            collection = (ArrayList<Query>) is.readObject();
+            queryCollection = (ArrayList<Query>) is.readObject();
             is.close();
             fis.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        this.queryCollection = collection;
     }
 
     public boolean queryExists(Query q) {
