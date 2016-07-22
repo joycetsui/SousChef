@@ -7,8 +7,6 @@ import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.workingtitle.makeit.api.GetRandomRecipe;
 import com.workingtitle.makeit.models.Recipe;
 
 /**

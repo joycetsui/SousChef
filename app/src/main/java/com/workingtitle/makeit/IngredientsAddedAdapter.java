@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class IngredientsAddedAdapter extends ArrayAdapter<String> {
 
-    ArrayList<String> ingredientList;
+    private ArrayList<String> ingredientList;
 
     public IngredientsAddedAdapter(Context context, ArrayList<String> ingredients) {
         super(context, 0, ingredients);
@@ -25,8 +25,10 @@ public class IngredientsAddedAdapter extends ArrayAdapter<String> {
 
     @Override
     public View getView(final int position, View view, ViewGroup parent) {
+
         // Get the data item for this position
         String ingredient = getItem(position);
+
         // Check if an existing view is being reused, otherwise inflate the view
         if (view == null) {
             view = LayoutInflater.from(getContext()).inflate(R.layout.ingredient_added_layout, parent, false);
@@ -48,7 +50,6 @@ public class IngredientsAddedAdapter extends ArrayAdapter<String> {
 
         removeBtn.setOnClickListener(removeBtnListener);
 
-        // Return the completed view to render on screen
         return view;
     }
 }
