@@ -1,5 +1,6 @@
 package com.workingtitle.makeit;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -13,6 +14,9 @@ import android.widget.TextView;
 
 import com.workingtitle.makeit.models.Recipe;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 /**
@@ -37,15 +41,7 @@ public class SavedRecipesFragment extends Fragment {
         header.setVisibility(View.GONE);
 
         /******************************** Hard Coded Recipe ************************************/
-        ArrayList<Recipe> recipeList= new ArrayList<Recipe>();
-
-        for (int i = 0; i < 5; i++){
-            Recipe recipe = new Recipe();
-            recipe.setAuthor("Author");
-            recipe.setTitle("Recipe " + i);
-            recipe.setRating(i+1);
-            recipeList.add(recipe);
-        }
+        ArrayList<Recipe> recipeList= MainActivity.savedRecipeCollection.getRecipeCollection();
         /**************************************************************************************/
 
         /** Defining the ArrayAdapter to set items to ListView */

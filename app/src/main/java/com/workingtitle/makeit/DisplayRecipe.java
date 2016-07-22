@@ -14,7 +14,7 @@ import com.workingtitle.makeit.models.Recipe;
  */
 public class DisplayRecipe extends AppCompatActivity {
 
-
+    public Recipe recipe;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +42,7 @@ public class DisplayRecipe extends AppCompatActivity {
             }
         });
 
-        Recipe recipe = (Recipe) getIntent().getSerializableExtra("RECIPE");
+        recipe = (Recipe) getIntent().getSerializableExtra("RECIPE");
         System.out.println(recipe.getRecipeId());
 
         setRecipeElements(recipe.getTitle(), R.id.recipeName);
@@ -76,5 +76,9 @@ public class DisplayRecipe extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
+    }
+
+    public void saveRecipe() {
+        MainActivity.savedRecipeCollection.addRecipe(this.recipe);
     }
 }

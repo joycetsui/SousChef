@@ -2,6 +2,7 @@ package com.workingtitle.makeit;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -19,6 +20,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.workingtitle.makeit.models.RecipeCollection;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+
 public class MainActivity extends AppCompatActivity {
 
     private int[] imageResId = {
@@ -30,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
 
     // Viewpager to manage the tabs in the main page
     ViewPager viewPager;
+
+    public static RecipeCollection savedRecipeCollection;
+
+    //public static File savedRecipesFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +91,10 @@ public class MainActivity extends AppCompatActivity {
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
+
+        savedRecipeCollection = new RecipeCollection();
+        savedRecipeCollection.loadRecipeCollection();
+
     }
 
     private void setToolbarTitle(int position){
@@ -138,4 +155,7 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
 }
