@@ -10,18 +10,14 @@
         android:layout_height="wrap_content"
         android:inputType="text"
         android:hint="@string/hintEnterRecipeName"
-        android:layout_above="@+id/byNameOptionsBtn"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <!-- Options button -->
-    <Button
-        android:id="@+id/byNameOptionsBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/lblBtnOptions"
-        android:layout_above="@+id/byNameFeedMeBtn"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentStart="true"
+        android:paddingTop="@dimen/abc_action_button_min_height_material"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin" />
 
     <!-- FEED ME button -->
     <Button
@@ -29,10 +25,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/lblBtnFeedMe"
+        android:backgroundTint="#A5D6A7"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_centerHorizontal="true"
+        android:paddingRight="@dimen/abc_action_button_min_width_overflow_material"
+        android:paddingLeft="@dimen/abc_action_button_min_width_overflow_material"
+        android:paddingTop="@dimen/abc_action_bar_icon_vertical_padding_material"
+        android:paddingBottom="@dimen/abc_action_bar_icon_vertical_padding_material"
+        android:textSize="@dimen/abc_text_size_medium_material" />
 
 </RelativeLayout>

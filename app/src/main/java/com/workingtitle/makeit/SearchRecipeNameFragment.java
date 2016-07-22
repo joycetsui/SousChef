@@ -49,7 +49,8 @@ public class SearchRecipeNameFragment extends Fragment {
 
         /** Reference to the button of the layout main.xml */
         keyword = (EditText) view.findViewById(R.id.recipeNameTextItem);
-        Button optionsBtn = (Button) view.findViewById(R.id.byNameOptionsBtn);
+
+        //Button optionsBtn = (Button) view.findViewById(R.id.byNameOptionsBtn);
         Button searchBtn = (Button) view.findViewById(R.id.byNameFeedMeBtn);
 
         /** Defining a click event listener for the button "FeedMe" */
@@ -62,16 +63,6 @@ public class SearchRecipeNameFragment extends Fragment {
 
         /** Setting the event listener for the add button */
         searchBtn.setOnClickListener(goSearchListener);
-
-        // Go to Search Options Page
-        optionsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SearchOptions.class);
-                startActivity(intent);
-            }
-        });
 
         return view;
     }

@@ -13,6 +13,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ButtonBarLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,14 +32,20 @@ import java.io.ObjectInputStream;
 public class MainActivity extends AppCompatActivity {
 
     private int[] imageResId = {
-            R.drawable.ic_apple,
-            R.drawable.ic_chef2,
-            R.drawable.ic_saved,
-            R.drawable.ic_list
+            R.drawable.ic_action_cart,
+            R.drawable.ic_action_restaurant,
+            R.drawable.ic_action_book,
+            R.drawable.ic_action_document
     };
 
     // Viewpager to manage the tabs in the main page
     ViewPager viewPager;
+
+    // Search Options info
+    private int cookTimeDay;
+    private int cookTimeHour;
+    private int cookTimeMinute;
+    private int numPortions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,16 +54,6 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        /*
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
 
         // Get the ViewPager and set it's PagerAdapter so that it can display items
         viewPager = (ViewPager) findViewById(R.id.view_pager);
@@ -110,15 +107,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupTabLayout(TabLayout tabLayout) {
-
-//        tabLayout.addTab(tabLayout.newTab().setIcon(imageResId[0]));
-//        tabLayout.addTab(tabLayout.newTab().setIcon(imageResId[1]));
-//        tabLayout.addTab(tabLayout.newTab().setIcon(imageResId[2]));
-//        tabLayout.addTab(tabLayout.newTab().setIcon(imageResId[3]));
-
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
         tabLayout.setupWithViewPager(viewPager);
-
         for (int i = 0; i < imageResId.length; i++){
             TextView tab = (TextView) LayoutInflater.from(this).inflate(R.layout.tab_layout, null);
             tab.setCompoundDrawablesWithIntrinsicBounds(0, imageResId[i], 0, 0);
@@ -144,10 +135,24 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
+        else if (id == R.id.filterButton){
+            openOptionsPage();
+        }
 
         return super.onOptionsItemSelected(item);
     }
 
+    private void openOptionsPage() {
+        cookTimeDay = -1;
+        cookTimeHour = -1;
+        cookTimeMinute = -1;
+        numPortions = -1;
+        Intent intent = new Intent(this, SearchOptions.class);
+        intent.putExtra("ctDay", cookTimeDay);
+        intent.putExtra("ctHour", cookTimeHour);
+        intent.putExtra("ctMin", cookTimeMinute);
+        intent.putExtra("portions", numPortions);
 
-
+        startActivityForResult(intent, 1);
+    }
 }

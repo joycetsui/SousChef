@@ -12,18 +12,16 @@
         android:id="@+id/ingredientsList"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btnAdd"
-        android:layout_margin="15dp"
         android:divider="@android:color/transparent"
-        android:dividerHeight="10dp"/>
-
-    <!--<TextView-->
-    <!--android:id="@android:id/empty"-->
-    <!--android:layout_width="fill_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:text="@string/txtEmpty"-->
-    <!--android:gravity="center_horizontal"-->
-    <!--/>-->
+        android:dividerHeight="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="false"
+        android:layout_above="@+id/btnFeedMe"
+        android:layout_below="@+id/txtItem"
+        android:paddingLeft="@dimen/abc_edit_text_inset_horizontal_material"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/abc_button_inset_vertical_material" />
 
     <!-- Enter ingredient box -->
     <AutoCompleteTextView
@@ -32,11 +30,12 @@
         android:layout_height="wrap_content"
         android:inputType="text"
         android:hint="@string/hintEnterIngredient"
-        android:layout_alignBottom="@+id/btnAdd"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_toLeftOf="@+id/btnAdd"
-        android:layout_toStartOf="@+id/btnAdd"/>
+        android:layout_toStartOf="@+id/btnAdd"
+        android:paddingTop="@dimen/abc_action_button_min_height_material"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin" />
 
     <!-- Add button -->
     <Button
@@ -44,19 +43,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/lblBtnAdd"
-        android:layout_above="@+id/btnOptions"
+        android:backgroundTint="#A5D6A7"
+        android:clickable="false"
+        android:layout_above="@+id/ingredientsList"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <!-- Options button -->
-    <Button
-        android:id="@+id/btnOptions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/lblBtnOptions"
-        android:layout_above="@+id/btnFeedMe"
-        android:layout_centerHorizontal="true"
-        android:onClick="onClickOptions"/>
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="@dimen/activity_horizontal_margin" />
 
     <!-- FEED ME button -->
     <Button
@@ -64,10 +56,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/lblBtnFeedMe"
+        android:backgroundTint="#A5D6A7"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_centerHorizontal="true"
+        android:paddingRight="@dimen/abc_action_button_min_width_overflow_material"
+        android:paddingLeft="@dimen/abc_action_button_min_width_overflow_material"
+        android:textSize="@dimen/abc_text_size_medium_material"
+        android:paddingTop="@dimen/abc_action_bar_icon_vertical_padding_material"
+        android:paddingBottom="@dimen/abc_action_bar_icon_vertical_padding_material" />
 
 </RelativeLayout>

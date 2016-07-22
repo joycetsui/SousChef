@@ -119,13 +119,13 @@ public class AddIngredientsFragment extends Fragment {
         listView.setAdapter(recipeListAdapter);
 
         // Go to Search Options Page
-        Button optionsBtn = (Button) view.findViewById(R.id.btnOptions);
-        optionsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openOptionsPage();
-            }
-        });
+        //Button optionsBtn = (Button) view.findViewById(R.id.btnOptions);
+        //optionsBtn.setOnClickListener(new View.OnClickListener() {
+          //  @Override
+           // public void onClick(View v) {
+             //   openOptionsPage();
+           // }
+        //});
 
         return view;
     }

@@ -12,7 +12,7 @@
         android:layout_alignParentTop="true"
         android:elevation="6dp"
         android:minHeight="?attr/actionBarSize"
-        android:background="@color/lime"
+        android:background="#4CAF50"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:textAlignment="center"/>
@@ -27,7 +27,8 @@
         android:textAppearance="@style/HeaderTextStyle"
         android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:textColor="#1B5E20" />
     <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
 
     <ListView
