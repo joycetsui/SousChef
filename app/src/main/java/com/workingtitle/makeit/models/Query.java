@@ -28,7 +28,14 @@ public class Query implements Serializable{
     }
 
     public boolean queryExists(Query q) {
-        return this.equals(q);
+        boolean exists = false;
+
+        if (this.terms.equals(q.getTerms()) && this.type.equals(q.getQueryType()) &&
+            this.sortOptions.equals(q.getSortOptions()) && this.limit.equals(q.getLimit())) {
+            exists = true;
+        }
+
+        return exists;
     }
 
     public String buildSearchTerms() {
