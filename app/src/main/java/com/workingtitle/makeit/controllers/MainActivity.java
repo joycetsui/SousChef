@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.workingtitle.makeit.FilterSearch;
 import com.workingtitle.makeit.GlobalClass;
 import com.workingtitle.makeit.R;
 import com.workingtitle.makeit.UserSettingsActivity;
