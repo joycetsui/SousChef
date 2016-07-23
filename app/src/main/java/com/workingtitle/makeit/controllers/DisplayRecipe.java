@@ -2,6 +2,7 @@ package com.workingtitle.makeit.controllers;
 
 import android.app.Application;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -22,6 +23,8 @@ public class DisplayRecipe extends AppCompatActivity {
 
     public Recipe recipe;
     public int recipeIndex = -1;
+
+    private int resultCode = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +113,12 @@ public class DisplayRecipe extends AppCompatActivity {
         super.onStop();
     }
 
+    @Override
+    public void onBackPressed() {
+        setResult(resultCode);
+        super.onBackPressed();
+    }
+
     private void saveRecipe() {
         final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
         globalVariable.addRecipe(this.recipe);
@@ -121,10 +130,8 @@ public class DisplayRecipe extends AppCompatActivity {
     private void removeSavedRecipe() {
         final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
         if (recipeIndex != -1) {
-            System.out.println("CURRENT NUM IS " + globalVariable.getRecipeCollection().getRecipeCollection().size());
             globalVariable.removeRecipe(recipeIndex);
-            System.out.println("NEW NUM IS " + globalVariable.getRecipeCollection().getRecipeCollection().size());
-
+            resultCode = 2;
             Toast toast = Toast.makeText(getApplicationContext(), "Unsaved", Toast.LENGTH_SHORT);
             toast.show();
         }

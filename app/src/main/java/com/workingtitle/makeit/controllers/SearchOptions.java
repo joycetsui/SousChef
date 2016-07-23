@@ -70,7 +70,6 @@ public class SearchOptions extends AppCompatActivity {
         }
     }
 
-    // Doesn't work, need to figure out how to pass values to fragment on back button
     @Override
     public void onBackPressed() {
         Intent args = new Intent();

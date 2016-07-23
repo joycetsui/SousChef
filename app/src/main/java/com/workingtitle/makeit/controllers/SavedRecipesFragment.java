@@ -59,7 +59,6 @@ public class SavedRecipesFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 openRecipeDetailsPage(position);
-                updateList();
             }
         });
 
@@ -76,13 +75,26 @@ public class SavedRecipesFragment extends Fragment {
         intent.putExtra("RECIPE_INDEX", position);
         intent.putExtra("RECIPE_SAVE_ACTION",getResources().getString(R.string.unsaveButton));
 
-        startActivity(intent);
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch(requestCode) {
+            case 1 : {
+                if (resultCode == 2) {
+                    // Recipe was removed
+                    updateList();
+                }
+                break;
+            }
+        }
     }
 
     public void updateList(){
         final GlobalClass globalVariable = (GlobalClass) getActivity().getApplicationContext();
-
-        recipeList= globalVariable.getRecipeCollection().getRecipeCollection();
+        recipeList = globalVariable.getRecipeCollection().getRecipeCollection();
         recipeListAdapter.notifyDataSetChanged();
     }
 }
