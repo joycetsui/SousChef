@@ -105,12 +105,14 @@ public class QueryCollection implements Serializable{
 
     }
 
-    public boolean queryExists(Query q) {
+    public int queryExists(Query q) {
+        int index = 0;
         for(Query query : queryCollection) {
             if(query.queryExists(q)) {
-                return true;
+                return index;
             }
+            index++;
         }
-        return false;
+        return -1;
     }
 }

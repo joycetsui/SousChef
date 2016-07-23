@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context="com.workingtitle.makeit.MainActivity">
+    tools:context=".controllers.MainActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"

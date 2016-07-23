@@ -9,7 +9,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MainActivity">
+        <activity android:name=".controllers.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,17 +26,17 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".SearchOptions">
+            android:name=".controllers.SearchOptions">
         </activity>
 
         <activity
-            android:name=".SearchResults"
-            android:parentActivityName=".MainActivity" >
+            android:name=".controllers.SearchResults"
+            android:parentActivityName=".controllers.MainActivity" >
         </activity>
 
         <activity
-            android:name=".DisplayRecipe"
-            android:parentActivityName=".MainActivity" >
+            android:name=".controllers.DisplayRecipe"
+            android:parentActivityName=".controllers.MainActivity" >
         </activity>
 
     </application>

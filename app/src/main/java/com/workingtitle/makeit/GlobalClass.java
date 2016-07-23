@@ -29,10 +29,21 @@ public class GlobalClass extends Application {
     }
 
     public void addQuery(Query q) {
-        if(!queryCollection.queryExists(q)) {
+        int queryIndex = queryCollection.queryExists(q);
+        if(queryIndex == -1) {
             queryCollection.addQuery(q);
             queryCollection.saveQueryCollection(getApplicationContext());
         }
+        else{
+            updateQueryCollection(queryIndex);
+        }
+    }
+
+    public void updateQueryCollection(int position){
+
+        Query query = queryCollection.getQueryCollection().get(position);
+        queryCollection.removeQuery(position);
+        addQuery(query);
     }
 
     public RecipeCollection getRecipeCollection() {

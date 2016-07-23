@@ -1,14 +1,14 @@
-package com.workingtitle.makeit;
+package com.workingtitle.makeit.controllers;
 
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import com.workingtitle.makeit.R;
 
 public class SearchOptions extends AppCompatActivity {
     

@@ -1,4 +1,4 @@
-package com.workingtitle.makeit;
+package com.workingtitle.makeit.controllers;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
@@ -6,20 +6,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import com.workingtitle.makeit.api.GetLookupTable;
-import com.workingtitle.makeit.api.SearchByIngredients;
+import com.workingtitle.makeit.GlobalClass;
+import com.workingtitle.makeit.R;
 import com.workingtitle.makeit.api.SearchByTitle;
-import com.workingtitle.makeit.models.IngredientsLookupTable;
-import com.workingtitle.makeit.models.QueryCollection;
 import com.workingtitle.makeit.models.Query;
 import com.workingtitle.makeit.models.RecipeCollection;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -41,7 +35,7 @@ public class SearchRecipeNameFragment extends Fragment {
 
         super.onCreateView(inflater, container, savedInstanceState);
 
-        View view = inflater.inflate(R.layout.search_by_name, container, false);
+        View view = inflater.inflate(R.layout.activity_search_by_recipe_name, container, false);
 
         resetView();
 

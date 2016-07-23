@@ -1,4 +1,4 @@
-package com.workingtitle.makeit;
+package com.workingtitle.makeit.controllers;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.workingtitle.makeit.R;
 import com.workingtitle.makeit.models.Recipe;
 
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class RecipeListAdapter extends ArrayAdapter<Recipe> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View rowView = inflater.inflate(R.layout.results_row_layout, parent, false);
+        View rowView = inflater.inflate(R.layout.search_results_row_layout, parent, false);
 
         TextView titleTextView = (TextView) rowView.findViewById(R.id.title);
         ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);

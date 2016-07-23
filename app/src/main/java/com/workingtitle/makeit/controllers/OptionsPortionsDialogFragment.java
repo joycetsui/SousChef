@@ -1,4 +1,4 @@
-package com.workingtitle.makeit;
+package com.workingtitle.makeit.controllers;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -6,10 +6,10 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 import android.widget.NumberPicker;
-import android.widget.TextView;
+
+import com.workingtitle.makeit.R;
 
 /**
  * Created by xiwen on 21/6/16.

@@ -1,35 +1,18 @@
-package com.workingtitle.makeit;
+package com.workingtitle.makeit.controllers;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.content.ClipData;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.ButtonBarLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.workingtitle.makeit.models.RecipeCollection;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInput;
-import java.io.ObjectInputStream;
+import com.workingtitle.makeit.GlobalClass;
+import com.workingtitle.makeit.R;
 
 public class MainActivity extends AppCompatActivity {
 
