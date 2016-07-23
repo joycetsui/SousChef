@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            openUserSettings();
         }
         else if (id == R.id.filterButton){
             openOptionsPage();
@@ -154,8 +154,14 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+<<<<<<< Updated upstream:app/src/main/java/com/workingtitle/makeit/controllers/MainActivity.java
     private void clearSearchHistory(){
         ((SearchHistoryFragment)((MyFragmentPagerAdapter)viewPager.getAdapter()).getItem(3)).clearSearchHistory();
+=======
+    private void openUserSettings(){
+        Intent intent = new Intent(this, UserSettingsActivity.class);
+        startActivity(intent);
+>>>>>>> Stashed changes:app/src/main/java/com/workingtitle/makeit/MainActivity.java
     }
 
     private void openOptionsPage() {
