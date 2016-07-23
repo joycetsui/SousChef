@@ -34,18 +34,16 @@ public class SearchRecipeNameFragment extends Fragment {
     EditText keyword;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-
-        // Initialize data for activity
-        query = new Query(getResources().getString(R.string.search_by_recipe));
-        terms = query.getTerms();
-    }
+    public void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState);}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        super.onCreateView(inflater, container, savedInstanceState);
+
         View view = inflater.inflate(R.layout.search_by_name, container, false);
+
+        resetView();
 
         /** Reference to the button of the layout main.xml */
         keyword = (EditText) view.findViewById(R.id.recipeNameTextItem);
@@ -57,7 +55,9 @@ public class SearchRecipeNameFragment extends Fragment {
         View.OnClickListener goSearchListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openResultsPage();
+                if (!keyword.getText().toString().isEmpty()) {
+                    openResultsPage(keyword.getText().toString());
+                }
             }
         };
 
@@ -67,24 +67,43 @@ public class SearchRecipeNameFragment extends Fragment {
         return view;
     }
 
-    private void openResultsPage(){
+    private void openResultsPage(String searchKeyword){
         Intent intent = new Intent(getActivity(), SearchResults.class);
         Bundle b = new Bundle();
 
         String results = "";
 
         try{
-            query.addTerm(keyword.getText().toString());
+            query.addTerm(searchKeyword);
+            saveQuery(query);
             results  = new SearchByTitle().execute(query).get();
         }catch(Exception e) {
             e.printStackTrace();
         }
 
         b.putInt("toolbarBackMessage", R.string.search_recipe_tab);
+
         RecipeCollection recipes = new RecipeCollection();
         recipes.populateRecipeCollection(results);
+
         intent.putExtra("RECIPE_COLLECTION",recipes);
         intent.putExtras(b);
         startActivity(intent);
+
+        resetView();
+    }
+
+    public void resetView(){
+        // Initialize data for activity
+        query = new Query(getResources().getString(R.string.search_by_recipe));
+        terms = query.getTerms();
+         if (keyword != null) {
+             keyword.setText("");
+         }
+    }
+
+    public void saveQuery(Query query){
+        final GlobalClass globalVariable = (GlobalClass) getActivity().getApplicationContext();
+        globalVariable.addQuery(query);
     }
 }

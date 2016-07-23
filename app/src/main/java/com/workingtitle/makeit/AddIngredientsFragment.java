@@ -28,7 +28,7 @@ import java.util.Arrays;
 public class AddIngredientsFragment extends Fragment {
 
     /** Items entered by the user is stored in this ArrayList variable */
-    ArrayList<String> ingredientList = new ArrayList<String>();
+    ArrayList<String> ingredientList;
     private Query query;
 
     /** Declaring an ArrayAdapter to set items to ListView */
@@ -49,7 +49,20 @@ public class AddIngredientsFragment extends Fragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        super.onCreateView(inflater, container, savedInstanceState);
+
         final View view = inflater.inflate(R.layout.activity_add_ingredients, container, false);
+
+        resetView();
+
+        // Get parameters passed when activity was created
+        Bundle b = getActivity().getIntent().getExtras();
+
+        if (b != null){
+            ArrayList<String> ingredients = new ArrayList<String>();
+            ingredients = b.getStringArrayList("IngredientList");
+            ingredientList = (ArrayList<String>)ingredients.clone();
+        }
 
         //Auto-complete Suggestions for Ingredients TextView
 
@@ -172,15 +185,14 @@ public class AddIngredientsFragment extends Fragment {
         query.setTerms((ingredientList));
 
         try{
-            SearchHistoryFragment.saveQuery(query);
+            saveQuery(query);
             results  = new SearchByIngredients().execute(query).get();
         }catch(Exception e) {
             e.printStackTrace();
         }
+
         RecipeCollection recipes = new RecipeCollection();
         recipes.populateRecipeCollection(results);
-        final GlobalClass globalVariable = (GlobalClass) getActivity().getApplicationContext();
-        globalVariable.addQuery(query);
 
         Intent intent = new Intent(getActivity(), SearchResults.class);
         intent.putExtra("RECIPE_COLLECTION",recipes);
@@ -189,6 +201,8 @@ public class AddIngredientsFragment extends Fragment {
         b.putInt("toolbarBackMessage", R.string.search_ingredients_tab);
         intent.putExtras(b);
         startActivity(intent);
+
+        resetView();
     }
 
     private void addIngredientToList(){
@@ -202,6 +216,17 @@ public class AddIngredientsFragment extends Fragment {
         else {
             ingredientTextView.setError(getResources().getString(R.string.invalidIngredientMsg));
         }
+    }
+
+    public void saveQuery(Query query){
+        final GlobalClass globalVariable = (GlobalClass) getActivity().getApplicationContext();
+        globalVariable.addQuery(query);
+    }
+
+    public void resetView(){
+        // Initialize data for activity
+        query = new Query(getResources().getString(R.string.search_by_ingredients));
+        ingredientList = query.getTerms();
     }
 
     @Override

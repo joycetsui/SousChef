@@ -19,6 +19,11 @@ public class GlobalClass extends Application {
         queryCollection.loadQueryCollection(getApplicationContext());
         recipeCollection.loadRecipeCollection(getApplicationContext());
     }
+
+    public void clearSearchHistory(){
+        queryCollection.emptyQueryCollection(getApplicationContext());
+    }
+
     public QueryCollection getQueryCollection() {
         return queryCollection;
     }

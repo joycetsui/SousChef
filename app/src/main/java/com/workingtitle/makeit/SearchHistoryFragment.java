@@ -1,6 +1,7 @@
 package com.workingtitle.makeit;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
@@ -11,21 +12,32 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.workingtitle.makeit.api.SearchByIngredients;
+import com.workingtitle.makeit.api.SearchByTitle;
 import com.workingtitle.makeit.models.Query;
+import com.workingtitle.makeit.models.QueryCollection;
 import com.workingtitle.makeit.models.Recipe;
+import com.workingtitle.makeit.models.RecipeCollection;
 
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by Maricarla on 2016-07-22.
  */
 public class SearchHistoryFragment extends Fragment {
 
-    QueryListAdapter queryListAdapter;
+    private QueryListAdapter queryListAdapter;
 
+    private ArrayList<Query> queryList = new ArrayList<Query>();
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        super.onCreateView(inflater, container, savedInstanceState);
+
         View view = inflater.inflate(R.layout.activity_search_history, container, false);
 
         final ListView listView = (ListView) view.findViewById(R.id.searchHistoryList);
@@ -33,15 +45,9 @@ public class SearchHistoryFragment extends Fragment {
         //Hide the toolbar defined in the layout since this fragment is already part of the toolbar/tablayout
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         toolbar.setVisibility(View.GONE);
-
-        /******************************** Hard Coded Recipe ************************************/
-        ArrayList<Query> queryList = new ArrayList<Query>();
-
-        for (int i = 0; i < 5; i++){
-            Query query = new Query(getResources().getString(R.string.search_by_recipe));
-            queryList.add(query);
-        }
-        /**************************************************************************************/
+        
+        final GlobalClass globalClass = (GlobalClass) getActivity().getApplicationContext();
+        queryList = globalClass.getQueryCollection().getReverseQueryCollection();
 
         /** Defining the ArrayAdapter to set items to ListView */
         queryListAdapter = new QueryListAdapter(getContext(), queryList);
@@ -51,16 +57,72 @@ public class SearchHistoryFragment extends Fragment {
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-//                openRecipeDetailsPage();
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Query query = queryList.get(position);
+                if (query.getQueryType().equals(getResources().getString(R.string.search_by_ingredients))){
+                    openSearchByIngredientsTabPopulated(query);
+                }
+                else{
+                    openResultsPage(query);
+                }
+
+                int size = globalClass.getQueryCollection().getQueryCollection().size();
+                updateSearchHistory(size - position - 1);
             }
         });
 
         return view;
     }
 
-    public static void saveQuery(Query query){
-        //query.save(context);
+    private void openSearchByIngredientsTabPopulated(Query query){
+
+        Intent intent = new Intent(getActivity(), SearchResults.class);
+        ArrayList<String> ingredients = query.getTerms();
+        intent.putExtra("IngredientList", ingredients);
+
+        ((MainActivity)getActivity()).setIntent(intent);
+        ((MainActivity)getActivity()).viewPager.setCurrentItem(0);
+    }
+
+    private void updateSearchHistory(int position){
+        final GlobalClass globalClass = (GlobalClass) getActivity().getApplicationContext();
+
+        Query query = globalClass.getQueryCollection().getQueryCollection().get(position);
+        globalClass.getQueryCollection().removeQuery(position);
+        globalClass.addQuery(query);
+
+        queryList = globalClass.getQueryCollection().getReverseQueryCollection();
+        queryListAdapter.notifyDataSetChanged();
+    }
+
+    public void clearSearchHistory(){
+        final GlobalClass globalVariable = (GlobalClass) getActivity().getApplicationContext();
+        globalVariable.clearSearchHistory();
+        queryListAdapter.notifyDataSetChanged();
+    }
+
+    private void openResultsPage(Query query){
+        Intent intent = new Intent(getActivity(), SearchResults.class);
+        Bundle b = new Bundle();
+
+        String results = "";
+
+        try{
+            results  = new SearchByTitle().execute(query).get();
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        b.putInt("toolbarBackMessage", R.string.search_history);
+        RecipeCollection recipes = new RecipeCollection();
+        recipes.populateRecipeCollection(results);
+        intent.putExtra("RECIPE_COLLECTION",recipes);
+        intent.putExtras(b);
+        startActivity(intent);
+    }
+
+    public void saveQuery(Query query){
+        final GlobalClass globalVariable = (GlobalClass) getActivity().getApplicationContext();
+        globalVariable.addQuery(query);
     }
 }

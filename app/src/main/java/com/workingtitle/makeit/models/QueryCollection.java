@@ -5,6 +5,7 @@ import android.content.Context;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
@@ -17,9 +18,12 @@ import java.util.Collections;
 public class QueryCollection implements Serializable{
 
     ArrayList<Query> queryCollection;
+    ArrayList<Query> reverseQueryCollection;
 
     public QueryCollection() {
+
         queryCollection = new ArrayList<Query>();
+        reverseQueryCollection = new ArrayList<>();
     }
 
     public void addQuery(Query q) {
@@ -28,6 +32,14 @@ public class QueryCollection implements Serializable{
 
     public ArrayList<Query> getQueryCollection() {
         return queryCollection;
+    }
+
+    public ArrayList<Query> getReverseQueryCollection(){
+        //reverseQueryCollection.clear();
+        reverseQueryCollection = (ArrayList<Query>) queryCollection.clone();
+        Collections.reverse(reverseQueryCollection);
+
+        return reverseQueryCollection;
     }
 
     public void moveToFront(int index) {
@@ -53,13 +65,38 @@ public class QueryCollection implements Serializable{
         }
     }
 
+    public void emptyQueryCollection(Context context) {
+        String fileName = context.getFilesDir().getPath().toString() + "SearchHistory";
+        System.out.println(fileName);
+        this.queryCollection.clear();
+        this.reverseQueryCollection.clear();
+
+        try {
+            File searchHistoryFile = new File(fileName);
+            // empty the current content
+            FileWriter fileOut = new FileWriter(searchHistoryFile);
+            fileOut.write("");
+            fileOut.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public void loadQueryCollection(Context context){
         String fileName = context.getFilesDir().getPath().toString() + "SearchHistory";
 
         try {
-            FileInputStream fis = new FileInputStream(new File(fileName));
+            File searchHistoryFile = new File(fileName);
+
+            if (!searchHistoryFile.exists()) {
+                searchHistoryFile.createNewFile();
+            }
+
+            FileInputStream fis = new FileInputStream(searchHistoryFile);
             ObjectInputStream is = new ObjectInputStream(fis);
             queryCollection = (ArrayList<Query>) is.readObject();
+
             is.close();
             fis.close();
         } catch (Exception e) {

@@ -30,6 +30,11 @@ public class RecipeCollection implements Serializable{
     }
 
     public void populateRecipeCollection(String JsonResponse) {
+
+        if (JsonResponse.isEmpty()){
+            return;
+        }
+
         JsonElement element = new JsonParser().parse(JsonResponse);
 
         // full API Response body
@@ -50,23 +55,20 @@ public class RecipeCollection implements Serializable{
     }
 
     public void loadRecipeCollection(Context context){
-        String filename = context.getFilesDir().getPath().toString() + "savedRecipes";
-        ArrayList<Recipe> r = new ArrayList<Recipe>();
+        String fileName = context.getFilesDir().getPath().toString() + "savedRecipes";
         try {
-            File savedRecipeFile = new File(filename);
+            File savedRecipeFile = new File(fileName);
 
             if (!savedRecipeFile.exists()) {
                 savedRecipeFile.createNewFile();
             }
 
-            FileInputStream fileIn = new FileInputStream(new File(filename));
+            FileInputStream fileIn = new FileInputStream(savedRecipeFile);
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            r = (ArrayList<Recipe>) in.readObject();
+            this.recipeCollection = (ArrayList<Recipe>) in.readObject();
+
             in.close();
             fileIn.close();
-
-            this.recipeCollection = r;
-
         }
         catch (Exception e){
             e.printStackTrace();
@@ -95,7 +97,7 @@ public class RecipeCollection implements Serializable{
 
     public boolean recipeExists(Recipe r) {
         for(Recipe recipe : recipeCollection) {
-            if(r.getId() == recipe.getId()) {
+            if(r.getId().equals(recipe.getId())) {
                 return true;
             }
         }

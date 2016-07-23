@@ -5,16 +5,28 @@
     android:padding="6dip">
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/searchType"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:paddingTop="16dp"
         android:layout_alignWithParentIfMissing="true"
-        android:layout_toRightOf="@id/icon"
         android:gravity="center_vertical"
-        android:text="Recipe Title"
+        android:text="Search Type"
         android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/searchParams"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:paddingTop="16dp"
+        android:gravity="center_vertical"
+        android:text="Search Params..."
+        android:layout_below="@+id/searchType"
+        android:textSize="24sp"
+        android:singleLine="true"
+        android:ellipsize="end"/>
 
 </RelativeLayout>

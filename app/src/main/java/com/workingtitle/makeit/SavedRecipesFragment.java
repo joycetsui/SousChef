@@ -32,6 +32,9 @@ public class SavedRecipesFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        super.onCreateView(inflater, container, savedInstanceState);
+
         View view = inflater.inflate(R.layout.activity_search_results, container, false);
 
         final ListView listView = (ListView) view.findViewById(R.id.list);

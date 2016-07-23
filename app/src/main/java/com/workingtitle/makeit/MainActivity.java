@@ -2,6 +2,7 @@ package com.workingtitle.makeit;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -42,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
     // Viewpager to manage the tabs in the main page
     ViewPager viewPager;
 
+    // Options Menu
+    public Menu optionsMenu;
+
     // Search Options info
     private int cookTimeDay;
     private int cookTimeHour;
@@ -53,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        GlobalClass globalVariable = (GlobalClass) getApplicationContext();
+        final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
         globalVariable.initialize();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -76,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
+                onPrepareOptionsMenu(optionsMenu);
                 setToolbarTitle(tab.getPosition());
             }
 
@@ -123,8 +128,26 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        optionsMenu = menu;
+        getMenuInflater().inflate(R.menu.menu_main, optionsMenu);
+
         return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        if (menu != null) {
+            if (viewPager.getCurrentItem() == 3) {
+                menu.findItem(R.id.filterButton).setVisible(false);
+                menu.findItem(R.id.clearHistory).setVisible(true);
+            } else {
+                menu.findItem(R.id.filterButton).setVisible(true);
+                menu.findItem(R.id.clearHistory).setVisible(false);
+            }
+        }
+
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -141,8 +164,15 @@ public class MainActivity extends AppCompatActivity {
         else if (id == R.id.filterButton){
             openOptionsPage();
         }
+        else if (id == R.id.clearHistory){
+            clearSearchHistory();
+        }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void clearSearchHistory(){
+        ((SearchHistoryFragment)((MyFragmentPagerAdapter)viewPager.getAdapter()).getItem(3)).clearSearchHistory();
     }
 
     private void openOptionsPage() {

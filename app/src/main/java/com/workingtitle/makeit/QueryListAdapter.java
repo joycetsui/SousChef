@@ -21,7 +21,7 @@ import java.util.ArrayList;
  */
 public class QueryListAdapter extends ArrayAdapter<Query> {
     private final Context context;
-    ArrayList<Query> queries;
+    ArrayList<Query> queries = new ArrayList<Query>();
 
     public QueryListAdapter(Context context, ArrayList <Query> queries) {
         super(context, -1, queries);
@@ -36,41 +36,11 @@ public class QueryListAdapter extends ArrayAdapter<Query> {
 
         View rowView = inflater.inflate(R.layout.row_search_history_layout, parent, false);
 
-        TextView titleTextView = (TextView) rowView.findViewById(R.id.title);
-        ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
+        TextView searchTypeTextView = (TextView) rowView.findViewById(R.id.searchType);
+        TextView searchParamsTextView = (TextView) rowView.findViewById(R.id.searchParams);
 
-        RatingBar ratingbar =(RatingBar) rowView.findViewById(R.id.recipe_rating);
-
-        titleTextView.setText(queries.get(position).getQueryType());
-
-//        Bitmap image;
-
-        /*if (position%3 == 0){
-            image = BitmapFactory.decodeResource(parent.getResources(), R.drawable.crepes);
-        }
-        else if (position%3 == 1){
-            image = BitmapFactory.decodeResource(parent.getResources(), R.drawable.salad_small);
-        }
-        else{
-            image = BitmapFactory.decodeResource(parent.getResources(), R.drawable.grilled_fish_small);
-        }*/
-//        if (position == 0) {
-//            image = BitmapFactory.decodeResource(parent.getResources(), R.drawable.fatoosh);
-//        }
-//        else if (position ==1){
-//            image = BitmapFactory.decodeResource(parent.getResources(), R.drawable.caesar_salad);
-//        }
-//        else if (position == 2){
-//            image = BitmapFactory.decodeResource(parent.getResources(), R.drawable.strawberry_romaine_salad);
-//        }
-//        else if (position == 3){
-//            image = BitmapFactory.decodeResource(parent.getResources(), R.drawable.garden_salad);
-//        }
-//        else {
-//            image = BitmapFactory.decodeResource(parent.getResources(), R.drawable.salad_small);
-//        }
-//
-//        imageView.setImageBitmap(image);
+        searchTypeTextView.setText(queries.get(position).getQueryType());
+        searchParamsTextView.setText(queries.get(position).buildSearchTerms());
 
         return rowView;
     }
