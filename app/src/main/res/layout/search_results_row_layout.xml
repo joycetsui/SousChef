@@ -1,36 +1,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:minHeight="?android:attr/listPreferredItemHeight"
-    android:layout_height="wrap_content"
-    android:padding="6dip">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/icon"
-        android:layout_width="400px"
-        android:minWidth="400px"
-        android:layout_height="fill_parent"
-        android:minHeight="400px"
-        android:adjustViewBounds="true"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center"
-        android:layout_marginRight="10dip"
-        android:contentDescription="TODO"
-        android:src="@drawable/crepes" />
 
     <TextView
         android:id="@+id/title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:paddingTop="16dp"
-        android:layout_alignWithParentIfMissing="true"
-        android:layout_toRightOf="@id/icon"
+        android:layout_alignWithParentIfMissing="false"
         android:gravity="center_vertical"
         android:text="Recipe Title"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="28dp"
+        android:layout_marginStart="28dp" />
 
     <RatingBar
         android:id="@+id/recipe_rating"
@@ -39,16 +25,17 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:stepSize="0.1"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
         android:numStars="5"
-        android:layout_gravity="center"
-        android:layout_toRightOf="@id/icon"
-        android:layout_below="@+id/title"
-        android:layout_alignParentBottom="true"
         android:isIndicator="true"
-        android:progressTint="#fff700"
-        android:secondaryProgressTint="#fff700"
+        android:progressTint="#00C853"
+        android:secondaryProgressTint="#00C853"
         android:nestedScrollingEnabled="false"
-        android:progressBackgroundTint="#D3D3D3"/>
+        android:progressBackgroundTint="#B9F6CA"
+        android:layout_below="@+id/title"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <!--<RatingBar-->
         <!--android:id="@+id/ratingBar"-->
