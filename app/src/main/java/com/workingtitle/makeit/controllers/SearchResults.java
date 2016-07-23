@@ -78,6 +78,8 @@ public class SearchResults extends AppCompatActivity {
         b.putInt("toolbarBackMessage", R.string.search_results);
         intent.putExtras(b);
         intent.putExtra("RECIPE",recipeList.get(position));
+        intent.putExtra("RECIPE_INDEX",position);
+        intent.putExtra("RECIPE_SAVE_ACTION",getResources().getString(R.string.saveButton));
         startActivity(intent);
     }
 }

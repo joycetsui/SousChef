@@ -1,9 +1,12 @@
-package com.workingtitle.makeit;
+package com.workingtitle.makeit.controllers;
 
+import android.preference.PreferenceActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.support.v7.widget.Toolbar;
+
+import com.workingtitle.makeit.R;
 
 public class UserSettingsActivity extends AppCompatActivity {
 
@@ -21,12 +24,11 @@ public class UserSettingsActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               System.out.println("back press");
                 onBackPressed();
             }
         });
 
-        getSupportActionBar().setTitle("Settings");
+        getSupportActionBar().setTitle(getResources().getString(R.string.settings));
 
         // Display the fragment as the main content.
         getFragmentManager().beginTransaction()

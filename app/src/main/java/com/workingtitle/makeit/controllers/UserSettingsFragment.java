@@ -1,4 +1,4 @@
-package com.workingtitle.makeit;
+package com.workingtitle.makeit.controllers;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
+
+import com.workingtitle.makeit.R;
 
 /**
  * Created by xiwen on 22/7/16.
@@ -20,7 +22,6 @@ public class UserSettingsFragment extends PreferenceFragment{
 
         // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.preferences);
-
     }
 
     public boolean prefIsEnabled(String key){

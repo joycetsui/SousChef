@@ -10,6 +10,7 @@
     <string name="search_by_ingredients">Search By Ingredients</string>
     <string name="search_history_file_name">SearchHistory.txt</string>
     <string name="saved_recipes_file_name">SavedRecipes.txt</string>
+    <string name="savedRecipesDir">savedRecipes</string>
 
     <!-- Toolbar Tabs Titles -->
     <string name="search_ingredients_tab">Search by Ingredients</string>
@@ -17,6 +18,7 @@
     <string name="saved_recipes">Saved Recipes</string>
     <string name="search_history">Search History</string>
     <string name="search_results">Search Results</string>
+    <string name="settings">Settings</string>
 
     <!-- Add Ingredients Screen -->
     <string name="add_ingredients">Add Ingredients</string>
@@ -36,10 +38,8 @@
     <!-- Search By Recipe Name Screen -->
     <string name="hintEnterRecipeName">Enter Recipe Name</string>
 
-    <string name="dummy_section_text">Section %1d is just a dummy section.</string>
-    <string name="demo_external_activity">Demo External Activity</string>
-    <string name="demo_collection">Demo Collection</string>
+    <!-- Display Recipe Scree -->
+    <string name="saveButton">Save</string>
+    <string name="unsaveButton">Unsave</string>
 
-
-    <string name="savedRecipesDir">savedRecipes</string>
 </resources>

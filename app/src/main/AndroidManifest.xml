@@ -42,7 +42,7 @@
         </activity>
 
         <activity
-            android:name=".UserSettingsActivity"></activity>
+            android:name=".controllers.UserSettingsActivity"></activity>
     </application>
 
 </manifest>

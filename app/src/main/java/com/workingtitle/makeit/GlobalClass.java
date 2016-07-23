@@ -40,7 +40,6 @@ public class GlobalClass extends Application {
     }
 
     public void updateQueryCollection(int position){
-
         Query query = queryCollection.getQueryCollection().get(position);
         queryCollection.removeQuery(position);
         addQuery(query);
@@ -55,5 +54,10 @@ public class GlobalClass extends Application {
             recipeCollection.addRecipe(r);
             recipeCollection.saveRecipeCollection(getApplicationContext());
         }
+    }
+
+    public void removeRecipe(int position){
+        recipeCollection.removeRecipe(position);
+        recipeCollection.saveRecipeCollection(getApplicationContext());
     }
 }

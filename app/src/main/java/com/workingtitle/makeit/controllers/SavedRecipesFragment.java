@@ -46,8 +46,7 @@ public class SavedRecipesFragment extends Fragment {
 
         // Get recipes
         final GlobalClass globalVariable = (GlobalClass) getActivity().getApplicationContext();
-        RecipeCollection temp = globalVariable.getRecipeCollection();
-        recipeList= temp.getRecipeCollection();
+        recipeList= globalVariable.getRecipeCollection().getRecipeCollection();
 
         /** Defining the ArrayAdapter to set items to ListView */
         recipeListAdapter = new RecipeListAdapter(getContext(), recipeList);
@@ -60,6 +59,7 @@ public class SavedRecipesFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 openRecipeDetailsPage(position);
+                updateList();
             }
         });
 
@@ -73,6 +73,16 @@ public class SavedRecipesFragment extends Fragment {
 
         intent.putExtras(b);
         intent.putExtra("RECIPE",recipeList.get(position));
+        intent.putExtra("RECIPE_INDEX", position);
+        intent.putExtra("RECIPE_SAVE_ACTION",getResources().getString(R.string.unsaveButton));
+
         startActivity(intent);
+    }
+
+    public void updateList(){
+        final GlobalClass globalVariable = (GlobalClass) getActivity().getApplicationContext();
+
+        recipeList= globalVariable.getRecipeCollection().getRecipeCollection();
+        recipeListAdapter.notifyDataSetChanged();
     }
 }

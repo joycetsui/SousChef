@@ -25,6 +25,10 @@ public class RecipeCollection implements Serializable{
         recipeCollection = new ArrayList<Recipe>();
     }
 
+    public void removeRecipe(int index) {
+        recipeCollection.remove(index);
+    }
+
     public void addRecipe(Recipe r) {
         recipeCollection.add(r);
     }

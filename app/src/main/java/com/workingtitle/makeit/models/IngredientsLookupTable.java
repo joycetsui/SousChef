@@ -36,8 +36,6 @@ public class IngredientsLookupTable {
             ingredient = ingredient.replace("\"", "");
             lookupTable.add(ingredient);
         }
-
-
     }
 
 }
