@@ -1,6 +1,5 @@
-package com.workingtitle.makeit;
+package com.workingtitle.makeit.controllers;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -12,12 +11,11 @@ import android.widget.ListView;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
+import com.workingtitle.makeit.GlobalClass;
+import com.workingtitle.makeit.R;
 import com.workingtitle.makeit.models.Recipe;
 import com.workingtitle.makeit.models.RecipeCollection;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 /**

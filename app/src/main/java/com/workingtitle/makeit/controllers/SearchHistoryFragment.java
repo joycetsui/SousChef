@@ -1,6 +1,5 @@
-package com.workingtitle.makeit;
+package com.workingtitle.makeit.controllers;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,19 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import com.workingtitle.makeit.api.SearchByIngredients;
+import com.workingtitle.makeit.GlobalClass;
+import com.workingtitle.makeit.R;
 import com.workingtitle.makeit.api.SearchByTitle;
 import com.workingtitle.makeit.models.Query;
-import com.workingtitle.makeit.models.QueryCollection;
-import com.workingtitle.makeit.models.Recipe;
 import com.workingtitle.makeit.models.RecipeCollection;
 
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * Created by Maricarla on 2016-07-22.
@@ -87,11 +81,7 @@ public class SearchHistoryFragment extends Fragment {
     private void updateSearchHistory(int position){
         final GlobalClass globalClass = (GlobalClass) getActivity().getApplicationContext();
 
-        Query query = globalClass.getQueryCollection().getQueryCollection().get(position);
-        globalClass.getQueryCollection().removeQuery(position);
-        globalClass.addQuery(query);
-
-        queryList = globalClass.getQueryCollection().getReverseQueryCollection();
+        globalClass.updateQueryCollection(position);
         queryListAdapter.notifyDataSetChanged();
     }
 

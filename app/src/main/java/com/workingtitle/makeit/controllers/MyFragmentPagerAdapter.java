@@ -1,4 +1,4 @@
-package com.workingtitle.makeit;
+package com.workingtitle.makeit.controllers;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,7 +13,7 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
     private String tabTitles[] = new String[] { "Search by Ingredients", "Search by Recipes", "Saved Recipes", "Search History" };
     private Context context;
 
-    private AddIngredientsFragment addIngredientsFragment = null;
+    private SearchByIngredientsFragment addIngredientsFragment = null;
     private SearchRecipeNameFragment searchRecipeNameFragment = null;
     private SavedRecipesFragment savedRecipesFragment = null;
     private SearchHistoryFragment searchHistoryFragment = null;
@@ -33,7 +33,7 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 if (addIngredientsFragment == null) {
-                    addIngredientsFragment = new AddIngredientsFragment();
+                    addIngredientsFragment = new SearchByIngredientsFragment();
                 }
                 return addIngredientsFragment;
             case 1:

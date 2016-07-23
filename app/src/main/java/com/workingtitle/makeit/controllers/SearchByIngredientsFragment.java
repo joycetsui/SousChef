@@ -1,4 +1,4 @@
-package com.workingtitle.makeit;
+package com.workingtitle.makeit.controllers;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
@@ -13,6 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.workingtitle.makeit.GlobalClass;
+import com.workingtitle.makeit.R;
 import com.workingtitle.makeit.api.GetLookupTable;
 import com.workingtitle.makeit.api.SearchByIngredients;
 import com.workingtitle.makeit.models.IngredientsLookupTable;
@@ -25,7 +27,7 @@ import java.util.Arrays;
 /**
  * Created by Maricarla on 2016-06-16.
  */
-public class AddIngredientsFragment extends Fragment {
+public class SearchByIngredientsFragment extends Fragment {
 
     /** Items entered by the user is stored in this ArrayList variable */
     ArrayList<String> ingredientList;
@@ -51,7 +53,7 @@ public class AddIngredientsFragment extends Fragment {
 
         super.onCreateView(inflater, container, savedInstanceState);
 
-        final View view = inflater.inflate(R.layout.activity_add_ingredients, container, false);
+        final View view = inflater.inflate(R.layout.activity_search_by_ingredients, container, false);
 
         resetView();
 

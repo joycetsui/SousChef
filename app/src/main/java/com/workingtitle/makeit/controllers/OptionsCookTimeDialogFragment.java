@@ -1,4 +1,4 @@
-package com.workingtitle.makeit;
+package com.workingtitle.makeit.controllers;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -10,6 +10,8 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.app.DialogFragment;
 import android.app.Dialog;
+
+import com.workingtitle.makeit.R;
 
 
 public class OptionsCookTimeDialogFragment extends DialogFragment{

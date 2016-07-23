@@ -1,18 +1,14 @@
-package com.workingtitle.makeit;
+package com.workingtitle.makeit.controllers;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.workingtitle.makeit.R;
 import com.workingtitle.makeit.models.Query;
-import com.workingtitle.makeit.models.Recipe;
 
 import java.util.ArrayList;
 
@@ -34,7 +30,7 @@ public class QueryListAdapter extends ArrayAdapter<Query> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View rowView = inflater.inflate(R.layout.row_search_history_layout, parent, false);
+        View rowView = inflater.inflate(R.layout.search_history_row_layout, parent, false);
 
         TextView searchTypeTextView = (TextView) rowView.findViewById(R.id.searchType);
         TextView searchParamsTextView = (TextView) rowView.findViewById(R.id.searchParams);
