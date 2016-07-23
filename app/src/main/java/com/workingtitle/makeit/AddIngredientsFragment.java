@@ -192,9 +192,7 @@ public class AddIngredientsFragment extends Fragment {
         }
 
         RecipeCollection recipes = new RecipeCollection();
-        if (!results.isEmpty()) {
-            recipes.populateRecipeCollection(results);
-        }
+        recipes.populateRecipeCollection(results);
 
         Intent intent = new Intent(getActivity(), SearchResults.class);
         intent.putExtra("RECIPE_COLLECTION",recipes);

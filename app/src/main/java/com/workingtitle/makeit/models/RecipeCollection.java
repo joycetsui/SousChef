@@ -30,6 +30,11 @@ public class RecipeCollection implements Serializable{
     }
 
     public void populateRecipeCollection(String JsonResponse) {
+
+        if (JsonResponse.isEmpty()){
+            return;
+        }
+
         JsonElement element = new JsonParser().parse(JsonResponse);
 
         // full API Response body

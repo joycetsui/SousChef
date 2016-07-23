@@ -18,9 +18,12 @@ import java.util.Collections;
 public class QueryCollection implements Serializable{
 
     ArrayList<Query> queryCollection;
+    ArrayList<Query> reverseQueryCollection;
 
     public QueryCollection() {
+
         queryCollection = new ArrayList<Query>();
+        reverseQueryCollection = new ArrayList<>();
     }
 
     public void addQuery(Query q) {
@@ -29,6 +32,14 @@ public class QueryCollection implements Serializable{
 
     public ArrayList<Query> getQueryCollection() {
         return queryCollection;
+    }
+
+    public ArrayList<Query> getReverseQueryCollection(){
+        //reverseQueryCollection.clear();
+        reverseQueryCollection = (ArrayList<Query>) queryCollection.clone();
+        Collections.reverse(reverseQueryCollection);
+
+        return reverseQueryCollection;
     }
 
     public void moveToFront(int index) {
@@ -57,15 +68,14 @@ public class QueryCollection implements Serializable{
     public void emptyQueryCollection(Context context) {
         String fileName = context.getFilesDir().getPath().toString() + "SearchHistory";
         System.out.println(fileName);
+        this.queryCollection.clear();
+        this.reverseQueryCollection.clear();
 
         try {
             File searchHistoryFile = new File(fileName);
             // empty the current content
             FileWriter fileOut = new FileWriter(searchHistoryFile);
             fileOut.write("");
-
-            this.queryCollection = new ArrayList<Query>();
-
             fileOut.close();
         }
         catch(Exception e){

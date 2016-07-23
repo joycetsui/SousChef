@@ -172,8 +172,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void clearSearchHistory(){
-        final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
-        globalVariable.clearSearchHistory();
+        ((SearchHistoryFragment)((MyFragmentPagerAdapter)viewPager.getAdapter()).getItem(3)).clearSearchHistory();
     }
 
     private void openOptionsPage() {

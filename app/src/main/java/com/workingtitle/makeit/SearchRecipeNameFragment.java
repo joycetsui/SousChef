@@ -84,9 +84,7 @@ public class SearchRecipeNameFragment extends Fragment {
         b.putInt("toolbarBackMessage", R.string.search_recipe_tab);
 
         RecipeCollection recipes = new RecipeCollection();
-        if (!results.isEmpty()) {
-            recipes.populateRecipeCollection(results);
-        }
+        recipes.populateRecipeCollection(results);
 
         intent.putExtra("RECIPE_COLLECTION",recipes);
         intent.putExtras(b);

@@ -47,8 +47,7 @@ public class SearchHistoryFragment extends Fragment {
         toolbar.setVisibility(View.GONE);
         
         final GlobalClass globalClass = (GlobalClass) getActivity().getApplicationContext();
-        queryList = globalClass.getQueryCollection().getQueryCollection();
-        //Collections.reverse(queryList);
+        queryList = globalClass.getQueryCollection().getReverseQueryCollection();
 
         /** Defining the ArrayAdapter to set items to ListView */
         queryListAdapter = new QueryListAdapter(getContext(), queryList);
@@ -67,7 +66,8 @@ public class SearchHistoryFragment extends Fragment {
                     openResultsPage(query);
                 }
 
-                updateSearchHistory(position);
+                int size = globalClass.getQueryCollection().getQueryCollection().size();
+                updateSearchHistory(size - position - 1);
             }
         });
 
@@ -89,9 +89,15 @@ public class SearchHistoryFragment extends Fragment {
 
         Query query = globalClass.getQueryCollection().getQueryCollection().get(position);
         globalClass.getQueryCollection().removeQuery(position);
-        globalClass.getQueryCollection().addQuery(query);
+        globalClass.addQuery(query);
 
-        //queryList = globalClass.getQueryCollection().getQueryCollection();
+        queryList = globalClass.getQueryCollection().getReverseQueryCollection();
+        queryListAdapter.notifyDataSetChanged();
+    }
+
+    public void clearSearchHistory(){
+        final GlobalClass globalVariable = (GlobalClass) getActivity().getApplicationContext();
+        globalVariable.clearSearchHistory();
         queryListAdapter.notifyDataSetChanged();
     }
 

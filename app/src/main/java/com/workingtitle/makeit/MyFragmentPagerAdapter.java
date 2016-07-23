@@ -13,6 +13,11 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
     private String tabTitles[] = new String[] { "Search by Ingredients", "Search by Recipes", "Saved Recipes", "Search History" };
     private Context context;
 
+    private AddIngredientsFragment addIngredientsFragment = null;
+    private SearchRecipeNameFragment searchRecipeNameFragment = null;
+    private SavedRecipesFragment savedRecipesFragment = null;
+    private SearchHistoryFragment searchHistoryFragment = null;
+
     public MyFragmentPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
         this.context = context;
@@ -27,16 +32,24 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                AddIngredientsFragment searchIngredientsTab = new AddIngredientsFragment();
-                return searchIngredientsTab;
+                if (addIngredientsFragment == null) {
+                    addIngredientsFragment = new AddIngredientsFragment();
+                }
+                return addIngredientsFragment;
             case 1:
-                SearchRecipeNameFragment searchRecipeTab = new SearchRecipeNameFragment();
-                return searchRecipeTab;
+                if (searchRecipeNameFragment == null) {
+                    searchRecipeNameFragment = new SearchRecipeNameFragment();
+                }
+                return searchRecipeNameFragment;
             case 2:
-                SavedRecipesFragment savedRecipesFragment = new SavedRecipesFragment();
+                if (savedRecipesFragment == null) {
+                    savedRecipesFragment = new SavedRecipesFragment();
+                }
                 return savedRecipesFragment;
             case 3:
-                SearchHistoryFragment searchHistoryFragment = new SearchHistoryFragment();
+                if (searchHistoryFragment == null) {
+                    searchHistoryFragment = new SearchHistoryFragment();
+                }
                 return searchHistoryFragment;
             default:
                 return null;
