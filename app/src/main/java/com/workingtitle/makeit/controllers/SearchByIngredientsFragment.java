@@ -63,11 +63,12 @@ public class SearchByIngredientsFragment extends Fragment {
         if (b != null){
             ArrayList<String> ingredients = new ArrayList<String>();
             ingredients = b.getStringArrayList("IngredientList");
-            ingredientList = (ArrayList<String>)ingredients.clone();
+            if (ingredients != null) {
+                ingredientList = (ArrayList<String>)ingredients.clone();
+            }
         }
 
         //Auto-complete Suggestions for Ingredients TextView
-
         ingredientTextView = (AutoCompleteTextView) view.findViewById(R.id.txtItem);
 
         // Create the adapter and set it to the AutoCompleteTextView

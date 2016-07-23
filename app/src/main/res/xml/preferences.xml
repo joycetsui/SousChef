@@ -1,39 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceScreen
+    <PreferenceCategory
         android:key="screen_diet"
-        android:title="Dietary restrictions"
-        android:persistent="false">
+        android:title="Dietary restrictions">
         <CheckBoxPreference
             android:key = "pref_diet_vegetarian"
             android:title = "Vegetarian"/>
         <CheckBoxPreference
             android:key = "pref_diet_vegan"
             android:title = "Vegan"/>
-    </PreferenceScreen>
+        <CheckBoxPreference
+            android:key = "pref_diet_pesc"
+            android:title = "Pescetarian"/>
+    </PreferenceCategory>
 
-    <PreferenceScreen
+    <PreferenceCategory
         android:key="screen_allergies"
-        android:title="Food allergies"
-        android:persistent="false">
+        android:title="Food allergies">
         <CheckBoxPreference
             android:key = "pref_allergy_peanuts"
             android:title = "Peanuts"/>
         <CheckBoxPreference
             android:key = "pref_allergy_shellfish"
             android:title = "Shellfish"/>
-    </PreferenceScreen>
+        <CheckBoxPreference
+            android:key = "pref_allergy_lactose"
+            android:title = "Lactose intolerance"/>
+        <CheckBoxPreference
+            android:key = "pref_allergy_gluten"
+            android:title = "Gluten free"/>
+    </PreferenceCategory>
 
-    <PreferenceScreen
+    <PreferenceCategory
         android:key="screen_ingredients"
-        android:title="Default ingredients"
-        android:persistent="false">
+        android:title="Default ingredients">
         <CheckBoxPreference
             android:key = "pref_ingr_salt"
             android:title = "Salt"/>
         <CheckBoxPreference
             android:key = "pref_ingr_pepper"
             android:title = "Pepper"/>
-    </PreferenceScreen>
+    </PreferenceCategory>
+
 </PreferenceScreen>
