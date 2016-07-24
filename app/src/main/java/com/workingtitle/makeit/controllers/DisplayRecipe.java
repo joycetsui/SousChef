@@ -117,6 +117,7 @@ public class DisplayRecipe extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         setResult(resultCode);
+        finishActivity(1);
         super.onBackPressed();
     }
 

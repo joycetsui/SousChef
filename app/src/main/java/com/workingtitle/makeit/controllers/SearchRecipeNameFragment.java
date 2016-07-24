@@ -103,9 +103,9 @@ public class SearchRecipeNameFragment extends Fragment {
 
         intent.putExtra("RECIPE_COLLECTION",recipes);
         intent.putExtras(b);
-        //startActivity(intent);
+        startActivity(intent);
 
-        startActivityForResult(intent, 0);
+        //startActivityForResult(intent, 0);
 
         resetView();
     }
@@ -124,18 +124,19 @@ public class SearchRecipeNameFragment extends Fragment {
         }
 
         if (results.isEmpty() || results == null){
+            Toast msg = Toast.makeText(getContext(), "Sorry, our suprise box is empty.", Toast.LENGTH_LONG);
+            msg.show();
             return;
         }
 
         JsonElement element = new JsonParser().parse(results);
         JsonObject object = element.getAsJsonObject();
         object = object.getAsJsonObject("data");
-        Recipe recipeFinal = new Recipe();
-        recipeFinal.populate(object);
+        recipe.populate(object);
 
         b.putInt("toolbarBackMessage", R.string.search_by_recipe);
         intent.putExtras(b);
-        intent.putExtra("RECIPE",recipeFinal);
+        intent.putExtra("RECIPE",recipe);
         intent.putExtra("RECIPE_INDEX",0);
         intent.putExtra("RECIPE_SAVE_ACTION",getResources().getString(R.string.saveButton));
         startActivity(intent);

@@ -180,15 +180,15 @@ public class SearchByIngredientsFragment extends Fragment {
 
     }
 
-    private void openOptionsPage() {
-        Intent intent = new Intent(getActivity(), SearchOptions.class);
-        intent.putExtra("ctDay", cookTimeDay);
-        intent.putExtra("ctHour", cookTimeHour);
-        intent.putExtra("ctMin", cookTimeMinute);
-        intent.putExtra("portions", numPortions);
-
-        startActivityForResult(intent, 1);
-    }
+//    private void openOptionsPage() {
+//        Intent intent = new Intent(getActivity(), SearchOptions.class);
+//        intent.putExtra("ctDay", cookTimeDay);
+//        intent.putExtra("ctHour", cookTimeHour);
+//        intent.putExtra("ctMin", cookTimeMinute);
+//        intent.putExtra("portions", numPortions);
+//
+//        startActivityForResult(intent, 1);
+//    }
 
     private void openResultsPage(){
 
@@ -214,8 +214,8 @@ public class SearchByIngredientsFragment extends Fragment {
         Bundle b = new Bundle();
         b.putInt("toolbarBackMessage", R.string.search_ingredients_tab);
         intent.putExtras(b);
-        //startActivity(intent);
-        startActivityForResult(intent, 0);
+        startActivity(intent);
+        //startActivityForResult(intent, 0);
 
         resetView();
     }

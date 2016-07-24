@@ -149,8 +149,9 @@ public class SearchResults extends AppCompatActivity {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode){
-            case 1:
+            case 1: {
                 FilterSearch.cookTimeHour = data.getIntExtra("ctHour", -1);
                 FilterSearch.cookTimeMinute = data.getIntExtra("ctMin", -1);
                 FilterSearch.numPortions = data.getIntExtra("portions", -1);
@@ -158,7 +159,8 @@ public class SearchResults extends AppCompatActivity {
                 resetFilteredCollection();
                 filterCollectionBySearchOptions();
                 updateList();
-            default:
+                break;
+            }
         }
     }
 
