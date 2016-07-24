@@ -62,7 +62,10 @@
                 android:layout_marginTop="62dp"
                 android:layout_alignWithParentIfMissing="true"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                android:paddingLeft="@dimen/abc_dropdownitem_text_padding_left"
+                android:paddingRight="@dimen/abc_dropdownitem_text_padding_right"
+                android:gravity="center" />
 
             <TextView
                 android:id="@+id/authorName"
@@ -117,12 +120,36 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
+                android:id="@+id/servingSizeLabel"
+                style="@style/RegularTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/cookingTime"
+                android:text="Serving Size"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#1B5E20" />
+
+            <TextView
+                android:id="@+id/servingsize"
+                style="@style/SubtitleTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/servingSizeLabel"
+                android:text="4 servings"
+                android:textAllCaps="false"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
                 android:id="@+id/ingredientsLabel"
                 style="@style/RegularTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_below="@+id/cookingTime"
+                android:layout_below="@+id/servingsize"
                 android:text="Ingredients"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#1B5E20" />

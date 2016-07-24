@@ -12,7 +12,7 @@
         android:layout_alignParentTop="true"
         android:elevation="6dp"
         android:minHeight="?attr/actionBarSize"
-        android:background="@color/lime"
+        android:background="#4CAF50"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:textAlignment="center"/>

@@ -11,11 +11,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.workingtitle.makeit.FilterSearch;
 import com.workingtitle.makeit.R;
 import com.workingtitle.makeit.models.Recipe;
 import com.workingtitle.makeit.models.RecipeCollection;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -42,6 +45,9 @@ public class SearchResults extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_search_results);
+
+        TextView errorMessage = (TextView) findViewById(R.id.genericMessage);
+        errorMessage.setVisibility(View.INVISIBLE);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -75,19 +81,25 @@ public class SearchResults extends AppCompatActivity {
         //recipeList = (ArrayList<Recipe>)filteredCollection.getRecipeCollection().clone();
         recipeList = filteredCollection.getRecipeCollection();
 
-        /** Defining the ArrayAdapter to set items to ListView */
-        recipeListAdapter = new RecipeListAdapter(this, recipeList);
+        //Check if the recipe did not return result
+        if (recipeList.isEmpty() || recipeList == null){
+            errorMessage.setVisibility(View.VISIBLE);
+        } else {
 
-        /** Setting the adapter to the ListView */
-        listView.setAdapter(recipeListAdapter);
+            /** Defining the ArrayAdapter to set items to ListView */
+            recipeListAdapter = new RecipeListAdapter(this, recipeList);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                openRecipeDetailsPage(position);
-            }
-        });
+            /** Setting the adapter to the ListView */
+            listView.setAdapter(recipeListAdapter);
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view,
+                                        int position, long id) {
+                    openRecipeDetailsPage(position);
+                }
+            });
+        }
     }
 
     @Override

@@ -10,12 +10,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.workingtitle.makeit.GlobalClass;
 import com.workingtitle.makeit.R;
+import com.workingtitle.makeit.api.GetRandomRecipe;
 import com.workingtitle.makeit.api.SearchByTitle;
 import com.workingtitle.makeit.models.Query;
+import com.workingtitle.makeit.models.Recipe;
 import com.workingtitle.makeit.models.RecipeCollection;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -42,9 +49,9 @@ public class SearchRecipeNameFragment extends Fragment {
 
         /** Reference to the button of the layout main.xml */
         keyword = (EditText) view.findViewById(R.id.recipeNameTextItem);
-
-        //Button optionsBtn = (Button) view.findViewById(R.id.byNameOptionsBtn);
         Button searchBtn = (Button) view.findViewById(R.id.byNameFeedMeBtn);
+        Button supriseMeBtn = (Button) view.findViewById(R.id.byNameSurpriseMeBtn);
+
 
         /** Defining a click event listener for the button "FeedMe" */
         View.OnClickListener goSearchListener = new View.OnClickListener() {
@@ -60,8 +67,17 @@ public class SearchRecipeNameFragment extends Fragment {
             }
         };
 
+        View.OnClickListener surpriseMeListener =  new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displaySurpriseRecipe();
+            }
+        };
+
         /** Setting the event listener for the add button */
         searchBtn.setOnClickListener(goSearchListener);
+
+        supriseMeBtn.setOnClickListener(surpriseMeListener);
 
         return view;
     }
@@ -90,6 +106,39 @@ public class SearchRecipeNameFragment extends Fragment {
         //startActivity(intent);
 
         startActivityForResult(intent, 0);
+
+        resetView();
+    }
+
+    private void displaySurpriseRecipe() {
+        Intent intent = new Intent(getActivity(), DisplayRecipe.class);
+        Bundle b = new Bundle();
+        Recipe recipe = new Recipe();
+
+        String results = "";
+
+        try {
+            results = new GetRandomRecipe().execute(recipe).get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (results.isEmpty() || results == null){
+            return;
+        }
+
+        JsonElement element = new JsonParser().parse(results);
+        JsonObject object = element.getAsJsonObject();
+        object = object.getAsJsonObject("data");
+        Recipe recipeFinal = new Recipe();
+        recipeFinal.populate(object);
+
+        b.putInt("toolbarBackMessage", R.string.search_by_recipe);
+        intent.putExtras(b);
+        intent.putExtra("RECIPE",recipeFinal);
+        intent.putExtra("RECIPE_INDEX",0);
+        intent.putExtra("RECIPE_SAVE_ACTION",getResources().getString(R.string.saveButton));
+        startActivity(intent);
 
         resetView();
     }

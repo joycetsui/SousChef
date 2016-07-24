@@ -27,6 +27,7 @@ public class SearchHistoryFragment extends Fragment {
 
     private ArrayList<Query> queryList = new ArrayList<Query>();
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 

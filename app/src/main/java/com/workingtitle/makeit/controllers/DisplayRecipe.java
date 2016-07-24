@@ -86,6 +86,7 @@ public class DisplayRecipe extends AppCompatActivity {
         setRecipeElements(recipe.getIngredients(), R.id.ingredientsList);
         setRecipeElements(recipe.getDirections(), R.id.directions);
         setRecipeElements(recipe.getAuthor(), R.id.authorName);
+        setRecipeElements(recipe.getServingSize().toString() + " Servings", R.id.servingsize);
 
         // Set rating
         RatingBar ratingBar = (RatingBar) findViewById(R.id.recipe_rating);
