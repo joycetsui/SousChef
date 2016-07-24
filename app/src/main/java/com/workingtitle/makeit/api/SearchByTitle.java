@@ -16,30 +16,31 @@ import java.util.ArrayList;
  */
 public class SearchByTitle extends AsyncTask<Query, Void, String> {
 
-    private String RecipeList;
+  private String RecipeList;
 
-    public String doInBackground(Query... query) {
-        StringBuilder sb = new StringBuilder();
-        String line;
-        try {
-            String terms = query[0].buildSearchTerms();
-            String url_builder = "http://159.203.61.63/v1/api/ingredients/search?term=" + terms + "&limit=100&key=cs446";
-            URL url = new URL(url_builder);
-            System.out.println(url_builder);
-            HttpURLConnection connection= (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            InputStreamReader reader = new InputStreamReader(connection.getInputStream());
-            BufferedReader br = new BufferedReader(reader);
-            while((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-        }
-        catch(IOException e) {
-            e.printStackTrace();
-        }
-        return sb.toString();
+  public String doInBackground(Query... query) {
+    StringBuilder sb = new StringBuilder();
+    String line;
+    try {
+      String terms = query[0].buildSearchTerms();
+      String url_builder = "http://159.203.61.63/v1/api/recipes/search?term=" + terms +
+              "&limit=100&key=cs446";
+      URL url = new URL(url_builder);
+      System.out.println(url_builder);
+      HttpURLConnection connection= (HttpURLConnection) url.openConnection();
+      connection.setRequestMethod("GET");
+      InputStreamReader reader = new InputStreamReader(connection.getInputStream());
+      BufferedReader br = new BufferedReader(reader);
+      while((line = br.readLine()) != null) {
+        sb.append(line);
+      }
     }
+    catch(IOException e) {
+      e.printStackTrace();
+    }
+    return sb.toString();
+  }
 
-    public void onPostExecute(String s) {
-    }
+  public void onPostExecute(String s) {
+  }
 }
