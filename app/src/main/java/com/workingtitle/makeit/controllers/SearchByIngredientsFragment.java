@@ -94,7 +94,6 @@ public class SearchByIngredientsFragment extends Fragment {
     cookTimeHour = -1;
     cookTimeMinute = -1;
     numPortions = -1;
-
   }
 
   @Override
@@ -214,7 +213,6 @@ public class SearchByIngredientsFragment extends Fragment {
     boolean enabled = sharedPref.getBoolean(key, false);
     return enabled;
   }
-
 
   /**
    * Defining a click event listener for the button "Add"

@@ -30,131 +30,150 @@ import java.util.ArrayList;
  */
 public class SearchRecipeNameFragment extends Fragment {
 
-    /** Items entered by the user is stored in this ArrayList variable */
-    Query query;
-    ArrayList<String> terms;
-    EditText keyword;
+  /**
+   * Items entered by the user is stored in this ArrayList variable
+   */
+  Query query;
+  ArrayList<String> terms;
+  EditText keyword;
 
+  // Widgets
+  Button searchBtn;
+  Button supriseMeBtn;
+
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    initializeView();
+
+  }
+
+  @Override
+  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+    super.onCreateView(inflater, container, savedInstanceState);
+
+    View view = inflater.inflate(R.layout.activity_search_by_recipe_name, container, false);
+    initializeView();
+
+    /** Reference to the button of the layout main.xml */
+    keyword = (EditText) view.findViewById(R.id.recipeNameTextItem);
+    searchBtn = (Button) view.findViewById(R.id.byNameFeedMeBtn);
+    supriseMeBtn = (Button) view.findViewById(R.id.byNameSurpriseMeBtn);
+
+    /** Setting the event listener for the add button */
+    searchBtn.setOnClickListener(new goSearchListener());
+    supriseMeBtn.setOnClickListener(new surpriseMeListener());
+
+    return view;
+  }
+
+  private void openResultsPage(String searchKeyword) {
+    Intent intent = new Intent(getActivity(), SearchResults.class);
+    Bundle b = new Bundle();
+
+    String results = "";
+
+    try {
+      query.addTerm(searchKeyword);
+      saveQuery(query);
+      results = new SearchByTitle().execute(query).get();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    b.putInt("toolbarBackMessage", R.string.search_recipe_tab);
+
+    RecipeCollection recipes = new RecipeCollection();
+    recipes.populateRecipeCollection(results);
+
+    intent.putExtra("RECIPE_COLLECTION", recipes);
+    intent.putExtras(b);
+
+    startActivityForResult(intent, 0);
+
+    initializeView();
+  }
+
+  private void displaySurpriseRecipe() {
+    Intent intent = new Intent(getActivity(), DisplayRecipe.class);
+    Bundle b = new Bundle();
+    Recipe recipe = new Recipe();
+
+    String results = "";
+
+    try {
+      results = new GetRandomRecipe().execute(recipe).get();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    if (results.isEmpty() || results == null){
+      Toast msg = Toast.makeText(getContext(), "Sorry, our suprise box is empty.", Toast.LENGTH_LONG);
+      msg.show();
+      return;
+    }
+
+    JsonElement element = new JsonParser().parse(results);
+    JsonObject object = element.getAsJsonObject();
+    object = object.getAsJsonObject("data");
+    recipe.populate(object);
+
+    b.putInt("toolbarBackMessage", R.string.search_by_recipe);
+    intent.putExtras(b);
+    intent.putExtra("RECIPE",recipe);
+    intent.putExtra("RECIPE_INDEX",0);
+    intent.putExtra("RECIPE_SAVE_ACTION",getResources().getString(R.string.saveButton));
+    startActivity(intent);
+
+    initializeView();
+
+    Recipe recipeFinal = new Recipe();
+    recipeFinal.loadData(results);
+
+    b.putInt("toolbarBackMessage", R.string.search_by_recipe);
+    intent.putExtras(b);
+    intent.putExtra("RECIPE", recipeFinal);
+    intent.putExtra("RECIPE_INDEX", 0);
+    intent.putExtra("RECIPE_SAVE_ACTION", getResources().getString(R.string.saveButton));
+    startActivity(intent);
+
+    initializeView();
+  }
+
+  public void initializeView() {
+    // Initialize data for activity
+    query = new Query(getResources().getString(R.string.search_by_recipe));
+    terms = query.getTerms();
+    if (keyword != null) {
+      keyword.setText("");
+    }
+  }
+
+  public void saveQuery(Query query) {
+    final GlobalClass globalVariable = (GlobalClass) getActivity().getApplicationContext();
+    globalVariable.addQuery(query);
+  }
+
+  /**
+   * Defining a click event listener for the button "FeedMe"
+   */
+  protected class goSearchListener implements View.OnClickListener {
     @Override
-    public void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState);}
+    public void onClick(View v) {
+      if (!keyword.getText().toString().isEmpty()) {
+        openResultsPage(keyword.getText().toString());
+      } else {
+        Toast msg = Toast.makeText(getContext(), "Please enter a keyword.", Toast.LENGTH_LONG);
+        msg.show();
+      }
+    }
+  }
 
+  protected class surpriseMeListener implements View.OnClickListener {
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        super.onCreateView(inflater, container, savedInstanceState);
-
-        View view = inflater.inflate(R.layout.activity_search_by_recipe_name, container, false);
-
-        resetView();
-
-        /** Reference to the button of the layout main.xml */
-        keyword = (EditText) view.findViewById(R.id.recipeNameTextItem);
-        Button searchBtn = (Button) view.findViewById(R.id.byNameFeedMeBtn);
-        Button supriseMeBtn = (Button) view.findViewById(R.id.byNameSurpriseMeBtn);
-
-
-        /** Defining a click event listener for the button "FeedMe" */
-        View.OnClickListener goSearchListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!keyword.getText().toString().isEmpty()) {
-                    openResultsPage(keyword.getText().toString());
-                }
-                else{
-                    Toast msg = Toast.makeText(getContext(), "Please enter a keyword.", Toast.LENGTH_LONG);
-                    msg.show();
-                }
-            }
-        };
-
-        View.OnClickListener surpriseMeListener =  new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                displaySurpriseRecipe();
-            }
-        };
-
-        /** Setting the event listener for the add button */
-        searchBtn.setOnClickListener(goSearchListener);
-
-        supriseMeBtn.setOnClickListener(surpriseMeListener);
-
-        return view;
+    public void onClick(View v) {
+      displaySurpriseRecipe();
     }
-
-    private void openResultsPage(String searchKeyword){
-        Intent intent = new Intent(getActivity(), SearchResults.class);
-        Bundle b = new Bundle();
-
-        String results = "";
-
-        try{
-            query.addTerm(searchKeyword);
-            saveQuery(query);
-            results  = new SearchByTitle().execute(query).get();
-        }catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        b.putInt("toolbarBackMessage", R.string.search_recipe_tab);
-
-        RecipeCollection recipes = new RecipeCollection();
-        recipes.populateRecipeCollection(results);
-
-        intent.putExtra("RECIPE_COLLECTION",recipes);
-        intent.putExtras(b);
-        startActivity(intent);
-
-        //startActivityForResult(intent, 0);
-
-        resetView();
-    }
-
-    private void displaySurpriseRecipe() {
-        Intent intent = new Intent(getActivity(), DisplayRecipe.class);
-        Bundle b = new Bundle();
-        Recipe recipe = new Recipe();
-
-        String results = "";
-
-        try {
-            results = new GetRandomRecipe().execute(recipe).get();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        if (results.isEmpty() || results == null){
-            Toast msg = Toast.makeText(getContext(), "Sorry, our suprise box is empty.", Toast.LENGTH_LONG);
-            msg.show();
-            return;
-        }
-
-        JsonElement element = new JsonParser().parse(results);
-        JsonObject object = element.getAsJsonObject();
-        object = object.getAsJsonObject("data");
-        recipe.populate(object);
-
-        b.putInt("toolbarBackMessage", R.string.search_by_recipe);
-        intent.putExtras(b);
-        intent.putExtra("RECIPE",recipe);
-        intent.putExtra("RECIPE_INDEX",0);
-        intent.putExtra("RECIPE_SAVE_ACTION",getResources().getString(R.string.saveButton));
-        startActivity(intent);
-
-        resetView();
-    }
-
-    public void resetView(){
-        // Initialize data for activity
-        query = new Query(getResources().getString(R.string.search_by_recipe));
-        terms = query.getTerms();
-         if (keyword != null) {
-             keyword.setText("");
-         }
-    }
-
-    public void saveQuery(Query query){
-        final GlobalClass globalVariable = (GlobalClass) getActivity().getApplicationContext();
-        globalVariable.addQuery(query);
-    }
+  }
 }
