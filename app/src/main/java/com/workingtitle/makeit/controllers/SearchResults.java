@@ -1,13 +1,11 @@
 package com.workingtitle.makeit.controllers;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,7 +28,14 @@ public class SearchResults extends AppCompatActivity {
     RecipeListAdapter recipeListAdapter;
 
     ArrayList<Recipe> recipeList;
-    RecipeCollection collection = new RecipeCollection();
+    // collection holding all recipes returned by search, filtered by user settings
+    // need this so that we can change search options after search results is display and still show
+    // recipes that were fitered out by previous search options
+    RecipeCollection userFilteredCollection = new RecipeCollection();
+
+    // recipe collection after being filtered by user setting and search options
+    // the collection that is displayed to the screen
+    RecipeCollection filteredCollection = new RecipeCollection();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,13 +66,14 @@ public class SearchResults extends AppCompatActivity {
 
         final ListView listView = (ListView) findViewById(R.id.list);
 
-
-        collection = (RecipeCollection) getIntent().getSerializableExtra("RECIPE_COLLECTION");
-
+        userFilteredCollection = (RecipeCollection) getIntent().getSerializableExtra("RECIPE_COLLECTION");
         filterCollectionByUserSettings();
+
+        filteredCollection.setRecipeCollection(userFilteredCollection.getRecipeCollection());
         filterCollectionBySearchOptions();
 
-        recipeList = collection.getRecipeCollection();
+        //recipeList = (ArrayList<Recipe>)filteredCollection.getRecipeCollection().clone();
+        recipeList = filteredCollection.getRecipeCollection();
 
         /** Defining the ArrayAdapter to set items to ListView */
         recipeListAdapter = new RecipeListAdapter(this, recipeList);
@@ -133,13 +139,20 @@ public class SearchResults extends AppCompatActivity {
                 FilterSearch.cookTimeMinute = data.getIntExtra("ctMin", -1);
                 FilterSearch.numPortions = data.getIntExtra("portions", -1);
 
+                resetFilteredCollection();
                 filterCollectionBySearchOptions();
                 updateList();
             default:
         }
     }
 
+    private void resetFilteredCollection(){
+        filteredCollection.setRecipeCollection(userFilteredCollection.getRecipeCollection());
+    }
+
     private void updateList(){
+        recipeList.clear();
+        recipeList.addAll(filteredCollection.getRecipeCollection());
         recipeListAdapter.notifyDataSetChanged();
     }
 
@@ -156,25 +169,25 @@ public class SearchResults extends AppCompatActivity {
 
     private void filterCollectionByUserSettings(){
         if (prefIsEnabled("pref_diet_vegan")){
-            FilterSearch.filterByVegan(collection);
+            FilterSearch.filterByVegan(userFilteredCollection);
         }
         else if (prefIsEnabled("pref_diet_vegetarian")){
-            FilterSearch.filterByVegetarian(collection);
+            FilterSearch.filterByVegetarian(userFilteredCollection);
         }
         else if (prefIsEnabled("pref_diet_pesc")){
-            FilterSearch.filterByPescatarian(collection);
+            FilterSearch.filterByPescatarian(userFilteredCollection);
         }
 
         if (prefIsEnabled("pref_allergy_nuts")){
-            FilterSearch.filterByNuts(collection);
+            FilterSearch.filterByNuts(userFilteredCollection);
         }
 
         if (prefIsEnabled("pref_allergy_shellfish")){
-            FilterSearch.filterByShellfish(collection);
+            FilterSearch.filterByShellfish(userFilteredCollection);
         }
 
         if (prefIsEnabled("pref_allergy_lactose")){
-            FilterSearch.filterByLactose(collection);
+            FilterSearch.filterByLactose(userFilteredCollection);
         }
     }
 
@@ -186,11 +199,11 @@ public class SearchResults extends AppCompatActivity {
 
     private void filterCollectionBySearchOptions(){
         if (FilterSearch.numPortions != -1) {
-            FilterSearch.filterByNumberOfPortions(collection);
+            FilterSearch.filterByNumberOfPortions(filteredCollection);
         }
 
         if (FilterSearch.cookTimeMinute != -1 || FilterSearch.cookTimeHour != -1){
-            FilterSearch.filterByCookTime(collection);
+            FilterSearch.filterByCookTime(filteredCollection);
         }
     }
 }

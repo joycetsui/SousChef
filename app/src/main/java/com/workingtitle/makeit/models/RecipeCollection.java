@@ -25,6 +25,10 @@ public class RecipeCollection implements Serializable{
         recipeCollection = new ArrayList<Recipe>();
     }
 
+    public void setRecipeCollection(ArrayList<Recipe> recipes) {
+        recipeCollection = (ArrayList<Recipe>)recipes.clone();
+    }
+
     public void removeRecipe(int index) {
         recipeCollection.remove(index);
     }
