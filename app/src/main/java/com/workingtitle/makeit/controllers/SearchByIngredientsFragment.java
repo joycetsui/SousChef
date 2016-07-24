@@ -214,7 +214,8 @@ public class SearchByIngredientsFragment extends Fragment {
         Bundle b = new Bundle();
         b.putInt("toolbarBackMessage", R.string.search_ingredients_tab);
         intent.putExtras(b);
-        startActivity(intent);
+        //startActivity(intent);
+        startActivityForResult(intent, 0);
 
         resetView();
     }
@@ -241,18 +242,6 @@ public class SearchByIngredientsFragment extends Fragment {
         // Initialize data for activity
         query = new Query(getResources().getString(R.string.search_by_ingredients));
         ingredientList = query.getTerms();
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode){
-            case 1:
-                cookTimeDay = data.getIntExtra("ctDay", -1);
-                cookTimeHour = data.getIntExtra("ctHour", -1);
-                cookTimeMinute = data.getIntExtra("ctMin", -1);
-                numPortions = data.getIntExtra("portions", -1);
-            default:
-        }
     }
 
     public void addDefaultIngredients(Query query){

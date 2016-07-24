@@ -30,12 +30,6 @@ public class MainActivity extends AppCompatActivity {
     // Options Menu
     public Menu optionsMenu;
 
-    // Search Options info
-    private int cookTimeDay;
-    private int cookTimeHour;
-    private int cookTimeMinute;
-    private int numPortions;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -146,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
             openUserSettings();
         }
         else if (id == R.id.filterButton){
+
             openOptionsPage();
         }
         else if (id == R.id.clearHistory){
@@ -165,16 +160,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openOptionsPage() {
-        cookTimeDay = -1;
-        cookTimeHour = -1;
-        cookTimeMinute = -1;
-        numPortions = -1;
+
         Intent intent = new Intent(this, SearchOptions.class);
-        intent.putExtra("ctDay", cookTimeDay);
-        intent.putExtra("ctHour", cookTimeHour);
-        intent.putExtra("ctMin", cookTimeMinute);
-        intent.putExtra("portions", numPortions);
+        intent.putExtra("ctHour", FilterSearch.cookTimeHour);
+        intent.putExtra("ctMin", FilterSearch.cookTimeMinute);
+        intent.putExtra("portions", FilterSearch.numPortions);
 
         startActivityForResult(intent, 1);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode){
+            case 1:
+                FilterSearch.cookTimeHour = data.getIntExtra("ctHour", -1);
+                FilterSearch.cookTimeMinute = data.getIntExtra("ctMin", -1);
+                FilterSearch.numPortions = data.getIntExtra("portions", -1);
+            default:
+        }
     }
 }

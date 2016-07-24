@@ -87,7 +87,9 @@ public class SearchRecipeNameFragment extends Fragment {
 
         intent.putExtra("RECIPE_COLLECTION",recipes);
         intent.putExtras(b);
-        startActivity(intent);
+        //startActivity(intent);
+
+        startActivityForResult(intent, 0);
 
         resetView();
     }
