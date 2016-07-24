@@ -36,26 +36,22 @@ public class SearchOptions extends AppCompatActivity {
         if (b != null) {
 
             // Cook Time values
-            day = b.getInt("ctDay");
             hour = b.getInt("ctHour");
             minute = b.getInt("ctMin");
 
             // Set TextView of values
             TextView tvCookTime = (TextView) findViewById(R.id.tvCookTimeDisplay);
-            if (day == -1 && hour == -1 && minute == -1) {
+            if (hour == -1 && minute == -1) {
                 tvCookTime.setText("-");
             }
             else {
-                if (day == -1) {
-                    day = 0;
-                }
                 if (hour == -1) {
                     hour = 0;
                 }
                 if (minute == -1) {
                     minute = 0;
                 }
-                tvCookTime.setText(Integer.toString(day) + " d, " + Integer.toString(hour) + " hr, " + Integer.toString(minute) + " min");
+                tvCookTime.setText(Integer.toString(hour) + " hr, " + Integer.toString(minute) + " min");
             }
 
             // Portions Values
@@ -73,7 +69,6 @@ public class SearchOptions extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent args = new Intent();
-        args.putExtra("ctDay", day);
         args.putExtra("ctHour", hour);
         args.putExtra("ctMin", minute);
         args.putExtra("portions", portions);
@@ -82,13 +77,11 @@ public class SearchOptions extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    // I think ideally this should be a listener but it works ¯\_(ツ)_/¯
     public void onClick(View v) {
         Bundle args = new Bundle();
         switch (v.getId()){
             case R.id.tvCookTimeText:
                 DialogFragment cookTimeDialog = new OptionsCookTimeDialogFragment();
-                args.putInt("day", day);
                 args.putInt("hour", hour);
                 args.putInt("min", minute);
                 cookTimeDialog.setArguments(args);
@@ -114,11 +107,10 @@ public class SearchOptions extends AppCompatActivity {
     public void onCookTimeOK(String cookTime) {
         String delims = "[:]";
         String[] tokens = cookTime.split(delims);
-        day = Integer.parseInt(tokens[0]);
-        hour = Integer.parseInt(tokens[1]);
-        minute = Integer.parseInt(tokens[2]);
+        hour = Integer.parseInt(tokens[0]);
+        minute = Integer.parseInt(tokens[1]);
         TextView tvCookTime = (TextView) findViewById(R.id.tvCookTimeDisplay);
-        tvCookTime.setText(tokens[0] + " d, " + tokens[1] + " hr, " + tokens[2] + " min");
+        tvCookTime.setText(tokens[0] + " h " + tokens[1] + " m");
     }
 
     // Number Picker

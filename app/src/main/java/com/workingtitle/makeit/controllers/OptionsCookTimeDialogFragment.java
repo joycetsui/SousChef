@@ -22,10 +22,6 @@ public class OptionsCookTimeDialogFragment extends DialogFragment{
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        int nd = getArguments().getInt("day");
-        if (nd == -1) {
-            nd = 0;
-        }
         int nh = getArguments().getInt("hour");
         if (nh == -1) {
             nh = 0;
@@ -52,21 +48,14 @@ public class OptionsCookTimeDialogFragment extends DialogFragment{
 
         // Hours
         final NumberPicker hrPicker = new NumberPicker(getActivity());
-        hrPicker.setMaxValue(23); // max value 23
+        hrPicker.setMaxValue(24); // max value 23
         hrPicker.setMinValue(0);   // min value 0
         hrPicker.setValue(nh);
         hrPicker.setWrapSelectorWheel(true);
 
-        // Days
-        final NumberPicker dayPicker = new NumberPicker(getActivity());
-        dayPicker.setMaxValue(10); // max value 10
-        dayPicker.setMinValue(0);   // min value 0
-        dayPicker.setValue(nd);
-        dayPicker.setWrapSelectorWheel(true);
-
         /* Building the layout of the dialog */
-        int margin = 30;
-        int width = 150;
+        int margin = 60;
+        int width = 200;
 
         // Layout of number pickers
         LinearLayout pickerLL = new LinearLayout(getActivity());
@@ -86,7 +75,6 @@ public class OptionsCookTimeDialogFragment extends DialogFragment{
         LLParam.gravity = Gravity.CENTER;
 
         pickerLL.setLayoutParams(LayoutParams);
-        pickerLL.addView(dayPicker,LLParam);
         pickerLL.addView(hrPicker,LLParam);
         pickerLL.addView(minPicker,LLParam);
 
@@ -101,15 +89,10 @@ public class OptionsCookTimeDialogFragment extends DialogFragment{
         hrText.setText("HOURS");
         hrText.setGravity(Gravity.CENTER);
 
-        final TextView dayText = new TextView(getActivity());
-        dayText.setText("DAYS");
-        dayText.setGravity(Gravity.CENTER);
-
         LinearLayout textLL = new LinearLayout(getActivity());
         textLL.setOrientation(LinearLayout.HORIZONTAL);
 
         textLL.setLayoutParams(LayoutParams);
-        textLL.addView(dayText,LLParam);
         textLL.addView(hrText,LLParam);
         textLL.addView(minText,LLParam);
 
@@ -135,7 +118,6 @@ public class OptionsCookTimeDialogFragment extends DialogFragment{
                 .setPositiveButton(R.string.okButton, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         String value =
-                                Integer.toString(dayPicker.getValue()) + ":" +
                                 Integer.toString(hrPicker.getValue()) + ":" +
                                 Integer.toString(minPicker.getValue());
                         SearchOptions callingActivity = (SearchOptions) getActivity();
