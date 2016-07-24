@@ -1,13 +1,16 @@
 package com.workingtitle.makeit.controllers;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.workingtitle.makeit.FilterSearch;
 import com.workingtitle.makeit.R;
 import com.workingtitle.makeit.models.Recipe;
 import com.workingtitle.makeit.models.RecipeCollection;
@@ -23,6 +26,7 @@ public class SearchResults extends AppCompatActivity {
     RecipeListAdapter recipeListAdapter;
 
     ArrayList<Recipe> recipeList;
+    RecipeCollection collection = new RecipeCollection();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +58,10 @@ public class SearchResults extends AppCompatActivity {
         final ListView listView = (ListView) findViewById(R.id.list);
 
 
-        RecipeCollection collection = (RecipeCollection) getIntent().getSerializableExtra("RECIPE_COLLECTION");
+        collection = (RecipeCollection) getIntent().getSerializableExtra("RECIPE_COLLECTION");
+
+        filterCollectionByUserSettings();
+
         recipeList = collection.getRecipeCollection();
 
         /** Defining the ArrayAdapter to set items to ListView */
@@ -81,5 +88,39 @@ public class SearchResults extends AppCompatActivity {
         intent.putExtra("RECIPE_INDEX",position);
         intent.putExtra("RECIPE_SAVE_ACTION",getResources().getString(R.string.saveButton));
         startActivity(intent);
+    }
+
+    private void filterCollectionByUserSettings(){
+        if (prefIsEnabled("pref_diet_vegan")){
+            FilterSearch.filterByVegan(collection);
+        }
+        else if (prefIsEnabled("pref_diet_vegetarian")){
+            FilterSearch.filterByVegetarian(collection);
+        }
+        else if (prefIsEnabled("pref_diet_pesc")){
+            FilterSearch.filterByPescatarian(collection);
+        }
+
+        if (prefIsEnabled("pref_allergy_nuts")){
+            FilterSearch.filterByNuts(collection);
+        }
+
+        if (prefIsEnabled("pref_allergy_shellfish")){
+            FilterSearch.filterByShellfish(collection);
+        }
+
+        if (prefIsEnabled("pref_allergy_lactose")){
+            FilterSearch.filterByLactose(collection);
+        }
+    }
+
+    public boolean prefIsEnabled(String key){
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean enabled = sharedPref.getBoolean(key, false);
+        return enabled;
+    }
+
+    private void filterCollectionBySearchOptions(){
+
     }
 }

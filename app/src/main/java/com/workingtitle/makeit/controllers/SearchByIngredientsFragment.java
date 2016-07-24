@@ -1,6 +1,8 @@
 package com.workingtitle.makeit.controllers;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -12,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.workingtitle.makeit.GlobalClass;
 import com.workingtitle.makeit.R;
@@ -21,6 +24,7 @@ import com.workingtitle.makeit.models.IngredientsLookupTable;
 import com.workingtitle.makeit.models.Query;
 import com.workingtitle.makeit.models.RecipeCollection;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -123,7 +127,13 @@ public class SearchByIngredientsFragment extends Fragment {
         View.OnClickListener goSearchListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openResultsPage();
+                if (!ingredientList.isEmpty()) {
+                    openResultsPage();
+                }
+                else{
+                    Toast msg = Toast.makeText(getContext(), "Please add ingredient(s).", Toast.LENGTH_LONG);
+                    msg.show();
+                }
             }
         };
 
@@ -185,10 +195,11 @@ public class SearchByIngredientsFragment extends Fragment {
         String results = "";
         System.out.println(ingredientList.size());
 
-        query.setTerms((ingredientList));
+        query.setTerms((ArrayList<String>)(ingredientList.clone()));
 
         try{
             saveQuery(query);
+            addDefaultIngredients(query);
             results  = new SearchByIngredients().execute(query).get();
         }catch(Exception e) {
             e.printStackTrace();
@@ -242,5 +253,25 @@ public class SearchByIngredientsFragment extends Fragment {
                 numPortions = data.getIntExtra("portions", -1);
             default:
         }
+    }
+
+    public void addDefaultIngredients(Query query){
+        if (prefIsEnabled("pref_ingr_salt")){
+            query.addTerm("salt");
+        }
+
+        if (prefIsEnabled("pref_ingr_pepper")){
+            query.addTerm("pepper");
+        }
+
+        if (prefIsEnabled("pref_ingr_oil")){
+            query.addTerm("oil");
+        }
+    }
+
+    public boolean prefIsEnabled(String key){
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        boolean enabled = sharedPref.getBoolean(key, false);
+        return enabled;
     }
 }

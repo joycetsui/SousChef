@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.workingtitle.makeit.GlobalClass;
 import com.workingtitle.makeit.R;
@@ -51,6 +52,10 @@ public class SearchRecipeNameFragment extends Fragment {
             public void onClick(View v) {
                 if (!keyword.getText().toString().isEmpty()) {
                     openResultsPage(keyword.getText().toString());
+                }
+                else{
+                    Toast msg = Toast.makeText(getContext(), "Please enter a keyword.", Toast.LENGTH_LONG);
+                    msg.show();
                 }
             }
         };

@@ -1,6 +1,8 @@
 package com.workingtitle.makeit.api;
 
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 
 import com.workingtitle.makeit.models.Query;
 

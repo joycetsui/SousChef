@@ -12,24 +12,21 @@
             android:title = "Vegan"/>
         <CheckBoxPreference
             android:key = "pref_diet_pesc"
-            android:title = "Pescetarian"/>
+            android:title = "Pescatarian"/>
     </PreferenceCategory>
 
     <PreferenceCategory
         android:key="screen_allergies"
         android:title="Food allergies">
         <CheckBoxPreference
-            android:key = "pref_allergy_peanuts"
-            android:title = "Peanuts"/>
+            android:key = "pref_allergy_nuts"
+            android:title = "Nuts"/>
         <CheckBoxPreference
             android:key = "pref_allergy_shellfish"
             android:title = "Shellfish"/>
         <CheckBoxPreference
             android:key = "pref_allergy_lactose"
             android:title = "Lactose intolerance"/>
-        <CheckBoxPreference
-            android:key = "pref_allergy_gluten"
-            android:title = "Gluten free"/>
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -41,6 +38,9 @@
         <CheckBoxPreference
             android:key = "pref_ingr_pepper"
             android:title = "Pepper"/>
+        <CheckBoxPreference
+            android:key = "pref_ingr_oil"
+            android:title = "Oil"/>
     </PreferenceCategory>
 
 </PreferenceScreen>
