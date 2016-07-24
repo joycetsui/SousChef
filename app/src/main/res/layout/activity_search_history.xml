@@ -27,4 +27,20 @@
         android:layout_below="@+id/toolbar"
         android:choiceMode="singleChoice" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="No search history available."
+        android:id="@+id/emptyHistoryListMsg"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="64dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:visibility="gone"
+        android:gravity="center" />
+
 </RelativeLayout>

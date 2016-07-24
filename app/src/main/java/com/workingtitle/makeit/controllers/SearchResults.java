@@ -40,14 +40,14 @@ public class SearchResults extends AppCompatActivity {
     // the collection that is displayed to the screen
     RecipeCollection filteredCollection = new RecipeCollection();
 
+    private TextView emptyListMsg;
+    private ListView listView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_search_results);
-
-        TextView errorMessage = (TextView) findViewById(R.id.genericMessage);
-        errorMessage.setVisibility(View.INVISIBLE);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -70,7 +70,8 @@ public class SearchResults extends AppCompatActivity {
             getSupportActionBar().setTitle(backMessage);
         }
 
-        final ListView listView = (ListView) findViewById(R.id.list);
+        listView = (ListView) findViewById(R.id.list);
+        emptyListMsg = (TextView) findViewById(R.id.emptySearchListMsg);
 
         userFilteredCollection = (RecipeCollection) getIntent().getSerializableExtra("RECIPE_COLLECTION");
         filterCollectionByUserSettings();
@@ -81,25 +82,28 @@ public class SearchResults extends AppCompatActivity {
         //recipeList = (ArrayList<Recipe>)filteredCollection.getRecipeCollection().clone();
         recipeList = filteredCollection.getRecipeCollection();
 
-        //Check if the recipe did not return result
-        if (recipeList.isEmpty() || recipeList == null){
-            errorMessage.setVisibility(View.VISIBLE);
+        //Check if the recipe search did not return result
+        if (recipeList == null || recipeList.isEmpty()){
+            emptyListMsg.setVisibility(View.VISIBLE);
+            listView.setVisibility(View.GONE);
         } else {
-
-            /** Defining the ArrayAdapter to set items to ListView */
-            recipeListAdapter = new RecipeListAdapter(this, recipeList);
-
-            /** Setting the adapter to the ListView */
-            listView.setAdapter(recipeListAdapter);
-
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view,
-                                        int position, long id) {
-                    openRecipeDetailsPage(position);
-                }
-            });
+            emptyListMsg.setVisibility(View.GONE);
+            listView.setVisibility(View.VISIBLE);
         }
+
+        /** Defining the ArrayAdapter to set items to ListView */
+        recipeListAdapter = new RecipeListAdapter(this, recipeList);
+
+        /** Setting the adapter to the ListView */
+        listView.setAdapter(recipeListAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                openRecipeDetailsPage(position);
+            }
+        });
     }
 
     @Override
@@ -165,6 +169,19 @@ public class SearchResults extends AppCompatActivity {
     private void updateList(){
         recipeList.clear();
         recipeList.addAll(filteredCollection.getRecipeCollection());
+
+        if (recipeList.isEmpty()){
+            if (emptyListMsg != null && listView != null) {
+                emptyListMsg.setVisibility(View.VISIBLE);
+                listView.setVisibility(View.GONE);
+            }
+        } else {
+            if (emptyListMsg != null && listView != null) {
+                emptyListMsg.setVisibility(View.GONE);
+                listView.setVisibility(View.VISIBLE);
+            }
+        }
+
         recipeListAdapter.notifyDataSetChanged();
     }
 

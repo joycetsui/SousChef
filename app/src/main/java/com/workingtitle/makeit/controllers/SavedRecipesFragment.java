@@ -28,6 +28,9 @@ public class SavedRecipesFragment extends Fragment {
 
     ArrayList<Recipe> recipeList;
 
+    private TextView emptyListMsg;
+    private ListView listView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -35,7 +38,9 @@ public class SavedRecipesFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.activity_search_results, container, false);
 
-        final ListView listView = (ListView) view.findViewById(R.id.list);
+        listView = (ListView) view.findViewById(R.id.list);
+        emptyListMsg = (TextView) view.findViewById(R.id.emptySearchListMsg);
+        emptyListMsg.setText("No saved recipes found.");
 
         //Hide the toolbar defined in the layout since this fragment is already part of the toolbar/tablayout
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
@@ -46,7 +51,15 @@ public class SavedRecipesFragment extends Fragment {
 
         // Get recipes
         final GlobalClass globalVariable = (GlobalClass) getActivity().getApplicationContext();
-        recipeList= globalVariable.getRecipeCollection().getRecipeCollection();
+        recipeList = globalVariable.getRecipeCollection().getRecipeCollection();
+
+        if (recipeList == null || recipeList.isEmpty()){
+            emptyListMsg.setVisibility(View.VISIBLE);
+            listView.setVisibility(View.GONE);
+        } else {
+            emptyListMsg.setVisibility(View.GONE);
+            listView.setVisibility(View.VISIBLE);
+        }
 
         /** Defining the ArrayAdapter to set items to ListView */
         recipeListAdapter = new RecipeListAdapter(getContext(), recipeList);
@@ -95,6 +108,19 @@ public class SavedRecipesFragment extends Fragment {
     public void updateList(){
         final GlobalClass globalVariable = (GlobalClass) getActivity().getApplicationContext();
         recipeList = globalVariable.getRecipeCollection().getRecipeCollection();
+
+        if (recipeList.isEmpty()){
+            if (emptyListMsg != null && listView != null) {
+                emptyListMsg.setVisibility(View.VISIBLE);
+                listView.setVisibility(View.GONE);
+            }
+        } else {
+            if (emptyListMsg != null && listView != null) {
+                emptyListMsg.setVisibility(View.GONE);
+                listView.setVisibility(View.VISIBLE);
+            }
+        }
+
         recipeListAdapter.notifyDataSetChanged();
     }
 }

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.workingtitle.makeit.GlobalClass;
 import com.workingtitle.makeit.R;
@@ -27,6 +28,8 @@ public class SearchHistoryFragment extends Fragment {
 
     private ArrayList<Query> queryList = new ArrayList<Query>();
 
+    private TextView emptyListMsg;
+    private ListView listView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -35,7 +38,8 @@ public class SearchHistoryFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.activity_search_history, container, false);
 
-        final ListView listView = (ListView) view.findViewById(R.id.searchHistoryList);
+        listView = (ListView) view.findViewById(R.id.searchHistoryList);
+        emptyListMsg = (TextView) view.findViewById(R.id.emptyHistoryListMsg);
 
         //Hide the toolbar defined in the layout since this fragment is already part of the toolbar/tablayout
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
@@ -43,6 +47,15 @@ public class SearchHistoryFragment extends Fragment {
         
         final GlobalClass globalClass = (GlobalClass) getActivity().getApplicationContext();
         queryList = globalClass.getQueryCollection().getReverseQueryCollection();
+
+        //Check if the recipe search did not return result
+        if (queryList == null || queryList.isEmpty()){
+            emptyListMsg.setVisibility(View.VISIBLE);
+            listView.setVisibility(View.GONE);
+        } else {
+            emptyListMsg.setVisibility(View.GONE);
+            listView.setVisibility(View.VISIBLE);
+        }
 
         /** Defining the ArrayAdapter to set items to ListView */
         queryListAdapter = new QueryListAdapter(getContext(), queryList);
@@ -89,6 +102,12 @@ public class SearchHistoryFragment extends Fragment {
     public void clearSearchHistory(){
         final GlobalClass globalVariable = (GlobalClass) getActivity().getApplicationContext();
         globalVariable.clearSearchHistory();
+
+        if (emptyListMsg != null && listView != null) {
+            emptyListMsg.setVisibility(View.VISIBLE);
+            listView.setVisibility(View.GONE);
+        }
+
         queryListAdapter.notifyDataSetChanged();
     }
 

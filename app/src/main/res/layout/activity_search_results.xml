@@ -21,17 +21,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Sorry, we did not find any results for those ingredients"
-        android:id="@+id/genericMessage"
+        android:text="No recipes found."
+        android:id="@+id/emptySearchListMsg"
         android:layout_alignWithParentIfMissing="false"
-        android:layout_below="@+id/results"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_marginTop="64dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:gravity="center"
-        android:textSize="@dimen/abc_text_size_display_1_material" />
+        android:visibility="gone"
+        android:gravity="center" />
 
     <TextView
         android:layout_width="wrap_content"
