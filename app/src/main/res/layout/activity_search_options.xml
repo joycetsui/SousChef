@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -22,61 +22,87 @@
         android:textAlignment="center"
         android:titleTextAppearance="@style/RegularTextStyle"/>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
+    <TextView
+        style="@style/searchOptionsTV"
+        android:id="@+id/tvCookTimeText"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_below="@+id/toolbar"
+        android:gravity="center"
+        android:text="@string/cookTime"
+        android:layout_width="match_parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_weight="5">
+    </TextView>
 
-        <TextView
-            style="@style/searchOptionsTV"
-            android:id="@+id/tvCookTimeText"
-            android:layout_height="wrap_content"
-            android:text="@string/cookTime"
-            android:layout_width="0dp"
-            android:layout_weight="5"
-            android:onClick="onClick"
-            android:clickable="true">
-        </TextView>
-
-        <TextView
-            style="@style/searchOptionsTV"
-            android:id="@+id/tvCookTimeDisplay"
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="4"
-            android:onClick="onClick"
-            android:clickable="true">
-        </TextView>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            style="@style/searchOptionsTV"
-            android:id="@+id/tvPortionsText"
-            android:layout_height="wrap_content"
-            android:text="@string/portions"
-            android:layout_width="0dp"
-            android:layout_weight="5"
-            android:onClick="onClick"
-            android:clickable="true">
-
-        </TextView>
+        android:layout_centerInParent="true"
+        android:id="@+id/cookTimePickerLayout"
+        android:layout_below="@id/tvCookTimeText">
 
         <TextView
             style="@style/searchOptionsTV"
-            android:id="@+id/tvPortionsDisplay"
+            android:id="@+id/tvCookTimeHourText"
             android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="4"
-            android:onClick="onClick"
-            android:clickable="true">
+            android:text="Hours"
+            android:layout_width="wrap_content"
+            android:layout_weight="5">
         </TextView>
-    </LinearLayout>
 
+        <NumberPicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cookTimePickerHours"
+            android:layout_below="@id/tvCookTimeHourText"
+            android:layout_alignRight="@id/tvCookTimeHourText"
+            android:layout_alignLeft="@id/tvCookTimeHourText"
+            android:layout_gravity="center">
+        </NumberPicker>
 
-</LinearLayout>
+        <TextView
+            style="@style/searchOptionsTV"
+            android:id="@+id/tvCookTimeMinutesText"
+            android:layout_height="wrap_content"
+            android:text="Minutes"
+            android:layout_toRightOf="@+id/tvCookTimeHourText"
+            android:layout_width="wrap_content"
+            android:layout_weight="5">
+        </TextView>
+
+        <NumberPicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cookTimePickerMinutes"
+            android:layout_below="@id/tvCookTimeMinutesText"
+            android:layout_toRightOf="@id/cookTimePickerHours"
+            android:layout_alignRight="@id/tvCookTimeMinutesText"
+            android:layout_alignLeft="@id/tvCookTimeMinutesText"
+            android:layout_gravity="center">
+        </NumberPicker>
+
+    </RelativeLayout>
+
+    <TextView
+        style="@style/searchOptionsTV"
+        android:id="@+id/tvPortionsText"
+        android:layout_height="wrap_content"
+        android:text="@string/portions"
+        android:layout_below="@+id/cookTimePickerLayout"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_width="match_parent">
+    </TextView>
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/portionsPicker"
+        android:layout_below="@id/tvPortionsText"
+        android:layout_gravity="center">
+    </NumberPicker>
+
+</RelativeLayout>
