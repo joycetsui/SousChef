@@ -50,6 +50,9 @@ public class SearchByIngredientsFragment extends Fragment {
   // ingredients List
   IngredientsLookupTable lookupTable;
 
+  // Create the adapter and set it to the AutoCompleteTextView
+  ArrayAdapter<String> suggestionsAdapter;
+
   // Search Options info
   private int cookTimeDay;
   private int cookTimeHour;
@@ -103,13 +106,9 @@ public class SearchByIngredientsFragment extends Fragment {
 
     final View view = inflater.inflate(R.layout.activity_search_by_ingredients, container, false);
 
-    resetView();
-
+    suggestionsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, lookupTable.getLookupTable());
     /** Defining the ArrayAdapter to set items to ListView */
     recipeListAdapter = new IngredientsAddedAdapter(view.getContext(), ingredientList);
-
-    // Create the adapter and set it to the AutoCompleteTextView
-    final ArrayAdapter<String> suggestionsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, lookupTable.getLookupTable());
 
     //Auto-complete Suggestions for Ingredients TextView
     ingredientTextView = (AutoCompleteTextView) view.findViewById(R.id.txtItem);
@@ -167,8 +166,6 @@ public class SearchByIngredientsFragment extends Fragment {
     b.putInt("toolbarBackMessage", R.string.search_ingredients_tab);
     intent.putExtras(b);
     startActivityForResult(intent, 0);
-
-    resetView();
   }
 
   private void addIngredientToList() {
@@ -177,7 +174,9 @@ public class SearchByIngredientsFragment extends Fragment {
     if (!ingredientAdded.isEmpty() && Arrays.asList(lookupTable.getLookupTable()).indexOf(ingredientAdded) != -1) {
       ingredientList.add(0, ingredientAdded);
       recipeListAdapter.notifyDataSetChanged();
-      ingredientTextView.setText("");
+      if (ingredientTextView.length() > 0) {
+        ingredientTextView.getText().clear();
+      }
     } else {
       ingredientTextView.setError(getResources().getString(R.string.invalidIngredientMsg));
     }
