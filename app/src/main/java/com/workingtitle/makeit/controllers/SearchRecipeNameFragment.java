@@ -146,7 +146,7 @@ public class SearchRecipeNameFragment extends Fragment {
     query = new Query(getResources().getString(R.string.search_by_recipe));
     terms = query.getTerms();
     if (keyword != null) {
-      keyword.setText("");
+      keyword.getText().clear();
     }
   }
 
