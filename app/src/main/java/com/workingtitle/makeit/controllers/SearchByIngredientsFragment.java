@@ -84,6 +84,13 @@ public class SearchByIngredientsFragment extends Fragment {
 
     final View view = inflater.inflate(R.layout.activity_search_by_ingredients, container, false);
 
+
+    suggestionsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, lookupTable.getLookupTable());
+
+    /** Defining the ArrayAdapter to set items to ListView */
+    recipeListAdapter = new IngredientsAddedAdapter(view.getContext(), ingredientList);
+
+
     // Get parameters passed when activity was created
     Bundle b = getActivity().getIntent().getExtras();
 
@@ -91,14 +98,15 @@ public class SearchByIngredientsFragment extends Fragment {
       ArrayList<String> ingredients;
       ingredients = b.getStringArrayList("IngredientList");
       if (ingredients != null) {
-        ingredientList = (ArrayList<String>) ingredients.clone();
+        ingredientList.clear();
+        ingredientList.addAll(ingredients);
+        recipeListAdapter.notifyDataSetChanged();
+        getActivity().getIntent().removeExtra("IngredientList");
+      }
+      else{
+        resetView();
       }
     }
-
-    suggestionsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, lookupTable.getLookupTable());
-
-    /** Defining the ArrayAdapter to set items to ListView */
-    recipeListAdapter = new IngredientsAddedAdapter(view.getContext(), ingredientList);
 
     //Auto-complete Suggestions for Ingredients TextView
     ingredientTextView = (AutoCompleteTextView) view.findViewById(R.id.txtItem);
@@ -175,7 +183,7 @@ public class SearchByIngredientsFragment extends Fragment {
   public void resetView() {
     // Initialize data for activity
     query = new Query(getResources().getString(R.string.search_by_ingredients));
-    ingredientList = query.getTerms();
+    recipeListAdapter.notifyDataSetChanged();
   }
 
   public void addDefaultIngredients(Query query) {
