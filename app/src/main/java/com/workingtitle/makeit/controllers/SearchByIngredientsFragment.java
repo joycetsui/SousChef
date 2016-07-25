@@ -157,7 +157,12 @@ public class SearchByIngredientsFragment extends Fragment {
       if (ingredientTextView.length() > 0) {
         ingredientTextView.getText().clear();
       }
-    } else {
+    }
+    else if (Arrays.asList(lookupTable.getLookupTable()).isEmpty()){
+      Toast msg = Toast.makeText(getContext(), "Your phone seems to be offline. Please check your internet connection and restart the app.", Toast.LENGTH_LONG);
+      msg.show();
+    }
+    else {
       ingredientTextView.setError(getResources().getString(R.string.invalidIngredientMsg));
     }
   }
@@ -211,7 +216,12 @@ public class SearchByIngredientsFragment extends Fragment {
     public void onClick(View v) {
       if (!ingredientList.isEmpty()) {
         openResultsPage();
-      } else {
+      }
+      else if (Arrays.asList(lookupTable.getLookupTable()).isEmpty()){
+        Toast msg = Toast.makeText(getContext(), "Your phone seems to be offline. Please check your internet connection and restart the app.", Toast.LENGTH_LONG);
+        msg.show();
+      }
+      else {
         Toast msg = Toast.makeText(getContext(), "Please add ingredient(s).", Toast.LENGTH_LONG);
         msg.show();
       }
