@@ -119,7 +119,12 @@ public class MainActivity extends AppCompatActivity {
             if (viewPager.getCurrentItem() == 3) {
                 menu.findItem(R.id.filterButton).setVisible(false);
                 menu.findItem(R.id.clearHistory).setVisible(true);
-            } else {
+            }
+            else if (viewPager.getCurrentItem() == 2) {
+                menu.findItem(R.id.filterButton).setVisible(false);
+                menu.findItem(R.id.clearHistory).setVisible(false);
+            }
+            else {
                 menu.findItem(R.id.filterButton).setVisible(true);
                 menu.findItem(R.id.clearHistory).setVisible(false);
             }

@@ -26,6 +26,7 @@ public class GetLookupTable extends AsyncTask<Void,Void,String>{
             URL url = new URL("http://159.203.61.63/v1/api/ingredients/lookup?key=cs446");
             HttpURLConnection connection= (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
+            connection.setConnectTimeout(1500);
             InputStreamReader reader = new InputStreamReader(connection.getInputStream());
             BufferedReader br = new BufferedReader(reader);
             while((line = br.readLine()) != null) {

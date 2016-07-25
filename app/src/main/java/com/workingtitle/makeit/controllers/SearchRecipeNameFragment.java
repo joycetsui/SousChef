@@ -114,18 +114,6 @@ public class SearchRecipeNameFragment extends Fragment {
       return;
     }
 
-    JsonElement element = new JsonParser().parse(results);
-    JsonObject object = element.getAsJsonObject();
-    object = object.getAsJsonObject("data");
-    recipe.populate(object);
-
-    b.putInt("toolbarBackMessage", R.string.search_by_recipe);
-    intent.putExtras(b);
-    intent.putExtra("RECIPE",recipe);
-    intent.putExtra("RECIPE_INDEX",0);
-    intent.putExtra("RECIPE_SAVE_ACTION",getResources().getString(R.string.saveButton));
-    startActivity(intent);
-
     initializeView();
 
     Recipe recipeFinal = new Recipe();

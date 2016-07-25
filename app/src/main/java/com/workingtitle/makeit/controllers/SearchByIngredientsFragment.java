@@ -53,12 +53,6 @@ public class SearchByIngredientsFragment extends Fragment {
   // Create the adapter and set it to the AutoCompleteTextView
   ArrayAdapter<String> suggestionsAdapter;
 
-  // Search Options info
-  private int cookTimeDay;
-  private int cookTimeHour;
-  private int cookTimeMinute;
-  private int numPortions;
-
   // Widgets
   Button addBtn;
   Button searchBtn;
@@ -81,6 +75,14 @@ public class SearchByIngredientsFragment extends Fragment {
     } catch (Exception e) {
       e.printStackTrace();
     }
+  }
+
+  @Override
+  public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+    super.onCreateView(inflater, container, savedInstanceState);
+
+    final View view = inflater.inflate(R.layout.activity_search_by_ingredients, container, false);
 
     // Get parameters passed when activity was created
     Bundle b = getActivity().getIntent().getExtras();
@@ -93,20 +95,8 @@ public class SearchByIngredientsFragment extends Fragment {
       }
     }
 
-    cookTimeDay = -1;
-    cookTimeHour = -1;
-    cookTimeMinute = -1;
-    numPortions = -1;
-  }
-
-  @Override
-  public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-    super.onCreateView(inflater, container, savedInstanceState);
-
-    final View view = inflater.inflate(R.layout.activity_search_by_ingredients, container, false);
-
     suggestionsAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, lookupTable.getLookupTable());
+
     /** Defining the ArrayAdapter to set items to ListView */
     recipeListAdapter = new IngredientsAddedAdapter(view.getContext(), ingredientList);
 
@@ -129,16 +119,6 @@ public class SearchByIngredientsFragment extends Fragment {
     searchBtn.setOnClickListener(new GoSearchListener());
 
     return view;
-  }
-
-  private void openOptionsPage() {
-    Intent intent = new Intent(getActivity(), SearchOptions.class);
-    intent.putExtra("ctDay", cookTimeDay);
-    intent.putExtra("ctHour", cookTimeHour);
-    intent.putExtra("ctMin", cookTimeMinute);
-    intent.putExtra("portions", numPortions);
-
-    startActivityForResult(intent, 1);
   }
 
   private void openResultsPage() {

@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 /**
@@ -25,7 +26,7 @@ public class SearchByIngredients extends AsyncTask<Query, Void, String>{
         String line;
         try {
             String terms = query[0].buildSearchTerms();
-            String url_builder = "http://159.203.61.63/v1/api/ingredients/search?term=" + terms + "&limit=100&key=cs446";
+            String url_builder = "http://159.203.61.63/v1/api/ingredients/search?term=" + URLEncoder.encode(terms, "UTF-8") + "&limit=100&key=cs446";
             URL url = new URL(url_builder);
             System.out.println(url_builder);
             HttpURLConnection connection= (HttpURLConnection) url.openConnection();
