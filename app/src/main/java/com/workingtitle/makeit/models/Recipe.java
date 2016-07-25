@@ -160,7 +160,7 @@ public class Recipe implements Serializable {
         this.setRecipeId(Integer.parseInt(object.getAsJsonObject().getAsJsonPrimitive("recipe_id").toString()));
         this.setTitle(object.getAsJsonObject().getAsJsonPrimitive("title").toString());
         this.setAuthor(object.getAsJsonObject().getAsJsonPrimitive("author").toString());
-        this.setRating(Float.parseFloat(object.getAsJsonObject().getAsJsonPrimitive("recipe_id").toString()));
+        this.setRating(Float.parseFloat(object.getAsJsonObject().getAsJsonPrimitive("rating").toString()));
         this.setRatingScale(Integer.parseInt(object.getAsJsonObject().getAsJsonPrimitive("rating_scale").toString()));
         this.setReviewCount(Integer.parseInt(object.getAsJsonObject().getAsJsonPrimitive("review_count").toString()));
         this.setCookTime(object.getAsJsonObject().getAsJsonPrimitive("cook_time").toString());
