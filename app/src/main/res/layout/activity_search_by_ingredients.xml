@@ -18,10 +18,10 @@
         android:layout_alignParentStart="false"
         android:layout_above="@+id/btnFeedMe"
         android:layout_below="@+id/txtItem"
-        android:paddingLeft="@dimen/abc_edit_text_inset_horizontal_material"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/abc_button_inset_vertical_material" />
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="@dimen/abc_button_inset_vertical_material"
+        android:paddingLeft="5dp" />
 
     <!-- Enter ingredient box -->
     <AutoCompleteTextView
@@ -35,7 +35,7 @@
         android:layout_toLeftOf="@+id/btnAdd"
         android:layout_toStartOf="@+id/btnAdd"
         android:paddingTop="@dimen/abc_action_button_min_height_material"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+        android:layout_marginLeft="20dp" />
 
     <!-- Add button -->
     <Button
@@ -48,7 +48,7 @@
         android:layout_above="@+id/ingredientsList"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginRight="@dimen/activity_horizontal_margin" />
+        android:layout_marginRight="20dp" />
 
     <!-- FEED ME button -->
     <Button
