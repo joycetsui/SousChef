@@ -35,7 +35,12 @@ public class QueryListAdapter extends ArrayAdapter<Query> {
         TextView searchTypeTextView = (TextView) rowView.findViewById(R.id.searchType);
         TextView searchParamsTextView = (TextView) rowView.findViewById(R.id.searchParams);
 
-        searchTypeTextView.setText(queries.get(position).getQueryType());
+        if (queries.get(position).getQueryType().equals("Search By Recipe")) {
+            searchTypeTextView.setText("Recipe Search");
+        } else {
+            searchTypeTextView.setText("Ingredients Search");
+        }
+        //searchTypeTextView.setText(queries.get(position).getQueryType());
         searchParamsTextView.setText(queries.get(position).buildSearchTerms());
 
         return rowView;

@@ -63,6 +63,7 @@ public class SearchHistoryFragment extends Fragment {
         /** Setting the adapter to the ListView */
         listView.setAdapter(queryListAdapter);
 
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
